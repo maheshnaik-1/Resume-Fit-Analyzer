@@ -50,25 +50,27 @@ The application will be deployed after completing the production version.
 # 🛠 Tech Stack
 
 ## Frontend
-
-- React
-- Vite
-- JavaScript
-- CSS
+• React.js
+• Vite
+• JavaScript (ES6+)
+• HTML5
+• CSS3
 
 ## Backend
-
-- FastAPI
-- Python
+• FastAPI
+• Python 3
 
 ## Machine Learning
-
-- Scikit-Learn
-- Random Forest
+• Scikit-learn
+• Random Forest Classifier
 
 ## Database
+• SQLite
 
-- SQLite
+## Development Tools
+• VS Code
+• Git
+• GitHub
 
 ---
 
