@@ -124,9 +124,7 @@ Resume-Fit-Analyzer
 ## Dashboard
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/55d02fbe-6027-471b-a401-57d420825ed8" />
-
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ed5710c6-9dee-46b8-bee7-eafb99b507c7" />
-
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c871f142-96c4-41d2-99f4-a21cf34e1bee" />
 
 
@@ -134,7 +132,6 @@ Resume-Fit-Analyzer
 ## Analytics
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b42aaa76-df6f-41ad-819e-1ce067bc4763" />
-
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4e59a9ac-0db4-4738-a099-06bb4d7b285b" />
 
 ---
