@@ -106,7 +106,7 @@ pip install joblib
 Run backend
 
 ```bash
-uvicorn main:app --reload
+python -m uvicorn main:app --reload
 ```
 
 ---
