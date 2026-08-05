@@ -1,90 +1,139 @@
 # 🚀 Resume Fit Analyzer
 
-An intelligent web application that analyzes resumes against a selected company and job role, calculates an ATS (Applicant Tracking System) score, identifies missing skills, and provides actionable suggestions to improve resume quality.
+![React](https://img.shields.io/badge/React-19-blue?logo=react)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green?logo=fastapi)
+![Python](https://img.shields.io/badge/Python-3.12-yellow?logo=python)
+![SQLite](https://img.shields.io/badge/SQLite-Database-blue?logo=sqlite)
+![Machine Learning](https://img.shields.io/badge/Machine-Learning-orange)
+![Git](https://img.shields.io/badge/Git-Version%20Control-red?logo=git)
+![License](https://img.shields.io/badge/License-Educational-purple)
 
 ---
 
-## 📌 Features
+## 📖 About
+
+Resume Fit Analyzer is a full-stack web application that analyzes resumes against job descriptions to evaluate ATS compatibility, identify missing skills, detect education and certifications, recommend career paths using Machine Learning, and provide actionable suggestions for improving resume quality.
+
+This project was developed to strengthen skills in Full Stack Development, Machine Learning integration, REST API development, and software engineering.
+
+---
+
+# ✨ Features
 
 - 📄 Upload Resume (PDF)
 - 🎯 ATS Score Calculation
-- 🏢 Company & Role Selection
-- ✅ Matched Skills Detection
-- ❌ Missing Skills Identification
-- 📊 Score Breakdown
+- 🏢 Company Selection
+- 💼 Role Selection
+- 🧠 Machine Learning Career Prediction
+- 📊 Interactive Dashboard
+- 📈 Skill Detection
 - 🎓 Education Detection
 - 📜 Certification Detection
 - 💼 Project Detection
-- 📈 Resume Improvement Tracking
-- 🏆 Best Resume Record
-- 📚 Resume Analysis History
-- 🔔 Notification System
-- 📋 Dashboard Analytics
-- 🎯 Career Match Prediction
+- 📑 Resume Health Report
 - 💡 Resume Improvement Suggestions
-- 📥 Download Analysis Report as PDF
-- 🌙 Light / Dark Theme
-- 🔐 User Authentication (Login & Signup)
+- 📊 ATS Score Breakdown
+- 📄 Download PDF Report
+- 🕒 Resume Analysis History
+- 🔐 Login & Signup UI
 
 ---
 
-## 🛠 Tech Stack
+# 🛠 Tech Stack
 
-### Frontend
+## Frontend
 
-- React.js
+- React
 - Vite
-- CSS3
-- Axios
+- JavaScript
+- CSS
 
-### Backend
+## Backend
 
 - FastAPI
 - Python
 
-### Database
+## Machine Learning
+
+- Scikit-Learn
+- Random Forest
+
+## Database
 
 - SQLite
 
-### Machine Learning
+---
 
-- Scikit-learn
-- Random Forest Classifier
+# 🏗 System Architecture
 
-### Libraries
-
-- PyPDF2
-- Pandas
-- Joblib
+```text
+              Resume (PDF)
+                     │
+                     ▼
+           React Frontend (Vite)
+                     │
+             REST API Requests
+                     │
+                     ▼
+            FastAPI Backend
+                     │
+       Resume Text Extraction
+                     │
+     ATS Analysis + ML Prediction
+                     │
+     SQLite Database Storage
+                     │
+                     ▼
+          Analytics Dashboard
+```
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
-```
+```text
 Resume-Fit-Analyzer
 │
 ├── backend
 │   ├── main.py
 │   ├── database.py
-│   ├── job_data.py
-│   ├── dataset
-│   ├── ml
-│   └── models
+│   ├── dataset/
+│   ├── ml/
+│   └── models/
 │
 ├── frontend
-│   ├── src
-│   ├── public
-│   └── package.json
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── pages/
+│   │   ├── styles/
+│   │   └── utils/
 │
 └── README.md
 ```
 
 ---
 
-## ⚙️ Installation
+# 📷 Screenshots
 
-### Clone Repository
+## Home Page
+
+> *(Add screenshot here)*
+
+## Dashboard
+
+> *(Add screenshot here)*
+
+## Analytics
+
+> *(Add screenshot here)*
+
+---
+
+# ⚙ Installation
+
+## Clone Repository
 
 ```bash
 git clone https://github.com/maheshnaik-1/Resume-Fit-Analyzer.git
@@ -95,21 +144,10 @@ git clone https://github.com/maheshnaik-1/Resume-Fit-Analyzer.git
 ```bash
 cd backend
 
-pip install fastapi
-pip install uvicorn
-pip install scikit-learn
-pip install pandas
-pip install PyPDF2
-pip install joblib
+pip install -r requirements.txt
+
+uvicorn main:app --reload
 ```
-
-Run backend
-
-```bash
-python -m uvicorn main:app --reload
-```
-
----
 
 ### Frontend
 
@@ -123,47 +161,42 @@ npm run dev
 
 ---
 
-## 🧠 How It Works
+# 🎯 Future Roadmap
 
-1. User uploads a resume in PDF format.
-2. Resume text is extracted using PyPDF2.
-3. Skills, education, certifications, and projects are detected.
-4. The selected company and job role determine the required skills.
-5. ATS score is calculated based on skill matching.
-6. Resume insights and recommendations are generated.
-7. Analysis is stored in SQLite for history and analytics.
-8. Machine Learning predicts suitable career matches.
-9. Users can download the complete report as a PDF.
+- ✅ Resume Upload
+- ✅ ATS Score
+- ✅ Skill Detection
+- ✅ ML Career Prediction
+- ✅ Dashboard
 
----
+### Upcoming Features
 
-## 📊 Current Features
-
-- ATS Score Analysis
-- Resume History
-- Analytics Dashboard
-- Notification Center
-- Career Prediction
-- Resume Health Report
-- PDF Report Generation
-- Authentication System
+- 🤖 AI Resume Suggestions
+- ✍ AI Cover Letter Generator
+- 📄 Resume Builder
+- 🐳 Docker Support
+- ☁ Cloud Deployment
+- 🔐 JWT Authentication
+- 👨‍💼 Recruiter Dashboard
+- 📈 Resume Version Comparison
 
 ---
 
-## 🔮 Future Enhancements
+# 🤝 Contributing
 
-- AI-powered Resume Recommendations using LLMs
-- DOCX Resume Support
-- Cloud Database Integration
-- Resume Version Comparison
-- Recruiter Dashboard
-- Email Notifications
-- Deployment on AWS / Render
-- Docker Support
+Contributions, feature requests, and suggestions are welcome.
+
+Feel free to fork the repository and submit a Pull Request.
 
 ---
 
-## 👨‍💻 Author
+# 📄 License
+
+This project is developed for educational, learning, and portfolio purposes.
+
+---
+
+# 👨‍💻 Author
 
 **Mahesh Naik**
 
@@ -171,9 +204,3 @@ B.Tech Computer Science Engineering Student
 
 GitHub:
 https://github.com/maheshnaik-1
-
----
-
-## 📄 License
-
-This project is intended for educational and learning purposes. It may be used as a reference for academic and personal learning.
