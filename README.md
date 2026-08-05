@@ -180,21 +180,31 @@ npm run dev
 
 ---
 
-## 🚧 Project Status
+## 🚧 Current Status
 
-This project is currently under active development.
+This project is under active development.
 
-Completed:
-- Resume Upload
-- ATS Score
-- Skill Detection
-- Career Prediction
-- Dashboard
+### Currently Implemented
 
-Upcoming:
-- AI Resume Suggestions
-- Resume Builder
-- Cloud Deployment
+✔ Resume Upload
+
+✔ ATS Score
+
+✔ Resume Parsing
+
+✔ Skill Detection
+
+✔ Career Prediction
+
+✔ Analytics Dashboard
+
+### Planned
+
+• AI Resume Suggestions
+
+• Resume Builder
+
+• Cloud Deployment
 
 ---
 
