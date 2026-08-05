@@ -18,6 +18,14 @@ This project was developed to strengthen skills in Full Stack Development, Machi
 
 ---
 
+## 🌐 Demo
+
+> Coming Soon
+
+The application will be deployed after completing the production version.
+
+---
+
 # ✨ Features
 
 - 📄 Upload Resume (PDF)
