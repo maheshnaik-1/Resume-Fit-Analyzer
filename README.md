@@ -180,6 +180,24 @@ npm run dev
 
 ---
 
+## 🚧 Project Status
+
+This project is currently under active development.
+
+Completed:
+- Resume Upload
+- ATS Score
+- Skill Detection
+- Career Prediction
+- Dashboard
+
+Upcoming:
+- AI Resume Suggestions
+- Resume Builder
+- Cloud Deployment
+
+---
+
 # 🎯 Future Roadmap
 
 - ✅ Resume Upload
@@ -209,9 +227,11 @@ Feel free to fork the repository and submit a Pull Request.
 
 ---
 
-# 📄 License
+## 📄 License
 
-This project is developed for educational, learning, and portfolio purposes.
+This project is open for educational and portfolio purposes.
+
+Please contact the author before using substantial portions of the code in commercial projects.
 
 ---
 
