@@ -1,0 +1,1413 @@
+/* ==========================================================
+   RESULT CARD
+========================================================== */
+
+.result-card{
+    background:var(--surface);
+    border-radius:22px;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    min-height:0;
+    height:100%;
+    box-sizing:border-box;
+    align-self: stretch;
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--card-shadow);
+
+    transition:
+        transform .45s cubic-bezier(.22,1,.36,1),
+        box-shadow .45s cubic-bezier(.22,1,.36,1);
+
+    cursor:default;
+
+    overflow-y:auto;
+    
+    overflow-x:hidden;
+
+    position: relative;
+
+    isolation: isolate;
+}
+
+.result-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-140%;
+
+    width:70%;
+
+    height:100%;
+
+    background:linear-gradient(
+
+        115deg,
+
+        transparent 0%,
+
+        rgba(255,255,255,.05) 30%,
+
+        rgba(255,255,255,.45) 48%,
+
+        rgba(255,255,255,.05) 70%,
+
+        transparent 100%
+
+    );
+
+    transform:skewX(-22deg);
+
+    transition:left .75s ease;
+
+    pointer-events:none;
+
+    z-index:1;
+
+}
+
+.result-card:hover{
+
+    transform:
+        translateY(-6px)
+        scale(1.01);
+
+    box-shadow:
+        0 20px 42px var(--primary-shadow-hover);
+
+}
+
+.result-card:active{
+
+    transform:
+        translateY(-3px)
+        scale(.995);
+
+}
+
+.result-card:hover::after{
+
+    left:170%;
+
+}
+
+.result-card h2{
+
+    margin:0 0 20px;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    line-height:1.2;
+
+}
+
+.result-card li{
+
+    color:var(--text);
+
+    margin-bottom:8px;
+}
+
+.modern-list,
+.suggestions-list{
+
+    flex:1;
+}
+
+.matched-card,
+.missing-card,
+.education-card,
+.detected-card,
+.certifications-card,
+.roles-card,
+.projects-card,
+.suggestions-card,
+.health-card{
+
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+/* ==========================================================
+   ATS SCORE
+========================================================== */
+
+.score{
+
+    font-size:52px;
+
+    font-weight:800;
+
+    color:var(--primary);
+
+    letter-spacing:-2px;
+
+    margin:12px 0 16px;
+}
+
+.rating{
+
+    color:#f59e0b;
+
+    font-size:18px;
+
+    letter-spacing:3px;
+
+    margin-bottom:10px;
+
+    opacity:.95;
+}
+
+.excellent,
+.good,
+.poor{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    font-weight:700;
+
+    font-size: 14px;
+
+    width:max-content;
+
+    margin-bottom:14px;
+}
+
+.excellent{
+
+    background:#dcfce7;
+
+    color:#15803d;
+}
+
+.good{
+
+    background:#fef3c7;
+
+    color:#b45309;
+}
+
+.poor{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+}
+
+/* ==========================================================
+   SCORE BAR
+========================================================== */
+
+.progress-bar{
+
+    height:12px;
+
+    background:var(--border);
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    margin-top:14px;
+}
+
+.progress-fill{
+
+    height:100%;
+
+    border-radius:30px;
+
+    transition:
+        width 1.4s cubic-bezier(.22,1,.36,1),
+        background .3s ease;
+}
+
+.score-summary{
+
+    margin-top:12px;
+
+    font-weight:600;
+
+    color:var(--text-light);
+}
+
+.score-summary-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.score-summary-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.summary-title{
+
+    display:block;
+
+    font-weight:700;
+
+    color:var(--text);
+
+    margin-bottom:4px;
+
+}
+
+.score-summary-item small{
+    color:var(--text-light);
+    font-size:12px;
+}
+
+.score-summary-item strong{
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.score-summary-item.matched strong{
+
+    color:#16a34a;
+
+}
+
+.score-summary-item.missing strong{
+
+    color:#ef4444;
+
+}
+
+.score-stats{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:10px 0;
+
+    border-bottom:1px solid var(--border);
+
+    color:var(--text-light);
+
+    font-size:15px;
+}
+
+.score-stats:last-of-type{
+
+    border-bottom:none;
+}
+
+.score-stats strong{
+
+    color:var(--text);
+
+    font-size:19px;
+}
+
+/* ==========================================================
+   SCORE BREAKDOWN
+========================================================== */
+
+.score-breakdown-card{
+
+    margin-top:6px;
+
+    padding:0;
+
+    background:transparent;
+
+    border:none;
+
+    box-shadow:none;
+}
+
+.breakdown-item{
+
+    padding:12px 0;
+
+    border-bottom:1px solid var(--border);
+}
+
+.breakdown-item:last-child{
+
+    border-bottom:none;
+}
+
+.breakdown-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+}
+
+.breakdown-track{
+
+    height:12px;
+
+    background:var(--border);
+
+    border-radius:30px;
+
+    overflow:hidden;
+}
+
+.breakdown-fill{
+
+    height:100%;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--primary-dark)
+    );
+
+    transform-origin:left;
+
+    animation:growBar 1s ease forwards;
+
+}
+
+@keyframes growBar{
+
+    from{
+
+        transform:scaleX(0);
+
+    }
+
+    to{
+
+        transform:scaleX(1);
+
+    }
+
+}
+
+.breakdown-item:nth-child(1) .breakdown-fill{
+
+    animation-delay:.10s;
+
+}
+
+.breakdown-item:nth-child(2) .breakdown-fill{
+
+    animation-delay:.30s;
+
+}
+
+.breakdown-item:nth-child(3) .breakdown-fill{
+
+    animation-delay:.50s;
+
+}
+
+.breakdown-item:nth-child(4) .breakdown-fill{
+
+    animation-delay:.70s;
+
+}
+
+/* ==========================================================
+   SKILL BADGES
+========================================================== */
+
+.skills-list{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    align-content:flex-start;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+    flex:1;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    padding:6px 2px;
+}
+
+.skill-badge,
+.matched-badge,
+.missing-badge{
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    transition:.25s;
+}
+
+.skill-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-height:25px;
+
+    padding:7px 14px;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        135deg,
+        var(--secondary),
+        color-mix(in srgb, var(--secondary) 80%, white 20%)
+    );
+
+    border:1px solid var(--primary-light);
+
+    color:color-mix(in srgb, var(--text) 90%, var(--primary) 10%);
+
+    font-weight:650;
+
+    letter-spacing:.2px;
+
+    white-space:nowrap;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,.06);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease,
+        background .25s ease;
+}
+
+.skill-badge:hover{
+
+    transform:translateY(-3px);
+
+    background:var(--primary-light);
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 10px 22px var(--primary-shadow);
+
+}
+
+.skill-badge:active{
+
+    transform:translateY(-1px) scale(.98);
+
+}
+
+.matched-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    background:#22c55e;
+    
+    border:none;
+    
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    transition:.25s;
+}
+
+.matched-badge:hover{
+
+    background:#dcfce7;
+
+    transform:translateY(-2px);
+
+}
+
+.missing-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    background:#ef4444;
+    
+    border:none;
+    
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    transition:.25s;
+}
+
+.missing-badge:hover{
+
+    background:#ffe4e6;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================================
+   SUGGESTIONS
+========================================================== */
+
+.suggestions-list{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    flex:1;
+
+    overflow-y:auto;
+
+    min-height:0;
+
+    height:100%;
+    
+    align-content:flex-start;
+}
+
+.suggestion-item{
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+
+    padding:7px 0;
+
+    background:transparent;
+
+    border:none;
+    
+    padding-left:0;
+    
+    border-left:none;
+    
+    border-radius:0;
+
+    border-bottom:1px solid var(--border);
+}
+
+.suggestion-item:hover{
+
+    background:var(--background);
+
+    transform:translateX(4px);
+
+    border-left-color:var(--primary);
+
+}
+
+/* ==========================================================
+   RESULT GRID
+========================================================== */
+
+.education-card,
+.certifications-card,
+.projects-card,
+.roles-card,
+.suggestions-card{
+
+    align-self:stretch;
+}
+
+/* ==========================================================
+   CARD LAYOUT
+========================================================== */
+
+.detected-card,
+.education-card,
+.roles-card,
+.projects-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+}
+
+.certifications-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+}
+
+.suggestions-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+}
+
+/* ==========================================================
+   SCROLLABLE CONTENT
+========================================================== */
+
+.modern-list,
+.suggestions-list{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding-right:6px;
+
+    scrollbar-width:thin;
+    
+    scrollbar-color:rgba(37,99,235,.18) transparent;
+
+    scrollbar-color:rgba(37,99,235,.30) transparent;
+}
+
+.modern-list::-webkit-scrollbar,
+.suggestions-list::-webkit-scrollbar{
+
+    width:4px;
+}
+
+.modern-list::-webkit-scrollbar-track,
+.suggestions-list::-webkit-scrollbar-track{
+
+    background:transparent;
+}
+
+.modern-list::-webkit-scrollbar-thumb,
+.suggestions-list::-webkit-scrollbar-thumb{
+
+    background:rgba(37,99,235,.12);
+
+    border-radius:20px;
+}
+
+.modern-list:hover::-webkit-scrollbar-thumb,
+.suggestions-list:hover::-webkit-scrollbar-thumb{
+
+    background:rgba(37,99,235,.28);
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:1200px){
+
+    .right-grid{
+
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .suggestions-card{
+
+        grid-column:auto;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .right-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .suggestions-card{
+
+        grid-column:auto;
+    }
+
+}
+
+/* ==========================================================
+   MODERN DASHBOARD LIST
+========================================================== */
+
+.modern-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:8px;
+
+    max-height:320px;
+    overflow-y:auto;
+}
+
+.modern-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:12px 14px;
+
+    background:var(--background);
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    transition:.25s ease;
+}
+
+.modern-item:hover{
+
+    transform:
+        translateX(6px)
+        translateY(-2px);
+
+    background:var(--surface);
+
+    border-color:var(--primary-light);
+
+    box-shadow:
+        0 12px 26px var(--primary-shadow);
+
+}
+
+.modern-dot{
+
+    width:26px;
+
+    height:26px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    flex-shrink:0;
+}
+
+.suggestion-icon{
+
+    font-size:17px;
+
+    margin-top:2px;
+
+    opacity:.9;
+
+    flex-shrink:0;
+
+}
+
+.suggestion-text{
+
+    flex:1;
+
+    line-height:1.55;
+
+    color:var(--text-light);
+
+}
+
+/* ==========================================
+   ATS Score Entrance Animation
+========================================== */
+
+.score-pop{
+
+    animation:scorePop .8s cubic-bezier(.22,1,.36,1);
+}
+
+@keyframes scorePop{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            scale(.65)
+            translateY(15px);
+    }
+
+    60%{
+
+        opacity:1;
+
+        transform:
+            scale(1.08)
+            translateY(0);
+    }
+
+    100%{
+
+        transform:
+            scale(1);
+    }
+
+}
+
+.rating-pop{
+
+    animation:fadeStars .9s ease;
+
+    animation-delay:.25s;
+
+    animation-fill-mode:both;
+}
+
+@keyframes fadeStars{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(8px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+    }
+
+}
+
+.badge-pop{
+
+    animation:badgeShow .8s ease;
+
+    animation-delay:.45s;
+
+    animation-fill-mode:both;
+}
+
+@keyframes badgeShow{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+    }
+
+}
+
+/* ==========================================
+   Results Entrance Animation
+========================================== */
+
+.results-container{
+
+    animation:resultsAppear .6s ease-out;
+}
+
+@keyframes resultsAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(18px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+    }
+
+}
+
+/* ==========================================
+   Card Stagger Animation
+========================================== */
+
+.result-card{
+
+    animation:cardReveal .75s cubic-bezier(.22,1,.36,1) forwards;
+
+    opacity:0;
+}
+
+.result-card:nth-child(1){
+
+    animation-delay:.08s;
+}
+
+.result-card:nth-child(2){
+
+    animation-delay:.16s;
+}
+
+.result-card:nth-child(3){
+
+    animation-delay:.24s;
+}
+
+.result-card:nth-child(4){
+
+    animation-delay:.32s;
+}
+
+.result-card:nth-child(5){
+
+    animation-delay:.40s;
+}
+
+.result-card:nth-child(6){
+
+    animation-delay:.48s;
+}
+
+.result-card:nth-child(7){
+
+    animation-delay:.56s;
+}
+
+.result-card:nth-child(8){
+
+    animation-delay:.64s;
+}
+
+@keyframes cardReveal{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translateY(28px)
+            scale(.94);
+
+        filter:blur(8px);
+
+    }
+
+    60%{
+
+        opacity:1;
+
+        transform:
+            translateY(-3px)
+            scale(1.01);
+
+        filter:blur(0);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:blur(0);
+
+    }
+
+}
+
+.analysis-time{
+
+    font-size:32px;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+    text-align:center;
+
+    margin-top:18px;
+
+}
+
+.health-card{
+    margin-top:0;
+
+    display:flex;
+    flex-direction:column;
+
+    height:430px;
+}
+
+.health-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+    margin-top:18px;
+
+}
+
+.health-list{
+    flex:1;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+}
+
+.health-item{
+
+    padding:14px 18px;
+
+    background:var(--background);
+
+    border-radius:12px;
+
+    border-left:5px solid var(--primary);
+
+    font-weight:500;
+
+    color:var(--text);
+
+    transition:.25s;
+
+}
+
+.health-item:hover{
+
+    transform:translateX(5px);
+
+    background:var(--primary-light);
+
+}
+
+.improvement-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.improvement-row:last-child{
+    border-bottom:none;
+}
+
+.improvement-row small{
+    color:var(--text-light);
+    font-size:12px;
+}
+
+.improvement-row strong{
+    font-size:15px;
+}
+
+.improvement-badge{
+    margin-top:18px;
+    padding:12px;
+    text-align:center;
+    border-radius:10px;
+    background:var(--primary-light);
+    color:var(--primary);
+    font-weight:700;
+}
+
+.best-resume-content{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.company-name{
+    font-size:30px;
+    line-height:1.15;
+    font-weight:700;
+    color:var(--primary);
+    margin:0;
+}
+
+.role-name{
+    font-size:15px;
+    line-height:1.5;
+    color:var(--text-light);
+    margin:0;
+}
+
+.best-score{
+    background:#ecfdf5;
+    color:#16a34a;
+    width:fit-content;
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:18px;
+    font-weight:700;
+}
+
+.best-date{
+    color:var(--text-light);
+    font-size:14px;
+}
+
+.analysis-status{
+    margin-top:18px;
+    font-size:18px;
+    font-weight:700;
+    color:#16a34a;
+    text-align:center;
+}
+
+.analysis-caption{
+    margin-top:8px;
+    font-size:14px;
+    color:var(--text-light);
+    text-align:center;
+}
+
+.middle-grid .result-card,
+.bottom-grid .result-card{
+
+    min-height:100%;
+
+}
+
+.empty-state{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:120px;
+
+    color:var(--text-light);
+
+    font-size:15px;
+
+    font-weight:600;
+
+    text-align:center;
+
+    border:2px dashed var(--border);
+
+    border-radius:16px;
+
+    background:var(--background);
+
+    padding:20px;
+
+}
+
+.empty-state.success{
+
+    color:#16a34a;
+
+    background:#f0fdf4;
+
+    border-color:#bbf7d0;
+
+}
+
+/* ===== Dashboard Scrollbars ===== */
+
+*{
+
+    scrollbar-width:thin;
+
+    scrollbar-color:
+        rgba(37,99,235,.25)
+        transparent;
+
+}
+
+::-webkit-scrollbar{
+
+    width:6px;
+
+    height:6px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:rgba(37,99,235,.22);
+
+    border-radius:999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:rgba(37,99,235,.45);
+
+}
+
+.download-report{
+    grid-column: 1 / -1;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:18px 0 32px;
+}
+
+.download-btn{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    margin-top:12px;
+
+    padding:11px 26px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-dark)
+    );
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+
+    box-shadow:
+        0 12px 25px var(--primary-shadow);
+}
+
+.download-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 16px 35px var(--primary-shadow-hover);
+}
+
+.download-btn:active{
+
+    transform:scale(.98);
+}

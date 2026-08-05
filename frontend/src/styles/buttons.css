@@ -1,0 +1,171 @@
+/* ================================
+   Base Button
+================================ */
+
+.btn{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    padding:11px;
+
+    border:none;
+    border-radius:10px;
+
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:.3px;
+
+    line-height:1.2;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+}
+
+/* ================================
+   Primary Button
+================================ */
+
+.btn-primary{
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-dark)
+    );
+
+    color:#fff;
+
+    box-shadow:
+        0 12px 25px var(--primary-shadow);
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 16px 35px var(--primary-shadow-hover);
+}
+
+.btn-primary:active{
+
+    transform:scale(.98);
+}
+
+.btn-primary:disabled{
+
+    background:#94a3b8;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+    box-shadow:none;
+}
+
+/* ===========================
+   Secondary Button
+=========================== */
+
+.btn-secondary{
+
+    background:linear-gradient(
+        135deg,
+        var(--surface),
+        color-mix(in srgb, var(--surface) 85%, var(--primary) 15%)
+    );
+
+    color:var(--text);
+
+    border:1px solid var(--border);
+
+    box-shadow:
+        0 8px 18px rgba(15,23,42,.08);
+}
+
+.btn-secondary:hover{
+
+    background:linear-gradient(
+        135deg,
+        var(--primary-light),
+        color-mix(in srgb, var(--primary-light) 75%, white 25%)
+    );
+
+    color:var(--primary);
+
+    border-color:var(--primary);
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 12px 25px var(--primary-shadow);
+}
+
+
+/* ===========================
+   Danger Button
+=========================== */
+
+.btn-danger{
+
+    background:linear-gradient(
+        135deg,
+        #ef4444,
+        #dc2626
+    );
+
+    color:#fff;
+
+    box-shadow:
+        0 12px 25px rgba(220,38,38,.22);
+}
+
+.btn-danger:hover{
+
+    transform:translateY(-3px);
+
+    background:linear-gradient(
+        135deg,
+        #dc2626,
+        #b91c1c
+    );
+
+    box-shadow:
+        0 16px 35px rgba(220,38,38,.35);
+}
+
+.btn-danger:active{
+
+    transform:scale(.98);
+}
+
+
+/* ===========================
+   Theme Button
+=========================== */
+
+.btn-theme{
+
+    background:var(--surface);
+
+    color:var(--text);
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--card-shadow);
+}
+
+.btn-theme:hover{
+
+    background:var(--primary-light);
+
+    color:var(--primary);
+
+    transform:translateX(4px);
+}

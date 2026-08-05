@@ -1,0 +1,79 @@
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:10px;
+
+    width:100%;
+
+    margin:14px 0;
+
+}
+
+.stat-card {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.total-card,
+.highest-card,
+.average-card,
+.company-card{
+    border-top:4px solid var(--primary);
+}
+
+.stat-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 16px 32px var(--primary-shadow-hover);
+}
+
+.stat-card h3 {
+  color:var(--text-secondary);
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+/*.stat-card h2 {
+  color: #2563eb;
+  font-size: 22px;
+  margin: 0;
+}*/
+
+.stat-card h2{
+    font-size:30px;
+    font-weight:700;
+    margin-top:8px;
+}
+
+.total-card h2,
+.highest-card h2,
+.average-card h2,
+.company-card h2{
+    color:var(--primary);
+}
+
+@media (max-width:900px){
+
+    .stats-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media (max-width:600px){
+
+    .stats-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

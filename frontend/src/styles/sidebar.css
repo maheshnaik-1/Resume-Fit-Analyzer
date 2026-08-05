@@ -1,0 +1,300 @@
+.card{
+    background:var(--surface);
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:18px;
+
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+
+    position:sticky;
+    top:28px;
+
+    box-shadow:
+        0 10px 35px rgba(15,23,42,.08);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 18px 45px rgba(15,23,42,.12);
+}
+
+.card label:not(.btn){
+
+    display:block;
+
+    margin-top:6px;
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:var(--text-light);
+
+    letter-spacing:.3px;
+}
+
+.card select,
+.card input[type="file"]{
+
+    width:100%;
+
+    padding:12px 14px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    background:var(--surface);
+
+    font-size:14px;
+
+    color:var(--text);
+
+    transition:all .25s ease;
+}
+
+.card select:focus,
+.card input:focus{
+
+    outline:none;
+
+    border-color:var(--primary);
+
+    background:var(--surface);
+
+    box-shadow:
+        0 0 0 4px var(--primary-focus)
+}
+
+.card input[type="file"]:hover{
+    border-color:var(--primary);
+
+    background:var(--primary-light);
+}
+
+/*.card button{
+
+    width:100%;
+
+    margin-top:12px;
+
+    padding:11px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-dark)
+    );
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+
+    box-shadow:
+        0 12px 25px var(--primary-shadow)
+}
+
+.card button:hover{
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 16px 35px var(--primary-shadow-hover)
+}
+
+.card button:disabled{
+    background:#94a3b8;
+
+    cursor:not-allowed;
+
+    transform:none;
+}*/
+
+.success-message{
+    background:#dcfce7;
+
+    color:#15803d;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    font-weight:600;
+}
+
+.card h2{
+    color:var(--text);
+}
+
+.card p{
+    color:var(--text);
+}
+
+.card li{
+    color:var(--text);
+}
+
+/* ===========================
+   Resume Upload
+=========================== */
+
+.upload-box{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:8px;
+}
+
+.upload-btn{
+
+    margin-top:4px;
+}
+
+.upload-title{
+    display:block;
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:14px;
+    color:var(--text-primary);
+}
+
+.upload-helper{
+
+    margin-top:14px;
+
+    font-size:12px;
+
+    text-align:center;
+
+    color:var(--text-light);
+
+    line-height:1.5;
+}
+
+.upload-file-name{
+
+    margin-top:12px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:var(--text);
+
+    text-align:center;
+
+    word-break:break-word;
+
+    line-height:1.5;
+
+    /*overflow-wrap:anywhere;
+
+    word-break:break-word;*/
+
+    /*white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;*/
+}
+
+.upload-success{
+
+    margin-top:6px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#16a34a;
+
+    text-align:center;
+}
+
+/* =====================================
+   Required Skills Placeholder
+===================================== */
+
+.empty-text{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:14px;
+
+    margin-top:10px;
+
+    padding:14px;
+
+    border:1px dashed var(--secondary);
+
+    border-radius:14px;
+
+    background:var(--secondary);
+}
+
+.empty-icon{
+
+    font-size:24px;
+
+    line-height:1;
+}
+
+.empty-text strong{
+
+    display:block;
+
+    font-size:15px;
+
+    color:var(--primary);
+
+    margin-bottom:4px;
+}
+
+.empty-text small{
+
+    display:block;
+
+    color:var(--text-light);
+
+    font-size:13px;
+
+    line-height:1.45;
+}
+
+.loading-sidebar{
+    opacity:0.6;
+    pointer-events:none;
+    transition:opacity .3s ease;
+}

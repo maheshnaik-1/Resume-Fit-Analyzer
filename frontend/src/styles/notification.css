@@ -1,0 +1,181 @@
+.notification-menu{
+    position:absolute;
+    top:58px;
+    right:55px;
+
+    width:340px;
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(8px);
+
+    box-shadow:var(--card-shadow);
+
+    border-radius:16px;
+
+    overflow:hidden;
+    z-index:999;
+
+    max-height: 420px;
+    overflow-y: auto;
+
+    animation:fadeSlide .22s ease;
+}
+
+.notification-menu h3{
+
+    padding:14px;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    border-bottom:1px solid var(--border);
+
+    background:var(--surface);
+
+    color:var(--text);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:5;
+
+}
+
+.notification-item{
+
+    padding:14px;
+    border-bottom:1px solid var(--border);
+
+    transition:.25s;
+
+}
+
+.notification-item:last-child{
+    border-bottom:none;
+}
+
+.notification-item:hover{
+
+    background:var(--secondary);
+
+    transform:translateX(3px);
+
+    transition:0.2s ease;
+}
+
+.notification-content{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.notification-message{
+    font-size:14px;
+    font-weight:600;
+    color:var(--text);
+}
+
+.notification-time{
+
+    font-size:11px;
+    color:var(--text-light);
+
+    display:flex;
+    align-items:center;
+    gap:4px;
+
+}
+
+.notification-menu::-webkit-scrollbar{
+    width:6px;
+}
+
+.notification-menu::-webkit-scrollbar-thumb{
+    background:var(--primary-light);
+    border-radius:10px;
+}
+
+.notification-menu::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+.notification-badge{
+
+    position:absolute;
+    top:-6px;
+    right:-6px;
+
+    background:#ff3b30;
+    color:white;
+
+    min-width:20px;
+    height:20px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:11px;
+    font-weight:700;
+
+    padding:2px 5px;
+
+    border:2px solid var(--surface);
+}
+
+.notification-empty{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    padding:35px 20px;
+
+    text-align:center;
+}
+
+.empty-icon{
+
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.empty-title{
+
+    font-size:15px;
+    font-weight:600;
+    color:var(--text);
+
+    margin-bottom:6px;
+}
+
+.empty-text{
+
+    font-size:13px;
+    color:var(--text-light);
+    line-height:1.5;
+}
+
+@keyframes fadeSlide{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-10px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+    }
+}

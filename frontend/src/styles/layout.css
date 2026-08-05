@@ -1,0 +1,331 @@
+/* =========================
+   GLOBAL
+========================= */
+
+body{
+    margin:0;
+    font-family:Inter, Arial, sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    font-size:14px;
+    line-height:1.5;
+
+    transition:
+        background .35s ease,
+        color .35s ease;
+}
+
+.container{
+
+    width:100%;
+
+    max-width:1700px;
+
+    margin:0 auto;
+
+    padding:24px;
+
+    box-sizing:border-box;
+
+    overflow-x:hidden;
+
+    min-height:100vh;
+
+    background:var(--background-gradient);
+
+    transition:
+        background .35s ease;
+}
+
+
+/* =========================
+   DASHBOARD LAYOUT
+========================= */
+
+.dashboard-layout{
+
+    display:grid;
+
+    grid-template-columns:280px 1fr;
+
+    gap:24px;
+
+    align-items:stretch;
+
+    margin-top:20px;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:255px repeat(4, minmax(0,1fr));
+    gap:22px;
+}
+
+.sidebar-area{
+    grid-column:1;
+    grid-row:1 / span 2;
+}
+
+.results-area{
+    grid-column:2 / 6;
+}
+
+.left-panel{
+
+    width:100%;
+
+    position:sticky;
+
+    top:20px;
+
+    align-self:start;
+
+}
+
+.right-panel{
+
+    width:100%;
+    min-width:0;
+}
+
+
+/* =========================
+   RESULT LAYOUT
+========================= */
+
+.results-container{
+    display:grid;
+
+    grid-template-columns:
+1fr 1fr 1fr 1fr;
+
+    gap:22px;
+
+    align-items:stretch;
+
+    grid-auto-flow:row;
+
+    grid-auto-rows:auto;
+}
+
+.dashboard-results{
+
+    display:grid;
+
+    grid-template-columns:230px repeat(4, minmax(0,1fr));
+    
+    gap:22px;
+
+    align-items:start;
+}
+
+.time-card,
+.matched-card,
+.missing-card,
+.education-card{
+    min-height:360px;
+}
+
+.detected-card,
+.health-card,
+.certifications-card{
+    height:432px;
+}
+
+.projects-card,
+.roles-card,
+.suggestions-card{
+
+    height:420px;
+}
+
+/* ---------- ROW 1 ---------- */
+
+.ats-card{
+    grid-column:1;
+    grid-row:1;
+}
+
+.breakdown-card{
+    grid-column:2;
+    grid-row:1;
+}
+
+.best-card{
+    grid-column:3;
+    grid-row:1;
+}
+
+.improvement-card{
+    grid-column:4;
+    grid-row:1;
+}
+
+/* ---------- ROW 2 ---------- */
+
+.matched-card{
+    grid-column:2;
+    grid-row:2;
+}
+
+.missing-card{
+    grid-column:3;
+    grid-row:2;
+}
+
+.time-card{
+    grid-column:1;
+    grid-row:2;
+}
+
+/* ---------- ROW 3 ---------- */
+
+.health-card{
+    grid-column:2 / 4;
+    grid-row:3;
+}
+
+.detected-card{
+    grid-column:1;
+    grid-row:3;
+}
+
+.roles-card{
+    grid-column:2;
+    grid-row:4;
+}
+
+/* ---------- ROW 4 ---------- */
+
+.education-card{
+    grid-column:4;
+    grid-row:2;
+}
+
+.certifications-card{
+    grid-column:4;
+    grid-row:3;
+}
+
+.projects-card{
+    grid-column:1;
+    grid-row:4;
+}
+
+.suggestions-card{
+    grid-column:3 / 5;
+    grid-row:4;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1200px){
+
+.right-grid{
+
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:1100px){
+
+.dashboard-layout{
+
+    grid-template-columns:1fr;
+}
+
+.left-panel,
+.right-panel{
+
+    width:100%;
+}
+
+}
+
+@media(max-width:768px){
+
+.right-grid{
+
+    grid-template-columns:1fr;
+}
+
+.analytics-grid{
+
+    grid-template-columns:1fr;
+}
+
+.container{
+
+    padding:16px;
+}
+
+}
+
+@media(max-width:1200px){
+
+.middle-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.bottom-grid{
+
+    grid-template-columns:1fr 1fr;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.bottom-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+.right-panel>.card{
+
+    margin-top:24px;
+}
+
+/* =========================
+   FULL WIDTH ANALYTICS
+========================= */
+
+.analytics-section{
+
+    grid-column:1 / -1;
+
+    margin-top:40px;
+}
+
+.card{
+    background:var(--surface);
+    box-shadow:var(--card-shadow);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    color:var(--text);
+}
+
+p,
+span,
+small{
+    color:var(--text-light);
+}
