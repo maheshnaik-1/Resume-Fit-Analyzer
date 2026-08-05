@@ -176,4 +176,4 @@ https://github.com/maheshnaik-1
 
 ## 📄 License
 
-This project is developed for educational and learning purposes.<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1b95582a-c623-4581-9881-427eabc75d19" />
+This project is intended for educational and learning purposes. It may be used as a reference for academic and personal learning.
