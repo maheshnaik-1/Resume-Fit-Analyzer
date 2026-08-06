@@ -72,7 +72,7 @@ function Login() {
   return (
     <div className={`signup-container theme-${theme}`}>
       <div className="signup-card">
-        <h1>AI Resume Analyzer</h1>
+        <h1>Resume Fit Analyzer</h1>
 
         <h2>Login</h2>
 

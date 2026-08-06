@@ -1,7 +1,7 @@
 function Header() {
   return (
     <header>
-      <h1>AI Resume Analyzer</h1>
+      <h1>Resume Fit Analyzer</h1>
     </header>
   );
 }
