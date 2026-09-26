@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import { API_BASE_URL } from "../utils/api";
 
 function History(){
 
@@ -25,7 +26,7 @@ function History(){
         try {
 
             const response = await fetch(
-                `http://127.0.0.1:8000/history/${email}`
+                `${API_BASE_URL}/history/${email}`
             );
 
             const data = await response.json();
@@ -228,7 +229,7 @@ function History(){
         try {
 
             const response = await fetch(
-                `http://127.0.0.1:8000/history/result/${historyId}`
+                `${API_BASE_URL}/history/result/${historyId}`
             );
 
             const data = await response.json();
@@ -261,7 +262,7 @@ function History(){
     try {
 
         await fetch(
-            `http://127.0.0.1:8000/history/${historyId}`,
+            `${API_BASE_URL}/history/${historyId}`,
             {
                 method: "DELETE",
             }

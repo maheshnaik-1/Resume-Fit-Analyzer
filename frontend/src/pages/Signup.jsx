@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "../styles/Signup.css";
 import { useNavigate } from "react-router-dom";
 import "../styles/themes.css";
+import { API_BASE_URL } from "../utils/api";
 
 function Signup() {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ function Signup() {
         return;
     }
     try {
-        const response = await fetch("http://127.0.0.1:8000/signup", {
+        const response = await fetch(`${API_BASE_URL}/signup`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

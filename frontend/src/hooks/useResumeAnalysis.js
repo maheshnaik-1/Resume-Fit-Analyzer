@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_BASE_URL } from "../utils/api";
 
 function useResumeAnalysis({
     file,
@@ -71,7 +72,7 @@ function useResumeAnalysis({
     await new Promise(resolve => setTimeout(resolve, 300));
 
     const response = await fetch(
-        "http://127.0.0.1:8000/upload",
+        `${API_BASE_URL}/upload`,
         {
           method: "POST",
           body: formData,

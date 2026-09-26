@@ -10,6 +10,7 @@ import ATSChart from "../components/ATSChart";
 import CompanyChart from "../components/CompanyChart";
 import RoleChart from "../components/RoleChart";
 import DashboardBody from "../components/DashboardBody";
+import { API_BASE_URL } from "../utils/api";
 
 function Dashboard() {
     const [showResults, setShowResults] = useState(false);
@@ -107,7 +108,7 @@ function Dashboard() {
       try {
 
           const response = await fetch(
-              `http://127.0.0.1:8000/history/${email}`
+              `${API_BASE_URL}/history/${email}`
           );
 
           const data = await response.json();
@@ -132,7 +133,7 @@ function Dashboard() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/dashboard-stats/${email}`
+        `${API_BASE_URL}/dashboard-stats/${email}`
       );
 
       const data = await response.json();
@@ -152,7 +153,7 @@ function Dashboard() {
         try {
 
             const response = await fetch(
-                `http://127.0.0.1:8000/notifications/${email}`
+                `${API_BASE_URL}/notifications/${email}`
             );
 
             const data = await response.json();
@@ -174,7 +175,7 @@ function Dashboard() {
         try {
 
             await fetch(
-                `http://127.0.0.1:8000/notifications/read/${email}`,
+                `${API_BASE_URL}/notifications/read/${email}`,
                 {
                     method: "POST",
                 }
