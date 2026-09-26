@@ -18,7 +18,7 @@ function HeroPlaceholder() {
 
                 <div className="feature-card">
                     📊
-                    <span>ATS Prediction</span>
+                    <span>ATS Score</span>
                 </div>
 
                 <div className="feature-card">

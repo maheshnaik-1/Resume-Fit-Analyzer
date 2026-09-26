@@ -227,18 +227,17 @@ export function generatePDF(result) {
     currentY += 10;
 
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(11);
+    const careerMatches = result.top_matches || result.top_predictions || [];
 
-    (result.top_predictions || []).forEach((prediction, index) => {
-
+    careerMatches.forEach((match, index) => {
+        const score = match.match_score ?? match.confidence ?? 0;
         doc.text(
-            `${index + 1}. ${prediction.role} (${prediction.confidence}%)`,
+            `${index + 1}. ${match.role} (${score}% match)`,
             18,
             currentY
         );
 
         currentY += 7;
-
     });
 
     currentY += 10;

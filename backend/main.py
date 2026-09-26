@@ -3,7 +3,7 @@ from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from PyPDF2 import PdfReader
 from job_data import COMPANY_SUGGESTIONS
-from ml.predict import predict_role
+from role_matcher import match_roles
 from database import (
     user_exists,
     create_user,
@@ -692,27 +692,23 @@ async def upload_resume(
     # =========================
     suggestions = []
 
-    prediction = predict_role(
-        detected_skills,
-        skills_database
-    )
+    top_matches = match_roles(detected_skills)
+    recommended_roles = [item["role"] for item in top_matches]
 
-    predicted_role = prediction["role"]
-    prediction_confidence = prediction["confidence"]
-    top_predictions = prediction["top_predictions"]
-
-    recommended_roles = [predicted_role]
-
-    if prediction_confidence < 60:
+    if top_matches and top_matches[0]["match_score"] > 0:
+        top_role = top_matches[0]["role"]
+        top_score = top_matches[0]["match_score"]
         suggestions.append(
-            "Consider adding more role-specific skills to improve prediction confidence."
+            f"Your resume has the highest skill match for the '{top_role}' role ({top_score}% match)."
         )
-    
-    # ML-based recommendation
-
-    suggestions.append(
-        f"Your resume is best suited for the '{predicted_role}' role according to the trained Machine Learning model."
-    )
+        if top_score < 60:
+            suggestions.append(
+                "Consider adding more core technical skills to improve your role match score."
+            )
+    else:
+        suggestions.append(
+            "Add more relevant technical skills to your resume to improve role match scores."
+        )
 
     # Missing Skills
     for skill in missing_skills:
@@ -811,32 +807,29 @@ async def upload_resume(
     # =========================
 
     result = {
-    "filename": file.filename,
-
-    "resume_summary": {
-        "education": detected_education,
-        "skills": detected_skills,
-        "projects": detected_projects,
-        "certifications": detected_certifications
-    },
-    "job_skills": job_skills,
-    "matched_skills": matched_skills,
-    "missing_skills": missing_skills,
-    "ats_score": round(ats_score, 2),
-    "score_breakdown": {
-        "skills": skills_score,
-        "projects": projects_score,
-        "education": education_score,
-        "certifications": certification_score
-    },
-    "recommended_roles": recommended_roles,
-    "prediction_confidence": prediction_confidence,
-    "top_predictions": top_predictions,
-    "analysis_time": analysis_time,
-    "resume_health": resume_health,
-    "suggestions": suggestions
-    
-}
+        "filename": file.filename,
+        "resume_summary": {
+            "education": detected_education,
+            "skills": detected_skills,
+            "projects": detected_projects,
+            "certifications": detected_certifications
+        },
+        "job_skills": job_skills,
+        "matched_skills": matched_skills,
+        "missing_skills": missing_skills,
+        "ats_score": round(ats_score, 2),
+        "score_breakdown": {
+            "skills": skills_score,
+            "projects": projects_score,
+            "education": education_score,
+            "certifications": certification_score
+        },
+        "recommended_roles": recommended_roles,
+        "top_matches": top_matches,
+        "analysis_time": analysis_time,
+        "resume_health": resume_health,
+        "suggestions": suggestions
+    }
 
     save_resume_history(
                 email=email,

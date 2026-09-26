@@ -452,76 +452,77 @@ function ResultsSection({
 
     <div className="modern-list">
 
-        {(result.top_predictions || []).map((prediction, index) => (
-
-            <div
-                key={index}
-                className="modern-item"
-            >
-
-                <span className="modern-dot">
-
-                    {index === 0
-                        ? "🥇"
-                        : index === 1
-                        ? "🥈"
-                        : "🥉"}
-
-                </span>
-
+        {((result.top_matches || result.top_predictions) || []).map((match, index) => {
+            const matchScore = match.match_score ?? match.confidence ?? 0;
+            return (
                 <div
-                    style={{ width: "100%" }}
+                    key={index}
+                    className="modern-item"
                 >
 
-                    <strong>
-                        {prediction.role}
-                    </strong>
+                    <span className="modern-dot">
 
-                    <br />
+                        {index === 0
+                            ? "🥇"
+                            : index === 1
+                            ? "🥈"
+                            : "🥉"}
 
-                    <small>
-                        Confidence: {prediction.confidence}%
-                    </small>
-
-                    {index === 0 && (
-
-                        <div
-                            style={{
-                                marginTop: "8px",
-                                fontSize: "13px",
-                                color: "var(--text-light)"
-                            }}
-                        >
-                            Best match based on your detected technical skills.
-                        </div>
-
-                    )}
+                    </span>
 
                     <div
-                        style={{
-                            marginTop: "6px",
-                            height: "6px",
-                            borderRadius: "20px",
-                            background: "#e5e7eb",
-                            overflow: "hidden"
-                        }}
+                        style={{ width: "100%" }}
                     >
+
+                        <strong>
+                            {match.role}
+                        </strong>
+
+                        <br />
+
+                        <small>
+                            Skill Match: {matchScore}%
+                        </small>
+
+                        {index === 0 && (
+
+                            <div
+                                style={{
+                                    marginTop: "8px",
+                                    fontSize: "13px",
+                                    color: "var(--text-light)"
+                                }}
+                            >
+                                Top match based on your detected technical skills.
+                            </div>
+
+                        )}
 
                         <div
                             style={{
-                                width: `${prediction.confidence}%`,
-                                height: "100%",
-                                background: "#3b82f6"
+                                marginTop: "6px",
+                                height: "6px",
+                                borderRadius: "20px",
+                                background: "#e5e7eb",
+                                overflow: "hidden"
                             }}
-                        ></div>
+                        >
+
+                            <div
+                                style={{
+                                    width: `${matchScore}%`,
+                                    height: "100%",
+                                    background: "#3b82f6"
+                                }}
+                            ></div>
+
+                        </div>
 
                     </div>
 
                 </div>
-
-            </div>
-
-        ))}
+            );
+        })}
 
     </div>
 

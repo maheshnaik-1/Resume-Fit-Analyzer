@@ -12,9 +12,9 @@
 
 ## 📖 About
 
-Resume Fit Analyzer is a full-stack web application that analyzes resumes against job descriptions to evaluate ATS compatibility, identify missing skills, detect education and certifications, recommend career paths using Machine Learning, and provide actionable suggestions for improving resume quality.
+Resume Fit Analyzer is a full-stack web application that analyzes resumes against job descriptions to evaluate ATS compatibility, identify missing skills, detect education and certifications, recommend top matching career paths, and provide actionable suggestions for improving resume quality.
 
-This project was developed to strengthen skills in Full Stack Development, Machine Learning integration, REST API development, and software engineering.
+This project was developed to strengthen skills in Full Stack Development, REST API development, and software engineering.
 
 ---
 
@@ -32,7 +32,7 @@ The application will be deployed after completing the production version.
 - 🎯 ATS Score Calculation
 - 🏢 Company Selection
 - 💼 Role Selection
-- 🧠 Machine Learning Career Prediction
+- 🎯 Top Career Role Matching
 - 📊 Interactive Dashboard
 - 📈 Skill Detection
 - 🎓 Education Detection
@@ -60,9 +60,8 @@ The application will be deployed after completing the production version.
 • FastAPI
 • Python 3
 
-## Machine Learning
-• Scikit-learn
-• Random Forest Classifier
+## Role Matching Engine
+• Deterministic Skill-Overlap Scoring
 
 ## Database
 • SQLite
@@ -89,7 +88,7 @@ The application will be deployed after completing the production version.
                      │
        Resume Text Extraction
                      │
-     ATS Analysis + ML Prediction
+     ATS Analysis + Role Matching
                      │
      SQLite Database Storage
                      │
@@ -107,9 +106,8 @@ Resume-Fit-Analyzer
 ├── backend
 │   ├── main.py
 │   ├── database.py
-│   ├── dataset/
-│   ├── ml/
-│   └── models/
+│   ├── role_matcher.py
+│   └── job_data.py
 │
 ├── frontend
 │   ├── public/
@@ -194,7 +192,7 @@ This project is under active development.
 
 ✔ Skill Detection
 
-✔ Career Prediction
+✔ Role Matching
 
 ✔ Analytics Dashboard
 
@@ -213,7 +211,7 @@ This project is under active development.
 - ✅ Resume Upload
 - ✅ ATS Score
 - ✅ Skill Detection
-- ✅ ML Career Prediction
+- ✅ Role Matching
 - ✅ Dashboard
 
 ### Upcoming Features

@@ -67,7 +67,7 @@ function useResumeAnalysis({
     setLoadingStep("📊 Calculating ATS Score...");
     await new Promise(resolve => setTimeout(resolve, 300));
 
-    setLoadingStep("🎯 Predicting Suitable Role...");
+    setLoadingStep("🎯 Matching Suitable Roles...");
     await new Promise(resolve => setTimeout(resolve, 300));
 
     const response = await fetch(
