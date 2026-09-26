@@ -1,7 +1,10 @@
+from pathlib import Path
 import sqlite3
 import json
 
-conn = sqlite3.connect("resume_analyzer.db")
+DB_PATH = Path(__file__).resolve().parent / "resume_analyzer.db"
+
+conn = sqlite3.connect(DB_PATH)
 
 cursor = conn.cursor()
 
@@ -48,7 +51,7 @@ def save_resume_history(
     analyzed_at,
     result_json
 ):
-    conn = sqlite3.connect("resume_analyzer.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -68,7 +71,7 @@ def save_resume_history(
     conn.close()
 
 def get_resume_history(email):
-    conn = sqlite3.connect("resume_analyzer.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -96,7 +99,7 @@ def get_resume_history(email):
     return history
 
 def get_dashboard_stats(email):
-    conn = sqlite3.connect("resume_analyzer.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -134,7 +137,7 @@ def get_dashboard_stats(email):
 
 def get_best_resume_record(email):
 
-    conn = sqlite3.connect("resume_analyzer.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute(
@@ -166,7 +169,7 @@ def get_best_resume_record(email):
     }
 
 def get_resume_improvement(email, company, role):
-    conn = sqlite3.connect("resume_analyzer.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -209,7 +212,7 @@ def get_resume_improvement(email, company, role):
     }
 
 def create_user(name, email, password):
-    conn = sqlite3.connect("resume_analyzer.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -221,7 +224,7 @@ def create_user(name, email, password):
     conn.close()
 
 def user_exists(email):
-    conn = sqlite3.connect("resume_analyzer.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute(
@@ -236,7 +239,7 @@ def user_exists(email):
     return result is not None
 
 def get_user_by_email(email):
-    conn = sqlite3.connect("resume_analyzer.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -252,7 +255,7 @@ def get_user_by_email(email):
     return user
 
 def save_notification(email, message, notification_type, created_at):
-    conn = sqlite3.connect("resume_analyzer.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -270,7 +273,7 @@ def save_notification(email, message, notification_type, created_at):
     conn.close()
 
 def get_notifications(email):
-    conn = sqlite3.connect("resume_analyzer.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -298,7 +301,7 @@ def get_notifications(email):
     return notifications
 
 def mark_notifications_as_read(email):
-    conn = sqlite3.connect("resume_analyzer.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -311,7 +314,7 @@ def mark_notifications_as_read(email):
     conn.close()
 
 def delete_resume_history(history_id):
-    conn = sqlite3.connect("resume_analyzer.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -323,7 +326,7 @@ def delete_resume_history(history_id):
     conn.close()
 
 def get_history_result(history_id):
-    conn = sqlite3.connect("resume_analyzer.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
