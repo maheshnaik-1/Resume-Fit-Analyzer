@@ -233,6 +233,11 @@ function History(){
 
             const data = await response.json();
 
+            if (!response.ok) {
+                alert(data.detail || "Unable to open saved analysis.");
+                return;
+            }
+
             navigate("/dashboard", {
                 state: {
                     analysisResult: data

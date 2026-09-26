@@ -51,13 +51,13 @@ export function generatePDF(result) {
     doc.setFontSize(12);
 
     doc.text(
-        `Company : ${result.best_resume?.company || "-"}`,
+        `Company : ${result.company || result.target_company || result.best_resume?.company || "-"}`,
         20,
         84
     );
 
     doc.text(
-        `Role : ${result.best_resume?.role || "-"}`,
+        `Role : ${result.role || result.target_role || result.best_resume?.role || "-"}`,
         20,
         96
     );

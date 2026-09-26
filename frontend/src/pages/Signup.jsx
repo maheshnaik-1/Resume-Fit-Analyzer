@@ -76,6 +76,7 @@ function Signup() {
 
           localStorage.setItem("loggedIn", "true");
           localStorage.setItem("userEmail", form.email);
+          localStorage.setItem("name", form.name);
 
           navigate("/dashboard");
           
