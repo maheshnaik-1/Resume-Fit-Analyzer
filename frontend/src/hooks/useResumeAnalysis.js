@@ -79,6 +79,14 @@ function useResumeAnalysis({
       );
 
       const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.detail || data.message || "Failed to analyze resume.");
+        setLoading(false);
+        setLoadingStep("");
+        return;
+      }
+
       setLoadingStep("✅ Finalizing Report...");
       setResult(data);
       if (setIsHistoryPreview) {

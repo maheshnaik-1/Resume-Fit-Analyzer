@@ -108,6 +108,8 @@ def login(user: UserLogin):
     }
 
 
+MAX_FILE_SIZE = 5 * 1024 * 1024  # 5 MB limit
+
 @app.post("/upload")
 async def upload_resume(
     file: UploadFile = File(...),
@@ -116,20 +118,80 @@ async def upload_resume(
     company: str = Form(...),
     role: str = Form(...)
 ):
+    # 1. Validate Form Fields
+    clean_company = company.strip()
+    clean_role = role.strip()
+    clean_email = email.strip()
+
+    if not clean_company:
+        raise HTTPException(
+            status_code=400,
+            detail="Company selection is required."
+        )
+    if not clean_role:
+        raise HTTPException(
+            status_code=400,
+            detail="Role selection is required."
+        )
+    if not clean_email:
+        raise HTTPException(
+            status_code=400,
+            detail="User email is required."
+        )
+
+    # 2. Validate File Type
+    filename = file.filename or ""
+    if not filename.lower().endswith(".pdf"):
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid file format. Only PDF documents (.pdf) are supported."
+        )
+
+    # 3. Read File and Enforce File Size Limit (5 MB)
+    pdf_bytes = await file.read(MAX_FILE_SIZE + 1)
+
+    if len(pdf_bytes) == 0:
+        raise HTTPException(
+            status_code=400,
+            detail="The uploaded file is empty. Please upload a valid resume PDF."
+        )
+
+    if len(pdf_bytes) > MAX_FILE_SIZE:
+        raise HTTPException(
+            status_code=400,
+            detail="File size exceeds the 5 MB limit. Please upload a smaller PDF."
+        )
+
+    # 4. Validate PDF Header Magic Bytes
+    if not pdf_bytes.startswith(b"%PDF"):
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid PDF file. The uploaded file is not a valid PDF document."
+        )
+
     start_time = time.perf_counter()
 
-    # Read PDF
-    pdf_bytes = await file.read()
+    # 5. Extract Text with Exception Handling
+    try:
+        pdf_reader = PdfReader(io.BytesIO(pdf_bytes))
+        text = ""
+        for page in pdf_reader.pages:
+            extracted_text = page.extract_text()
+            if extracted_text:
+                text += extracted_text + " "
+    except Exception:
+        raise HTTPException(
+            status_code=400,
+            detail="Unable to parse the PDF file. The file may be corrupted, encrypted, or password-protected."
+        )
 
-    pdf_reader = PdfReader(io.BytesIO(pdf_bytes))
-
-    text = ""
-
-    for page in pdf_reader.pages:
-        extracted_text = page.extract_text()
-
-        if extracted_text:
-            text += extracted_text
+    # 6. Validate Extractable Text Content
+    cleaned_text = text.strip()
+    if not cleaned_text or len(cleaned_text) < 10:
+        raise HTTPException(
+            status_code=400,
+            detail="No readable text found in the PDF. Scanned or image-only documents without an embedded text layer are not supported."
+        )
 
     # =========================
     # Skills Database
@@ -759,6 +821,10 @@ async def upload_resume(
             suggestions.extend(
                 COMPANY_SUGGESTIONS[company_name][role_name]
             )
+        elif "default" in COMPANY_SUGGESTIONS[company_name]:
+            suggestions.extend(
+                COMPANY_SUGGESTIONS[company_name]["default"]
+            )
 
     save_notification(
         email=email,
@@ -808,6 +874,10 @@ async def upload_resume(
 
     result = {
         "filename": file.filename,
+        "company": company.strip().title(),
+        "role": role.strip(),
+        "target_company": company.strip().title(),
+        "target_role": role.strip(),
         "resume_summary": {
             "education": detected_education,
             "skills": detected_skills,
@@ -885,4 +955,10 @@ def read_notifications(email: str):
 
 @app.get("/history/result/{history_id}")
 def history_result(history_id: int):
-    return get_history_result(history_id)
+    result = get_history_result(history_id)
+    if result is None:
+        raise HTTPException(
+            status_code=404,
+            detail="History record not found"
+        )
+    return result
