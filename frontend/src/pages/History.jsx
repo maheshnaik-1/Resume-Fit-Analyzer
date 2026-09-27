@@ -47,7 +47,43 @@ function History(){
 
     useEffect(() => {
 
-        fetchHistory();
+        let isMounted = true;
+
+        async function loadHistory() {
+
+            const email = localStorage.getItem("userEmail");
+
+            if (!email) return;
+
+            try {
+
+                const response = await fetch(
+                    `${API_BASE_URL}/history/${email}`
+                );
+
+                const data = await response.json();
+
+                if (isMounted && Array.isArray(data)) {
+
+                    setHistory(data);
+
+                }
+
+            } catch (error) {
+
+                console.log(error);
+
+            }
+
+        }
+
+        loadHistory();
+
+        return () => {
+
+            isMounted = false;
+
+        };
 
     }, []);
 
