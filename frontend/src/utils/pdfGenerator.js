@@ -258,7 +258,7 @@ export function generatePDF(result) {
     (result.resume_health || []).forEach((item) => {
 
         const cleanItem =
-            item.replace(/[^\x00-\x7F]/g, "").trim();
+            item.replace(/[^\x20-\x7E]/g, "").trim();
 
         doc.text(`• ${cleanItem}`,18,currentY+10);
 
