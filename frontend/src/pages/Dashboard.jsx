@@ -111,12 +111,12 @@ function Dashboard() {
               `${API_BASE_URL}/history/${email}`
           );
 
+          if (!response.ok) return;
+
           const data = await response.json();
 
           if (Array.isArray(data)) {
               setHistory(data);
-          } else {
-              setHistory([]);
           }
 
       } catch (error) {
@@ -136,9 +136,13 @@ function Dashboard() {
         `${API_BASE_URL}/dashboard-stats/${email}`
       );
 
+      if (!response.ok) return;
+
       const data = await response.json();
 
-      setStats(data);
+      if (data && typeof data === "object" && "total_analyses" in data) {
+        setStats(data);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -156,9 +160,13 @@ function Dashboard() {
                 `${API_BASE_URL}/notifications/${email}`
             );
 
+            if (!response.ok) return;
+
             const data = await response.json();
 
-            setNotifications(data);
+            if (Array.isArray(data)) {
+                setNotifications(data);
+            }
 
         } catch (error) {
             console.log(error);
@@ -174,14 +182,16 @@ function Dashboard() {
 
         try {
 
-            await fetch(
+            const response = await fetch(
                 `${API_BASE_URL}/notifications/read/${email}`,
                 {
                     method: "POST",
                 }
             );
 
-            fetchNotifications();
+            if (response.ok) {
+                fetchNotifications();
+            }
 
         } catch (error) {
             console.log(error);
