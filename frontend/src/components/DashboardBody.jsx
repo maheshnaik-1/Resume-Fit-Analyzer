@@ -45,81 +45,48 @@ function DashboardBody({
 
             <div className="card">
 
+                <div className="setup-header">
+                    <h2>⚡ Analysis Setup</h2>
+                    <p>Select target role & upload resume</p>
+                </div>
+
                 <CompanySelector
+                    company={company}
+                    setCompany={setCompany}
+                    setRole={setRole}
+                    setJobDescription={setJobDescription}
+                    setRequiredSkills={setRequiredSkills}
+                    loading={loading}
+                />
 
-        company={company}
+                <RoleSelector
+                    company={company}
+                    role={role}
+                    setRole={setRole}
+                    jobDescriptions={jobDescriptions}
+                    companyRoles={companyRoles}
+                    setRequiredSkills={setRequiredSkills}
+                    setJobDescription={setJobDescription}
+                    loading={loading}
+                />
 
-        setCompany={setCompany}
+                <RequiredSkills
+                    requiredSkills={requiredSkills}
+                />
 
-        setRole={setRole}
+                <ResumeUploader
+                    file={file}
+                    setFile={setFile}
+                    fileInputRef={fileInputRef}
+                    loading={loading}
+                />
 
-        setJobDescription={setJobDescription}
-
-        setRequiredSkills={setRequiredSkills}
-
-        loading={loading}
-
-    />
-
-
-
-    <RoleSelector
-
-        company={company}
-
-        role={role}
-
-        setRole={setRole}
-
-        jobDescriptions={jobDescriptions}
-
-        companyRoles={companyRoles}
-
-        setRequiredSkills={setRequiredSkills}
-
-        setJobDescription={setJobDescription}
-
-        loading={loading}
-
-        
-
-    />
-
-
-
-    <RequiredSkills
-
-        requiredSkills={requiredSkills}
-
-    />
-
-
-
-    <ResumeUploader
-
-        file={file}
-
-        setFile={setFile}
-
-        fileInputRef={fileInputRef}
-
-        loading={loading}
-
-    />
-
-
-
-    <AnalyzeButton
-
-        analyzeResume={analyzeResume}
-
-        loading={loading}
-
-        loadingStep={loadingStep}
-
-        successMessage={successMessage}
-
-    />
+                <AnalyzeButton
+                    analyzeResume={analyzeResume}
+                    loading={loading}
+                    loadingStep={loadingStep}
+                    successMessage={successMessage}
+                />
 
             </div>
 
@@ -149,7 +116,10 @@ function DashboardBody({
 
             ) : (
 
-                <HeroPlaceholder />
+                <HeroPlaceholder
+                    file={file}
+                    fileInputRef={fileInputRef}
+                />
 
             )}
 

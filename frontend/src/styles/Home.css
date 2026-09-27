@@ -163,21 +163,13 @@ select:disabled{
 }
 
 .dashboard-footer{
-
-    margin-top:60px;
-
-    padding:35px 20px;
-
+    margin-top:32px;
+    padding:24px 20px;
     text-align:center;
-
     border-top:1px solid var(--border);
-
     background:transparent;
-
     color:var(--text-light);
-
     font-size:15px;
-
     line-height:1.8;
 }
 

@@ -45,19 +45,6 @@ body{
    DASHBOARD LAYOUT
 ========================= */
 
-.dashboard-layout{
-
-    display:grid;
-
-    grid-template-columns:280px 1fr;
-
-    gap:24px;
-
-    align-items:stretch;
-
-    margin-top:20px;
-}
-
 .dashboard-grid{
     display:grid;
     grid-template-columns:255px repeat(4, minmax(0,1fr));
@@ -66,7 +53,7 @@ body{
 
 .sidebar-area{
     grid-column:1;
-    grid-row:1 / span 2;
+    grid-row:1;
 }
 
 .results-area{
@@ -74,21 +61,18 @@ body{
 }
 
 .left-panel{
-
     width:100%;
-
     position:sticky;
-
     top:20px;
-
     align-self:start;
-
 }
 
 .right-panel{
-
     width:100%;
     min-width:0;
+    height:100%;
+    display:flex;
+    flex-direction:column;
 }
 
 
@@ -109,17 +93,6 @@ body{
     grid-auto-flow:row;
 
     grid-auto-rows:auto;
-}
-
-.dashboard-results{
-
-    display:grid;
-
-    grid-template-columns:230px repeat(4, minmax(0,1fr));
-    
-    gap:22px;
-
-    align-items:start;
 }
 
 .time-card,
@@ -227,76 +200,85 @@ body{
 
 @media(max-width:1200px){
 
-.right-grid{
+    .dashboard-grid{
+        grid-template-columns:245px 1fr;
+        gap:18px;
+    }
 
-    grid-template-columns:repeat(2,1fr);
-}
+    .sidebar-area{
+        grid-column:1;
+        grid-row:1;
+    }
 
-}
+    .results-area{
+        grid-column:2;
+    }
 
-@media(max-width:1100px){
+    .results-container{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:16px;
+    }
 
-.dashboard-layout{
+    .ats-card,
+    .breakdown-card,
+    .best-card,
+    .improvement-card,
+    .matched-card,
+    .missing-card,
+    .time-card,
+    .health-card,
+    .detected-card,
+    .roles-card,
+    .education-card,
+    .certifications-card,
+    .projects-card,
+    .suggestions-card{
+        grid-column:auto;
+        grid-row:auto;
+    }
 
-    grid-template-columns:1fr;
-}
-
-.left-panel,
-.right-panel{
-
-    width:100%;
-}
-
-}
-
-@media(max-width:768px){
-
-.right-grid{
-
-    grid-template-columns:1fr;
-}
-
-.analytics-grid{
-
-    grid-template-columns:1fr;
-}
-
-.container{
-
-    padding:16px;
-}
-
-}
-
-@media(max-width:1200px){
-
-.middle-grid{
-
-    grid-template-columns:1fr;
+    .health-card,
+    .suggestions-card{
+        grid-column:1 / -1;
+    }
 
 }
 
-.bottom-grid{
+@media(max-width:767px){
 
-    grid-template-columns:1fr 1fr;
+    .container{
+        padding:16px;
+    }
 
-}
+    .dashboard-grid{
+        grid-template-columns:1fr;
+        gap:16px;
+    }
 
-}
+    .sidebar-area{
+        grid-column:1;
+        grid-row:auto;
+    }
 
-@media(max-width:768px){
+    .results-area{
+        grid-column:1;
+    }
 
-.bottom-grid{
+    .left-panel{
+        position:static;
+        width:100%;
+    }
 
-    grid-template-columns:1fr;
+    .results-container{
+        grid-template-columns:1fr;
+        gap:14px;
+    }
 
-}
+    .health-card,
+    .suggestions-card{
+        grid-column:auto;
+    }
 
-}
-
-.right-panel>.card{
-
-    margin-top:24px;
 }
 
 /* =========================

@@ -43,7 +43,7 @@ function ResumeUploader({
 
                 {file && (
                     <div className="upload-success">
-                        🚀 Ready for AI Analysis
+                        🚀 Ready for Analysis
                     </div>
                 )}
 

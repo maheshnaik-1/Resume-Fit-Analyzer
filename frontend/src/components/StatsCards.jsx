@@ -1,59 +1,71 @@
 import AnimatedNumber from "./AnimatedNumber";
 
 function StatsCards({ stats }) {
-
     return (
-
-        <div className="stats-grid">
-
-            <div className="stat-card total-card">
-                <h3>📄 Total Analyses</h3>
-
-                <h2>
-                    <AnimatedNumber
-                        value={stats.total_analyses}
-                        fromZero={true}
-                    />
-                </h2>
+        <div className="stats-ribbon">
+            <div className="stat-item">
+                <span className="stat-icon">📄</span>
+                <div className="stat-info">
+                    <span className="stat-label">Total Analyses</span>
+                    <strong className="stat-value">
+                        <AnimatedNumber
+                            value={stats?.total_analyses ?? 0}
+                            fromZero={true}
+                        />
+                    </strong>
+                </div>
             </div>
 
-            <div className="stat-card highest-card">
-                <h3>🏆 Highest Score</h3>
+            <div className="stat-divider"></div>
 
-                <h2>
-                    <AnimatedNumber
-                        value={Number(stats.highest_score).toFixed(2)}
-                        fromZero={true}
-                    />
-                </h2>
+            <div className="stat-item">
+                <span className="stat-icon">🏆</span>
+                <div className="stat-info">
+                    <span className="stat-label">Highest Score</span>
+                    <strong className="stat-value">
+                        <AnimatedNumber
+                            value={Number(stats?.highest_score ?? 0)}
+                            decimals={2}
+                            suffix="%"
+                            fromZero={true}
+                        />
+                    </strong>
+                </div>
             </div>
 
-            <div className="stat-card average-card">
-                <h3>📊 Average ATS</h3>
+            <div className="stat-divider"></div>
 
-                <h2>
-                    <AnimatedNumber
-                        value={Number(stats.average_score).toFixed(2)}
-                        fromZero={true}
-                    />
-                </h2>
+            <div className="stat-item">
+                <span className="stat-icon">📊</span>
+                <div className="stat-info">
+                    <span className="stat-label">Average ATS</span>
+                    <strong className="stat-value">
+                        <AnimatedNumber
+                            value={Number(stats?.average_score ?? 0)}
+                            decimals={2}
+                            suffix="%"
+                            fromZero={true}
+                        />
+                    </strong>
+                </div>
             </div>
 
-            <div className="stat-card company-card">
-                <h3>🏢 Companies Tried</h3>
+            <div className="stat-divider"></div>
 
-                <h2>
-                    <AnimatedNumber
-                        value={stats.companies}
-                        fromZero={true}
-                    />
-                </h2>
+            <div className="stat-item">
+                <span className="stat-icon">🏢</span>
+                <div className="stat-info">
+                    <span className="stat-label">Companies Tried</span>
+                    <strong className="stat-value">
+                        <AnimatedNumber
+                            value={stats?.companies ?? 0}
+                            fromZero={true}
+                        />
+                    </strong>
+                </div>
             </div>
-
         </div>
-
     );
-
 }
 
 export default StatsCards;

@@ -2,19 +2,15 @@
     background:var(--surface);
     border:1px solid var(--border);
 
-    border-radius:20px;
+    border-radius:16px;
 
-    padding:18px;
+    padding:20px;
 
     display:flex;
     flex-direction:column;
-    gap:8px;
+    gap:10px;
 
-    position:sticky;
-    top:28px;
-
-    box-shadow:
-        0 10px 35px rgba(15,23,42,.08);
+    box-shadow:var(--card-shadow);
 
     transition:
         transform .25s ease,
@@ -29,21 +25,44 @@
         0 18px 45px rgba(15,23,42,.12);
 }
 
+.setup-header{
+    margin-bottom:4px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--border);
+}
+
+.setup-header h2{
+    margin:0 0 3px;
+    font-size:17px;
+    font-weight:700;
+    color:var(--text);
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.setup-header p{
+    margin:0;
+    font-size:12px;
+    color:var(--text-light);
+    line-height:1.4;
+}
+
 .card label:not(.btn){
 
     display:block;
 
     margin-top:6px;
 
-    margin-bottom:8px;
+    margin-bottom:6px;
 
-    font-size:14px;
+    font-size:13px;
 
-    font-weight:600;
+    font-weight:700;
 
-    color:var(--text-light);
+    color:var(--text);
 
-    letter-spacing:.3px;
+    letter-spacing:.2px;
 }
 
 .card select,
