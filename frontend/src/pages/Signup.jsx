@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../styles/Signup.css";
 import { useNavigate } from "react-router-dom";
 import "../styles/themes.css";
@@ -6,13 +6,9 @@ import { API_BASE_URL } from "../utils/api";
 
 function Signup() {
   const navigate = useNavigate();
-  const [theme, setTheme] = useState(
+  const [theme] = useState(
       localStorage.getItem("theme") || "ocean"
   );
-
-  useEffect(() => {
-      setTheme(localStorage.getItem("theme") || "ocean");
-  }, []);
   const [form, setForm] = useState({
     name: "",
     email: "",

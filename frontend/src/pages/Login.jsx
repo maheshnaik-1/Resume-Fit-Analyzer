@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Signup.css";
 import "../styles/themes.css";
@@ -6,25 +6,17 @@ import { API_BASE_URL } from "../utils/api";
 
 function Login() {
   const navigate = useNavigate();
-  const [theme, setTheme] = useState(
+  const [theme] = useState(
       localStorage.getItem("theme") || "ocean"
   );
 
+  const [email, setEmail] = useState(
+      () => localStorage.getItem("loginEmail") || ""
+  );
+
   useEffect(() => {
-      setTheme(localStorage.getItem("theme") || "ocean");
+      localStorage.removeItem("loginEmail");
   }, []);
-
-  const [email, setEmail] = useState("");
-  useEffect(() => {
-
-    const savedEmail = localStorage.getItem("loginEmail");
-
-    if (savedEmail) {
-        setEmail(savedEmail);
-        localStorage.removeItem("loginEmail");
-    }
-
-}, []);
   const [password, setPassword] = useState("");
 
   async function loginUser() {
