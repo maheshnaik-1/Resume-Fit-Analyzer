@@ -95,7 +95,6 @@ body{
     grid-auto-rows:auto;
 }
 
-.time-card,
 .matched-card,
 .missing-card,
 .education-card{
@@ -117,27 +116,17 @@ body{
 
 /* ---------- ROW 1 ---------- */
 
-.ats-card{
-    grid-column:1;
-    grid-row:1;
-}
-
-.breakdown-card{
-    grid-column:2;
-    grid-row:1;
-}
-
-.best-card{
-    grid-column:3;
-    grid-row:1;
-}
-
-.improvement-card{
-    grid-column:4;
+.analysis-summary-card{
+    grid-column:1 / -1;
     grid-row:1;
 }
 
 /* ---------- ROW 2 ---------- */
+
+.breakdown-card{
+    grid-column:1;
+    grid-row:2;
+}
 
 .matched-card{
     grid-column:2;
@@ -149,33 +138,21 @@ body{
     grid-row:2;
 }
 
-.time-card{
-    grid-column:1;
+.education-card{
+    grid-column:4;
     grid-row:2;
 }
 
 /* ---------- ROW 3 ---------- */
-
-.health-card{
-    grid-column:2 / 4;
-    grid-row:3;
-}
 
 .detected-card{
     grid-column:1;
     grid-row:3;
 }
 
-.roles-card{
-    grid-column:2;
-    grid-row:4;
-}
-
-/* ---------- ROW 4 ---------- */
-
-.education-card{
-    grid-column:4;
-    grid-row:2;
+.health-card{
+    grid-column:2 / 4;
+    grid-row:3;
 }
 
 .certifications-card{
@@ -183,8 +160,15 @@ body{
     grid-row:3;
 }
 
+/* ---------- ROW 4 ---------- */
+
 .projects-card{
     grid-column:1;
+    grid-row:4;
+}
+
+.roles-card{
+    grid-column:2;
     grid-row:4;
 }
 
@@ -219,13 +203,10 @@ body{
         gap:16px;
     }
 
-    .ats-card,
+    .analysis-summary-card,
     .breakdown-card,
-    .best-card,
-    .improvement-card,
     .matched-card,
     .missing-card,
-    .time-card,
     .health-card,
     .detected-card,
     .roles-card,
@@ -237,6 +218,7 @@ body{
         grid-row:auto;
     }
 
+    .analysis-summary-card,
     .health-card,
     .suggestions-card{
         grid-column:1 / -1;
