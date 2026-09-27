@@ -2,6 +2,7 @@ import { useState } from "react";
 import { API_BASE_URL } from "../utils/api";
 
 function useResumeAnalysis({
+    initialResult = null,
     file,
     setFile,
     company,
@@ -16,7 +17,7 @@ function useResumeAnalysis({
 
     const [loading, setLoading] = useState(false);
     const [loadingStep, setLoadingStep] = useState("");
-    const [result, setResult] = useState(null);
+    const [result, setResult] = useState(initialResult);
     const [successMessage, setSuccessMessage] = useState("");
 
     const analyzeResume = async () => {

@@ -13,16 +13,27 @@ import DashboardBody from "../components/DashboardBody";
 import { API_BASE_URL } from "../utils/api";
 
 function Dashboard() {
-    const [showResults, setShowResults] = useState(false);
-    const [file, setFile] = useState(null);
-    const [jobDescription, setJobDescription] = useState("");
-    const [company, setCompany] = useState("");
-    const [role, setRole] = useState("");
-    const [showProfileMenu, setShowProfileMenu] = useState(false);
-    const [requiredSkills, setRequiredSkills] = useState([]);
     const location = useLocation();
     const navigate = useNavigate();
-    const [isHistoryPreview, setIsHistoryPreview] = useState(false);
+    const [showResults, setShowResults] = useState(false);
+    const [file, setFile] = useState(() => {
+        const fileName = location.state?.dashboardState?.fileName;
+        return fileName ? { name: fileName } : null;
+    });
+    const [jobDescription, setJobDescription] = useState("");
+    const [company, setCompany] = useState(
+        () => location.state?.dashboardState?.company || ""
+    );
+    const [role, setRole] = useState(
+        () => location.state?.dashboardState?.role || ""
+    );
+    const [showProfileMenu, setShowProfileMenu] = useState(false);
+    const [requiredSkills, setRequiredSkills] = useState(
+        () => location.state?.dashboardState?.requiredSkills || []
+    );
+    const [isHistoryPreview, setIsHistoryPreview] = useState(
+        () => Boolean(location.state?.analysisResult)
+    );
     useEffect(() => {
         const navigation =
             performance.getEntriesByType("navigation")[0];
@@ -196,7 +207,12 @@ function Dashboard() {
         }
     };
 
-  const {
+    const initialResult =
+        location.state?.analysisResult ||
+        location.state?.dashboardState?.result ||
+        null;
+
+    const {
         loading,
         loadingStep,
         result,
@@ -204,62 +220,30 @@ function Dashboard() {
         successMessage,
         analyzeResume,
     } = useResumeAnalysis({
-      file,
-      setFile,
-      company,
-      role,
-      jobDescription,
-      fileInputRef,
-      fetchHistory,
-      fetchDashboardStats,
-      fetchNotifications,
-      setIsHistoryPreview
-  });
-
-  useEffect(() => {
-        if (location.state?.analysisResult) {
-            setResult(location.state.analysisResult);
-            setIsHistoryPreview(true);
-        }
-    }, [location.state, setResult]);
-
-  useEffect(() => {
-
-        const dashboard = location.state?.dashboardState;
-
-        if (!dashboard) return;
-
-        setResult(dashboard.result);
-
-        setCompany(dashboard.company);
-
-        setRole(dashboard.role);
-
-        setRequiredSkills(dashboard.requiredSkills);
-
-        if (dashboard.fileName) {
-
-            setFile({
-                name: dashboard.fileName,
-            });
-
-        }
-
-    }, [location.state]);
+        initialResult,
+        file,
+        setFile,
+        company,
+        role,
+        jobDescription,
+        fileInputRef,
+        fetchHistory,
+        fetchDashboardStats,
+        fetchNotifications,
+        setIsHistoryPreview,
+    });
 
     useEffect(() => {
-
-        if (!result) {
-            setShowResults(false);
-            return;
-        }
+        if (!result) return;
 
         const timer = setTimeout(() => {
             setShowResults(true);
         }, 80);
 
-        return () => clearTimeout(timer);
-
+        return () => {
+            clearTimeout(timer);
+            setShowResults(false);
+        };
     }, [result]);
 
   const handleLogout = () => {
