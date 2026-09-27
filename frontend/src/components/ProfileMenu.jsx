@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 function ProfileMenu({
     showProfileMenu,
     handleLogout,
-    theme,
     setTheme,
 
     result,

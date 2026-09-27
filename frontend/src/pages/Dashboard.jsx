@@ -36,8 +36,6 @@ function Dashboard() {
         }
     }, []);
     const [history, setHistory] = useState([]);
-    const [search, setSearch] = useState("");
-    const [sortBy, setSortBy] = useState("newest");
     const fileInputRef = useRef(null);
     const [showNotifications, setShowNotifications] = useState(false);
     const profileMenuRef = useRef(null);
@@ -210,7 +208,6 @@ function Dashboard() {
       setFile,
       company,
       role,
-      requiredSkills,
       jobDescription,
       fileInputRef,
       fetchHistory,
@@ -285,39 +282,6 @@ function Dashboard() {
         loadDashboard();
 
     }, []);
-const filteredHistory = history.filter((item) => {
-  const query = search.trim().toLowerCase();
-
-  return (
-    item.company.toLowerCase().includes(query) ||
-    item.role.toLowerCase().includes(query)
-  );
-});
-
-const sortedHistory = [...filteredHistory].sort((a, b) => {
-
-  if (sortBy === "highest") {
-    return b.ats_score - a.ats_score;
-  }
-
-  if (sortBy === "lowest") {
-    return a.ats_score - b.ats_score;
-  }
-
-  if (sortBy === "oldest") {
-    return new Date(a.analyzed_at) - new Date(b.analyzed_at);
-  }
-
-  return new Date(b.analyzed_at) - new Date(a.analyzed_at);
-
-});
-
-const chartHistory = company
-    ? history.filter(
-          (item) =>
-              item.company.toLowerCase() === company.toLowerCase()
-      )
-    : history;
 
     useEffect(() => {
         const handleEsc = (e) => {
@@ -401,7 +365,6 @@ return (
                 <ProfileMenu
                     showProfileMenu={showProfileMenu}
                     handleLogout={handleLogout}
-                    theme={theme}
                     setTheme={setTheme}
 
                     result={result}
@@ -441,13 +404,6 @@ return (
 
         analyzeResume={analyzeResume}
         successMessage={successMessage}
-
-        history={history}
-        search={search}
-        setSearch={setSearch}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        sortedHistory={sortedHistory}
 
         jobDescriptions={jobDescriptions}
         companyRoles={companyRoles}

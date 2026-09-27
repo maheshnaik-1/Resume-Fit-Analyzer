@@ -6,10 +6,7 @@ function useResumeAnalysis({
     setFile,
     company,
     role,
-    requiredSkills,
     jobDescription,
-    setHistory,
-    setStats,
     fileInputRef,
     fetchHistory,
     fetchDashboardStats,
@@ -21,7 +18,6 @@ function useResumeAnalysis({
     const [loadingStep, setLoadingStep] = useState("");
     const [result, setResult] = useState(null);
     const [successMessage, setSuccessMessage] = useState("");
-    const userEmail = localStorage.getItem("userEmail");
 
     const analyzeResume = async () => {
     

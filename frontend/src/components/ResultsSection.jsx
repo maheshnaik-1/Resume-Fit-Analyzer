@@ -4,12 +4,6 @@ import { generatePDF } from "../utils/pdfGenerator";
 
 function ResultsSection({
     result,
-    history,
-    search,
-    setSearch,
-    sortBy,
-    setSortBy,
-    sortedHistory,
 }) {
     return (
         <>

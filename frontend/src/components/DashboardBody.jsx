@@ -31,13 +31,6 @@ function DashboardBody({
     analyzeResume,
     successMessage,
 
-    history,
-    search,
-    setSearch,
-    sortBy,
-    setSortBy,
-    sortedHistory,
-
     jobDescriptions,
     companyRoles
 }) {
@@ -151,12 +144,6 @@ function DashboardBody({
                 >
                     <ResultsSection
                         result={result}
-                        history={history}
-                        search={search}
-                        setSearch={setSearch}
-                        sortBy={sortBy}
-                        setSortBy={setSortBy}
-                        sortedHistory={sortedHistory}
                     />
                 </div>
 
