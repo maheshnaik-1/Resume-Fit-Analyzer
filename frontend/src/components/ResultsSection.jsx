@@ -9,111 +9,181 @@ function ResultsSection({
         <>
         <div className="results-container results-fade">
 
-              <div className="result-card ats-card">
-  <h2>📊 ATS Score</h2>
+            <div className="analysis-summary-card">
+                <div className="summary-hero-pane">
+                    <span className="metric-tile-label">🎯 ATS Match Score</span>
+                    <p className="score score-pop">
+                        <AnimatedNumber
+                            value={Number(result.ats_score)}
+                            decimals={2}
+                            suffix="%"
+                            duration={1200}
+                            fromZero={true}
+                        />
+                    </p>
+                    <p className="rating rating-pop">
+                        {result.ats_score >= 80
+                            ? "★★★★★"
+                            : result.ats_score >= 60
+                            ? "★★★★☆"
+                            : "★★☆☆☆"}
+                    </p>
+                    {result.ats_score >= 80 && (
+                        <p className="excellent badge-pop">
+                            🟢 Excellent Resume
+                        </p>
+                    )}
+                    {result.ats_score >= 60 && result.ats_score < 80 && (
+                        <p className="good badge-pop">
+                            🟡 Good Resume
+                        </p>
+                    )}
+                    {result.ats_score < 60 && (
+                        <p className="poor badge-pop">
+                            🔴 Needs Improvement
+                        </p>
+                    )}
+                    <div className="progress-bar">
+                        <div
+                            className="progress-fill"
+                            style={{
+                                width: `${(
+                                    ((result.matched_skills || []).length /
+                                    Math.max((result.job_skills || []).length, 1)) * 100
+                                )}%`,
+                                background:
+                                    result.ats_score >= 80
+                                        ? "#22c55e"
+                                        : result.ats_score >= 60
+                                        ? "#f59e0b"
+                                        : "#ef4444",
+                            }}
+                        ></div>
+                    </div>
+                </div>
 
-  <p className="score score-pop">
-        <AnimatedNumber
-            value={Number(result.ats_score)}
-            decimals={2}
-            suffix="%"
-            duration={1200}
-            fromZero={true}
-        />
-  </p>
+                <div className="summary-metrics-grid">
+                    <div className="metric-tile">
+                        <div className="metric-tile-header">
+                            <span className="metric-tile-label">🟢 Skills Match</span>
+                            <span>
+                                {Math.round(
+                                    (((result.matched_skills || []).length /
+                                    Math.max((result.job_skills || []).length, 1)) * 100)
+                                )}%
+                            </span>
+                        </div>
+                        <div className="metric-tile-value">
+                            {(result.matched_skills || []).length} / {(result.job_skills || []).length}
+                        </div>
+                        <p className="metric-tile-subtext">
+                            {(result.missing_skills || []).length} missing skills identified
+                        </p>
+                    </div>
 
-   <p className="rating rating-pop">
-       {result.ats_score >= 80
-        ? "★★★★★"
-        : result.ats_score >= 60
-        ? "★★★★☆"
-        : "★★☆☆☆"}
-     </p>
+                    <div className="metric-tile">
+                        <div className="metric-tile-header">
+                            <span className="metric-tile-label">⚡ Analysis Time</span>
+                            <span>
+                                {Number(result.analysis_time) < 0.20
+                                    ? "🚀 Fast"
+                                    : "✓ Done"}
+                            </span>
+                        </div>
+                        <div className="metric-tile-value">
+                            <AnimatedNumber
+                                value={Number(result.analysis_time)}
+                                decimals={2}
+                                suffix=" sec"
+                                duration={800}
+                                fromZero={true}
+                            />
+                        </div>
+                        <p className="metric-tile-subtext">
+                            {Number(result.analysis_time) < 0.20
+                                ? "Lightning Fast Processing"
+                                : Number(result.analysis_time) < 0.50
+                                ? "Fast Processing"
+                                : "Processing Complete"}
+                        </p>
+                    </div>
 
-  {result.ats_score >= 80 && (
-    <p className="excellent badge-pop">
-      🟢 Excellent Resume
-    </p>
-  )}
+                    <div className="metric-tile">
+                        <div className="metric-tile-header">
+                            <span className="metric-tile-label">🏆 Best Record</span>
+                            {result.best_resume && (
+                                <span>
+                                    {new Date(result.best_resume.date).toLocaleDateString("en-GB", {
+                                        day: "2-digit",
+                                        month: "short",
+                                    })}
+                                </span>
+                            )}
+                        </div>
+                        <div className="metric-tile-value">
+                            {result.best_resume ? (
+                                <AnimatedNumber
+                                    value={Number(result.best_resume.ats_score)}
+                                    decimals={2}
+                                    suffix="%"
+                                    duration={1000}
+                                    fromZero={true}
+                                />
+                            ) : (
+                                <span>Initial Run</span>
+                            )}
+                        </div>
+                        <p className="metric-tile-subtext">
+                            {result.best_resume
+                                ? `${result.best_resume.company} • ${result.best_resume.role}`
+                                : "Benchmark record established"}
+                        </p>
+                    </div>
 
-  {result.ats_score >= 60 &&
-    result.ats_score < 80 && (
-      <p className="good badge-pop">
-        🟡 Good Resume
-      </p>
-  )}
+                    <div className="metric-tile">
+                        <div className="metric-tile-header">
+                            <span className="metric-tile-label">📈 Improvement</span>
+                            <span>
+                                {result.resume_improvement?.history?.length > 1
+                                    ? `${result.resume_improvement.history.length} scans`
+                                    : "Baseline"}
+                            </span>
+                        </div>
+                        <div className="metric-tile-value">
+                            {result.resume_improvement && result.resume_improvement.improvement !== 0 ? (
+                                <span>
+                                    {result.resume_improvement.improvement > 0 ? "+" : ""}
+                                    {result.resume_improvement.improvement}%
+                                </span>
+                            ) : (
+                                <span>Baseline</span>
+                            )}
+                        </div>
+                        <p className="metric-tile-subtext">
+                            {result.resume_improvement?.improvement > 0
+                                ? `Improved by ${result.resume_improvement.improvement}%`
+                                : result.resume_improvement?.improvement < 0
+                                ? `Dropped by ${Math.abs(result.resume_improvement.improvement)}%`
+                                : "First analysis for target role"}
+                        </p>
+                    </div>
 
-  {result.ats_score < 60 && (
-    <p className="poor badge-pop">
-      🔴 Needs Improvement
-    </p>
-  )}
-
-<div className="score-summary">
-
-    <div className="score-summary-item matched">
-
-        <div>
-            <span className="summary-title">
-                🟢 Matched Skills
-            </span>
-
-            <small>
-                Skills found in your resume
-            </small>
-        </div>
-
-        <strong>
-            {result.matched_skills.length}
-        </strong>
-
-    </div>
-
-    <div className="score-summary-item missing">
-
-        <div>
-            <span className="summary-title">
-                🔴 Missing Skills
-            </span>
-
-            <small>
-                Skills to improve
-            </small>
-        </div>
-
-        <strong>
-            {result.missing_skills.length}
-        </strong>
-
-    </div>
-
-</div>
-
-<p className="score-summary">
-  {(result.matched_skills || []).length} / {(result.job_skills || []).length}
-  {" "}Skills Matched
-</p>
-
-  <div className="progress-bar">
-    <div
-      className="progress-fill"
-      style={{
-        width: `${
-          (
-            ((result.matched_skills || []).length /
-            Math.max((result.job_skills || []).length, 1))
-          ) * 100
-        }%`,
-        background:
-          result.ats_score >= 80
-            ? "#22c55e"
-            : result.ats_score >= 60
-            ? "#f59e0b"
-            : "#ef4444",
-      }}
-    ></div>
-  </div>
-</div>
+                    {(result.company || result.role) && (
+                        <div className="summary-context-bar">
+                            <span>🎯 Target:</span>
+                            <strong>
+                                {result.company || result.target_company}
+                            </strong>
+                            {(result.role || result.target_role) && (
+                                <>
+                                    <span>•</span>
+                                    <span>{result.role || result.target_role}</span>
+                                </>
+                            )}
+                        </div>
+                    )}
+                </div>
+            </div>
 
 <div className="result-card breakdown-card">
     <h2>📈 Score Breakdown</h2>
@@ -207,104 +277,7 @@ function ResultsSection({
 
 </div>
 
-<div className="result-card best-card">
-  <h2>🏆 Best Resume Record</h2>
 
-  {result.best_resume ? (
-        <>
-            <div className="best-resume-content">
-
-                <h3 className="company-name">
-                     {result.best_resume.company}
-                </h3>
-
-                <p className="role-name">
-                    {result.best_resume.role}
-                </p>
-
-                <div className="best-score">
-                    ⭐{" "}
-                    <AnimatedNumber
-                        value={Number(result.best_resume.ats_score)}
-                        decimals={2}
-                        suffix="%"
-                        duration={1000}
-                        fromZero={true}
-                    />
-                </div>
-
-                <div className="best-date">
-                    🗓{" "}
-                    {new Date(result.best_resume.date).toLocaleDateString("en-GB", {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                    })}
-                </div>
-
-            </div>
-        </>
-    ) : (
-        <p>No previous records available.</p>
-    )}
-</div>
-
-{result.resume_improvement && (
-  <div className="result-card improvement-card">
-    <h2>📈 Resume Improvement</h2>
-
-    {result.resume_improvement.history?.map((item, index) => (
-        <div
-            className="improvement-row"
-            key={index}
-        >
-            <div>
-                <strong>
-                    {index === 0
-                        ? "Oldest"
-                        : index === result.resume_improvement.history.length - 1
-                        ? "Latest"
-                        : "Previous"}
-                </strong>
-
-                <br />
-
-                <small>
-                    {new Date(item.date).toLocaleDateString("en-GB", {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                    })}
-                    {" • "}
-                    {new Date(item.date).toLocaleTimeString("en-US", {
-                        hour: "numeric",
-                        minute: "2-digit",
-                        hour12: true,
-                    })}
-                </small>
-            </div>
-
-            <strong>
-                <AnimatedNumber
-                    value={Number(item.score)}
-                    decimals={2}
-                    suffix="%"
-                    duration={900}
-                    fromZero={true}
-                />
-            </strong>
-        </div>
-    ))}
-
-    <div className="improvement-badge">
-      {result.resume_improvement.improvement > 0
-        ? `📈 Improved by ${result.resume_improvement.improvement}%`
-        : result.resume_improvement.improvement < 0
-        ? `📉 Dropped by ${Math.abs(result.resume_improvement.improvement)}%`
-        : "➖ No Change"}
-    </div>
-  </div>
-)}
 
     <div className="result-card matched-card">
       <h2>✅ Matched Skills</h2>
@@ -370,37 +343,7 @@ function ResultsSection({
 
     </div>
 
-    <div className="result-card time-card">
-    <h2>⚡ Analysis Time</h2>
 
-    {(() => {
-        const analysisTime = Number(result.analysis_time);
-
-        return (
-            <>
-                <div className="analysis-time">
-                    <AnimatedNumber
-                        value={analysisTime}
-                        decimals={2}
-                        suffix=" sec"
-                        duration={800}
-                        fromZero={true}
-                    />
-                </div>
-
-                <div className="analysis-status">
-                    {
-                        analysisTime < 0.20
-                            ? "🚀 Lightning Fast"
-                            : analysisTime < 0.50
-                            ? "⚡ Fast Processing"
-                            : "⏳ Processing Complete"
-                    }
-                </div>
-            </>
-        );
-    })()}
-</div>
 
 <div className="result-card health-card">
 
