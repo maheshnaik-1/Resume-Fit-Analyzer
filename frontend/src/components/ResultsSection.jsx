@@ -185,203 +185,164 @@ function ResultsSection({
                 </div>
             </div>
 
-<div className="result-card breakdown-card">
-    <h2>📈 Score Breakdown</h2>
+            <div className="skill-analysis-card">
+                <div className="skill-breakdown-pane">
+                    <h2>📈 Score Breakdown</h2>
 
-    {result?.score_breakdown && (
+                    {result?.score_breakdown && (
+                        <div className="score-breakdown-card">
+                            {/* Skills */}
+                            <div className="breakdown-item">
+                                <div className="breakdown-header">
+                                    <span>💻 Skills</span>
+                                    <span>{result.score_breakdown.skills}%</span>
+                                </div>
+                                <div className="breakdown-track">
+                                    <div
+                                        className="breakdown-fill"
+                                        style={{
+                                            width: `${result.score_breakdown.skills}%`,
+                                        }}
+                                    ></div>
+                                </div>
+                            </div>
 
-    <div className="score-breakdown-card">
+                            {/* Projects */}
+                            <div className="breakdown-item">
+                                <div className="breakdown-header">
+                                    <span>📁 Projects</span>
+                                    <span>{result.score_breakdown.projects}%</span>
+                                </div>
+                                <div className="breakdown-track">
+                                    <div
+                                        className="breakdown-fill"
+                                        style={{
+                                            width: `${result.score_breakdown.projects}%`,
+                                        }}
+                                    ></div>
+                                </div>
+                            </div>
 
-        {/* Skills */}
-        <div className="breakdown-item">
+                            {/* Education */}
+                            <div className="breakdown-item">
+                                <div className="breakdown-header">
+                                    <span>🎓 Education</span>
+                                    <span>{result.score_breakdown.education}%</span>
+                                </div>
+                                <div className="breakdown-track">
+                                    <div
+                                        className="breakdown-fill"
+                                        style={{
+                                            width: `${result.score_breakdown.education}%`,
+                                        }}
+                                    ></div>
+                                </div>
+                            </div>
 
-            <div className="breakdown-header">
-                <span>💻 Skills</span>
-                <span>{result.score_breakdown.skills}%</span>
-            </div>
-
-            <div className="breakdown-track">
-                <div
-                    className="breakdown-fill"
-                    style={{
-                        width: `${result.score_breakdown.skills}%`
-                    }}
-                ></div>
-            </div>
-
-        </div>
-
-        {/* Projects */}
-
-        <div className="breakdown-item">
-
-            <div className="breakdown-header">
-                <span>📁 Projects</span>
-                <span>{result.score_breakdown.projects}%</span>
-            </div>
-
-            <div className="breakdown-track">
-                <div
-                    className="breakdown-fill"
-                    style={{
-                        width: `${result.score_breakdown.projects}%`
-                    }}
-                ></div>
-            </div>
-
-        </div>
-
-        {/* Education */}
-
-        <div className="breakdown-item">
-
-            <div className="breakdown-header">
-                <span>🎓 Education</span>
-                <span>{result.score_breakdown.education}%</span>
-            </div>
-
-            <div className="breakdown-track">
-                <div
-                    className="breakdown-fill"
-                    style={{
-                        width: `${result.score_breakdown.education}%`
-                    }}
-                ></div>
-            </div>
-
-        </div>
-
-        {/* Certifications */}
-
-        <div className="breakdown-item">
-
-            <div className="breakdown-header">
-                <span>📜 Certifications</span>
-                <span>{result.score_breakdown.certifications}%</span>
-            </div>
-
-            <div className="breakdown-track">
-                <div
-                    className="breakdown-fill"
-                    style={{
-                        width: `${result.score_breakdown.certifications}%`
-                    }}
-                ></div>
-            </div>
-
-        </div>
-
-    </div>
-
-    )}
-
-</div>
-
-
-
-    <div className="result-card matched-card">
-      <h2>✅ Matched Skills</h2>
-
-        <div className="skills-list">
-
-            {result.matched_skills?.length > 0 ? (
-
-                result.matched_skills.map((skill, index) => (
-
-                    <span
-                        key={index}
-                        className="matched-badge"
-                    >
-                        {skill}
-                    </span>
-
-                ))
-
-            ) : (
-
-                <div className="empty-state">
-
-                    🎯 No matching skills found
-
+                            {/* Certifications */}
+                            <div className="breakdown-item">
+                                <div className="breakdown-header">
+                                    <span>📜 Certifications</span>
+                                    <span>{result.score_breakdown.certifications}%</span>
+                                </div>
+                                <div className="breakdown-track">
+                                    <div
+                                        className="breakdown-fill"
+                                        style={{
+                                            width: `${result.score_breakdown.certifications}%`,
+                                        }}
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
-            )}
+                <div className="skill-matrix-pane">
+                    <div className="skill-group-section">
+                        <div className="skill-group-header">
+                            <span>✅ Matched Skills</span>
+                            <span>{(result.matched_skills || []).length}</span>
+                        </div>
+                        <div className="skills-list">
+                            {result.matched_skills?.length > 0 ? (
+                                result.matched_skills.map((skill, index) => (
+                                    <span
+                                        key={index}
+                                        className="matched-badge"
+                                    >
+                                        {skill}
+                                    </span>
+                                ))
+                            ) : (
+                                <div className="empty-state">
+                                    🎯 No matching skills found
+                                </div>
+                            )}
+                        </div>
+                    </div>
 
-        </div>
+                    <div className="skill-group-section">
+                        <div className="skill-group-header">
+                            <span>⚠️ Missing Skills</span>
+                            <span>{(result.missing_skills || []).length}</span>
+                        </div>
+                        <div className="skills-list">
+                            {result.missing_skills?.length > 0 ? (
+                                result.missing_skills.map((skill, index) => (
+                                    <span
+                                        key={index}
+                                        className="missing-badge"
+                                    >
+                                        {skill}
+                                    </span>
+                                ))
+                            ) : (
+                                <div className="empty-state success">
+                                    🎉 No missing skills
+                                </div>
+                            )}
+                        </div>
+                    </div>
 
-    </div>
-
-    <div className="result-card missing-card">
-      <h2>⚠️ Missing Skills</h2>
-
-        <div className="skills-list">
-
-            {result.missing_skills?.length > 0 ? (
-
-                result.missing_skills.map((skill,index)=>(
-
-                    <span
-                        key={index}
-                        className="missing-badge"
-                    >
-                        {skill}
-                    </span>
-
-                ))
-
-            ) : (
-
-                <div className="empty-state success">
-
-                    🎉 No missing skills
-
+                    <div className="skill-group-section">
+                        <div className="skill-group-header">
+                            <span>🛠️ Detected Skills</span>
+                            <span>{(result.resume_summary?.skills || []).length}</span>
+                        </div>
+                        <div className="skills-list">
+                            {result.resume_summary?.skills?.length > 0 ? (
+                                result.resume_summary.skills.map((skill, index) => (
+                                    <span
+                                        key={index}
+                                        className="detected-badge"
+                                    >
+                                        {skill}
+                                    </span>
+                                ))
+                            ) : (
+                                <div className="empty-state">
+                                    📄 No detected skills extracted
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 </div>
-
-            )}
-
-        </div>
-
-    </div>
-
-
-
-<div className="result-card health-card">
-
-    <h2>🩺 Resume Health Report</h2>
-
-    <div className="health-list">
-
-        {result.resume_health?.map((item, index) => (
-
-            <div
-                key={index}
-                className="health-item"
-            >
-                {item}
             </div>
 
-        ))}
-
-    </div>
-
-</div>
-
-<div className="result-card detected-card">
-    <h2>🛠️ Detected Skills</h2>
-
-    <div className="modern-list">
-        {result.resume_summary?.skills?.map((skill, index) => (
-            <div
-                key={index}
-                className="modern-item"
-            >
-                <span className="modern-dot">✓</span>
-
-                <span>{skill}</span>
+            <div className="result-card health-card">
+                <h2>🩺 Resume Health Report</h2>
+                <div className="health-list">
+                    {result.resume_health?.map((item, index) => (
+                        <div
+                            key={index}
+                            className="health-item"
+                        >
+                            {item}
+                        </div>
+                    ))}
+                </div>
             </div>
-        ))}
-    </div>
-</div>
 
 <div className="result-card roles-card">
 
