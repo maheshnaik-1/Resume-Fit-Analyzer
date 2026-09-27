@@ -283,6 +283,98 @@
 }
 
 /* ==========================================================
+   UI-4: SKILL ANALYSIS HUB FOUNDATION
+========================================================== */
+
+.skill-analysis-card{
+    grid-column:1 / -1;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:22px 24px;
+    box-sizing:border-box;
+    box-shadow:var(--card-shadow);
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:24px;
+    align-items:stretch;
+}
+
+.skill-breakdown-pane{
+    display:flex;
+    flex-direction:column;
+    padding:18px 20px;
+    background:var(--background);
+    border:1px solid var(--border);
+    border-radius:16px;
+    box-sizing:border-box;
+}
+
+.skill-matrix-pane{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    min-width:0;
+}
+
+.skill-group-section{
+    background:var(--background);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:14px 16px;
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.skill-group-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:13px;
+    font-weight:700;
+    color:var(--text);
+}
+
+.detected-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:8px 14px;
+    border-radius:999px;
+    background:var(--background);
+    border:1px solid var(--border);
+    color:var(--text);
+    font-size:13px;
+    font-weight:600;
+    white-space:nowrap;
+    transition:.25s ease;
+}
+
+.detected-badge:hover{
+    background:var(--surface);
+    border-color:var(--text-light);
+    color:var(--text);
+    transform:translateY(-2px);
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+@media(max-width:992px){
+    .skill-analysis-card{
+        grid-template-columns:1fr;
+        gap:18px;
+    }
+}
+
+@media(max-width:560px){
+    .skill-analysis-card{
+        padding:16px;
+        gap:14px;
+    }
+}
+
+/* ==========================================================
    ATS SCORE
 ========================================================== */
 
