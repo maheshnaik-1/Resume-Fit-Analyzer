@@ -10,7 +10,7 @@
 
     color:var(--text);
 
-    margin:28px 0 16px;
+    margin:0 0 14px;
 
     letter-spacing:-0.5px;
 }
@@ -50,9 +50,9 @@
 
 .analytics-card .recharts-responsive-container{
 
-    width:100% !important;
+    width:100%;
 
-    height:100% !important;
+    height:100%;
 }
 
 .analytics-card:hover{
@@ -135,6 +135,27 @@
     display:none;
 }
 
+.analytics-empty{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex:1;
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+    text-align:center;
+
+    padding:24px;
+}
+
 /* ==========================================================
    RESPONSIVE
 ========================================================== */
@@ -177,9 +198,9 @@
 
 .analytics-container{
 
-    width:96%;
+    width:100%;
 
-    margin:0 auto;
+    margin:0;
 
     display:flex;
 
@@ -188,37 +209,22 @@
     gap:28px;
 }
 
-.analytics-heading{
-
-    margin:0 0 14px;
-}
-
 .analytics-grid{
 
     display:grid;
 
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
 
-    column-gap:3%;
+    gap:22px;
 
     align-items:start;
 }
 
-.analytics-grid>.analytics-card:first-child{
-
-    margin-left:2%;
-}
-
-.analytics-grid>.analytics-card:last-child{
-
-    margin-right:2%;
-}
-
 .analytics-full{
 
-    width:96%;
+    width:100%;
 
-    margin:0 auto 24px;
+    margin:0;
 }
 
 .analytics-full .analytics-card{
@@ -235,12 +241,6 @@
         row-gap:24px;
     }
 
-    .analytics-grid>.analytics-card:first-child,
-
-    .analytics-grid>.analytics-card:last-child{
-
-        margin:0;
-    }
-
 }
+
 

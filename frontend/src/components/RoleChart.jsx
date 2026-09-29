@@ -9,120 +9,133 @@ import {
 } from "recharts";
 import themeColors from "../utils/themeColors";
 
-function RoleChart({ history, theme }) {
+function RoleChart({ history = [], theme = "ocean" }) {
+    const colors = themeColors[theme] || themeColors.ocean;
 
-    const colors = themeColors[theme];
+    const roleMap = {};
 
-  const roleCounts = {};
+    history.forEach((item) => {
+        if (!item.role) return;
+        const cleaned = item.role.trim().replace(/\s+/g, " ");
+        if (!cleaned) return;
 
-  history.forEach((item) => {
-    const role = item.role.trim();
+        const key = cleaned.toLowerCase();
 
-    roleCounts[role] = (roleCounts[role] || 0) + 1;
-  });
+        if (!roleMap[key]) {
+            roleMap[key] = {
+                role: cleaned,
+                analyses: 0,
+            };
+        }
+        roleMap[key].analyses += 1;
+    });
 
-  const chartData = Object.entries(roleCounts)
-    .map(([role, analyses]) => ({
-        role,
-        analyses,
-    }))
-    .sort((a, b) => b.analyses - a.analyses)
-    .slice(0, 8);
+    const chartData = Object.values(roleMap)
+        .sort((a, b) => b.analyses - a.analyses)
+        .slice(0, 8);
 
-  return (
-    <div className="card analytics-card role-card">
-      <h2>👨‍💻 Role Analysis</h2>
+    const hasData = chartData.length > 0;
 
-      <div className="role-scroll">
-            <ResponsiveContainer
-                width="100%"
-                height={Math.max(chartData.length * 55, 355)}
-            >
-                <BarChart
-                    data={chartData}
-                    layout="vertical"
-                    barSize={22}
-                    margin={{
-                        top:15,
-                        right:45,
-                        left:0,
-                        bottom:10,
-                    }}
-                >
-                    <CartesianGrid
-                        stroke={colors.border}
-                        strokeDasharray="3 3"
-                    />
+    return (
+        <div className="card analytics-card role-card">
+            <h2>👨‍💻 Role Analysis</h2>
 
-                    <XAxis
-                        type="number"
-                        tick={{
-                            fill: colors.textLight,
-                            fontSize: 13,
-                        }}
-                        axisLine={{
-                            stroke: colors.border,
-                        }}
-                        tickLine={{
-                            stroke: colors.border,
-                        }}
-                    />
+            {!hasData ? (
+                <div className="analytics-empty">
+                    <p>No role analysis history available yet.</p>
+                </div>
+            ) : (
+                <div className="role-scroll">
+                    <ResponsiveContainer
+                        width="100%"
+                        height={Math.max(chartData.length * 44 + 40, 240)}
+                    >
+                        <BarChart
+                            data={chartData}
+                            layout="vertical"
+                            barSize={18}
+                            margin={{
+                                top: 10,
+                                right: 30,
+                                left: 5,
+                                bottom: 10,
+                            }}
+                        >
+                            <CartesianGrid
+                                stroke={colors.border}
+                                strokeDasharray="3 3"
+                                horizontal={false}
+                            />
 
-                    <YAxis
-                        dataKey="role"
-                        type="category"
-                        width={150}
-                        tick={{
-                            fill: colors.textLight,
-                            fontSize: 13,
-                        }}
-                        axisLine={{
-                            stroke: colors.border,
-                        }}
-                        tickLine={{
-                            stroke: colors.border,
-                        }}
-                    />
+                            <XAxis
+                                type="number"
+                                allowDecimals={false}
+                                tick={{
+                                    fill: colors.textLight,
+                                    fontSize: 12,
+                                }}
+                                axisLine={{
+                                    stroke: colors.border,
+                                }}
+                                tickLine={{
+                                    stroke: colors.border,
+                                }}
+                            />
 
-                    <Tooltip
-                        formatter={(value) => [
-                            value,
-                            "Analyses",
-                        ]}
-                        labelFormatter={(label) => `Role: ${label}`}
-                        contentStyle={{
-                            background: colors.surface,
-                            color: colors.text,
-                            border: `1px solid ${colors.border}`,
-                            borderRadius: "12px",
-                            boxShadow: colors.shadow,
-                        }}
-                        labelStyle={{
-                            color: colors.text,
-                            fontWeight: 600,
-                        }}
-                        itemStyle={{
-                            color: colors.text,
-                        }}
-                        cursor={{
-                            stroke: colors.primary,
-                            strokeDasharray: "4 4",
-                        }}
-                    />
+                            <YAxis
+                                dataKey="role"
+                                type="category"
+                                width={125}
+                                tick={{
+                                    fill: colors.textLight,
+                                    fontSize: 12,
+                                }}
+                                axisLine={{
+                                    stroke: colors.border,
+                                }}
+                                tickLine={{
+                                    stroke: colors.border,
+                                }}
+                            />
 
-                    <Bar
-                        dataKey="analyses"
-                        fill={colors.primary}
-                        radius={[0, 8, 8, 0]}
-                        animationDuration={600}
-                        isAnimationActive={false}
-                        animationEasing="ease-in-out"
-                    />
-                </BarChart>
-            </ResponsiveContainer>
+                            <Tooltip
+                                formatter={(value) => [
+                                    `${value} ${value === 1 ? "analysis" : "analyses"}`,
+                                    "Total",
+                                ]}
+                                labelFormatter={(label) => `Role: ${label}`}
+                                contentStyle={{
+                                    background: colors.surface,
+                                    color: colors.text,
+                                    border: `1px solid ${colors.border}`,
+                                    borderRadius: "12px",
+                                    boxShadow: colors.shadow,
+                                }}
+                                labelStyle={{
+                                    color: colors.text,
+                                    fontWeight: 600,
+                                }}
+                                itemStyle={{
+                                    color: colors.text,
+                                }}
+                                cursor={{
+                                    stroke: colors.primary,
+                                    strokeDasharray: "4 4",
+                                }}
+                            />
+
+                            <Bar
+                                dataKey="analyses"
+                                fill={colors.primary}
+                                radius={[0, 6, 6, 0]}
+                                isAnimationActive={false}
+                            />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+            )}
         </div>
-    </div>
-);
+    );
 }
 
 export default RoleChart;
