@@ -48,7 +48,7 @@ body{
 .dashboard-grid{
     display:flex;
     flex-direction:column;
-    gap:20px;
+    gap:16px;
     width:100%;
 }
 
@@ -92,20 +92,14 @@ body{
     grid-auto-rows:auto;
 }
 
-.education-card{
-    min-height:360px;
-}
-
 .health-card,
-.certifications-card{
-    height:432px;
-}
-
+.education-card,
+.certifications-card,
 .projects-card,
 .roles-card,
 .suggestions-card{
-
-    height:420px;
+    min-height:280px;
+    height:100%;
 }
 
 /* ---------- ROW 1 ---------- */
@@ -187,6 +181,15 @@ body{
         grid-column:1 / -1;
     }
 
+    .health-card,
+    .roles-card,
+    .education-card,
+    .certifications-card,
+    .projects-card,
+    .suggestions-card{
+        min-height:240px;
+    }
+
 }
 
 @media(max-width:767px){
@@ -205,8 +208,14 @@ body{
     }
 
     .health-card,
+    .roles-card,
+    .education-card,
+    .certifications-card,
+    .projects-card,
     .suggestions-card{
         grid-column:auto;
+        min-height:auto;
+        height:auto;
     }
 
 }
