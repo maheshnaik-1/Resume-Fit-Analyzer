@@ -330,159 +330,164 @@ function ResultsSection({
                 </div>
             </div>
 
-            <div className="result-card health-card">
-                <h2>🩺 Resume Health Report</h2>
-                <div className="health-list">
-                    {result.resume_health?.map((item, index) => (
-                        <div
-                            key={index}
-                            className="health-item"
-                        >
-                            {item}
-                        </div>
-                    ))}
+            {/* ==========================================================
+               SECTION 1: RESUME OVERVIEW
+            ========================================================== */}
+            <div className="results-overview-section">
+                <div className="section-header">
+                    <h2>📋 Resume Overview</h2>
                 </div>
-            </div>
 
-<div className="result-card roles-card">
-
-    <h2>🎯 Top Career Matches</h2>
-
-    <div className="modern-list">
-
-        {((result.top_matches || result.top_predictions) || []).map((match, index) => {
-            const matchScore = match.match_score ?? match.confidence ?? 0;
-            return (
-                <div
-                    key={index}
-                    className="modern-item"
-                >
-
-                    <span className="modern-dot">
-
-                        {index === 0
-                            ? "🥇"
-                            : index === 1
-                            ? "🥈"
-                            : "🥉"}
-
-                    </span>
-
-                    <div
-                        style={{ width: "100%" }}
-                    >
-
-                        <strong>
-                            {match.role}
-                        </strong>
-
-                        <br />
-
-                        <small>
-                            Skill Match: {matchScore}%
-                        </small>
-
-                        {index === 0 && (
-
-                            <div
-                                style={{
-                                    marginTop: "8px",
-                                    fontSize: "13px",
-                                    color: "var(--text-light)"
-                                }}
-                            >
-                                Top match based on your detected technical skills.
-                            </div>
-
-                        )}
-
-                        <div
-                            style={{
-                                marginTop: "6px",
-                                height: "6px",
-                                borderRadius: "20px",
-                                background: "#e5e7eb",
-                                overflow: "hidden"
-                            }}
-                        >
-
-                            <div
-                                style={{
-                                    width: `${matchScore}%`,
-                                    height: "100%",
-                                    background: "#3b82f6"
-                                }}
-                            ></div>
-
+                <div className="overview-grid">
+                    {/* Resume Health */}
+                    <div className="result-panel health-panel">
+                        <h3>🩺 Resume Health Report</h3>
+                        <div className="health-list">
+                            {result.resume_health?.length > 0 ? (
+                                result.resume_health.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="health-item"
+                                    >
+                                        {item}
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="empty-state">
+                                    🩺 No health report available
+                                </div>
+                            )}
                         </div>
-
                     </div>
 
+                    {/* Education */}
+                    <div className="result-panel education-panel">
+                        <h3>🎓 Education</h3>
+                        <div className="modern-list">
+                            {result.resume_summary?.education?.length > 0 ? (
+                                result.resume_summary.education.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="modern-item"
+                                    >
+                                        <span className="modern-dot">🎓</span>
+                                        <span>{item}</span>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="empty-state">
+                                    🎓 No education detected
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Certifications */}
+                    <ResultCard
+                        title="📜 Certifications"
+                        items={result.resume_summary?.certifications}
+                        emptyMessage="📜 No certifications detected"
+                        className="certifications-panel"
+                    />
                 </div>
-            );
-        })}
-
-    </div>
-
-</div>
-
-<div className="result-card education-card">
-    <h2>🎓 Education</h2>
-
-    <div className="modern-list">
-
-        {result.resume_summary?.education?.length > 0 ? (
-
-            result.resume_summary.education.map((item, index) => (
-
-                <div
-                    key={index}
-                    className="modern-item"
-                >
-
-                    <span className="modern-dot">🎓</span>
-
-                    <span>{item}</span>
-
-                </div>
-
-            ))
-
-        ) : (
-
-            <div className="empty-state">
-
-                🎓 No education detected
-
             </div>
 
-        )}
+            {/* ==========================================================
+               SECTION 2: CAREER & RESUME INSIGHTS
+            ========================================================== */}
+            <div className="results-insights-section">
+                <div className="section-header">
+                    <h2>💡 Career & Resume Insights</h2>
+                </div>
 
-    </div>
-</div>
+                <div className="insights-grid">
+                    {/* Projects */}
+                    <ResultCard
+                        title="💼 Projects"
+                        items={result.resume_summary?.projects}
+                        emptyMessage="📁 No projects detected"
+                        className="projects-panel"
+                    />
 
-<div className="certifications-card certifications-section">
-    <ResultCard
-        title="📜 Certifications"
-        items={result.resume_summary?.certifications}
-        emptyMessage="📜 No certifications detected"
-    />
-</div>
+                    {/* Top Career Matches */}
+                    <div className="result-panel roles-panel">
+                        <h3>🎯 Top Career Matches</h3>
+                        <div className="modern-list">
+                            {((result.top_matches || result.top_predictions) || []).length > 0 ? (
+                                ((result.top_matches || result.top_predictions) || []).map((match, index) => {
+                                    const matchScore = match.match_score ?? match.confidence ?? 0;
+                                    return (
+                                        <div
+                                            key={index}
+                                            className="modern-item"
+                                        >
+                                            <span className="modern-dot">
+                                                {index === 0
+                                                    ? "🥇"
+                                                    : index === 1
+                                                    ? "🥈"
+                                                    : "🥉"}
+                                            </span>
 
-<div className="projects-card projects-section">
-    <ResultCard
-        title="💼 Projects"
-        items={result.resume_summary?.projects}
-        emptyMessage="📁 No projects detected"
-    />
-</div>
+                                            <div style={{ width: "100%" }}>
+                                                <strong>
+                                                    {match.role}
+                                                </strong>
+                                                <br />
+                                                <small>
+                                                    Skill Match: {matchScore}%
+                                                </small>
 
-<div className="suggestions-card suggestions-section">
-    <ResultCard
-        title="💡 Suggestions"
-        items={result.suggestions}
-    />
-</div>
+                                                {index === 0 && (
+                                                    <div
+                                                        style={{
+                                                            marginTop: "6px",
+                                                            fontSize: "12.5px",
+                                                            color: "var(--text-light)"
+                                                        }}
+                                                    >
+                                                        Top match based on your detected technical skills.
+                                                    </div>
+                                                )}
+
+                                                <div
+                                                    style={{
+                                                        marginTop: "6px",
+                                                        height: "6px",
+                                                        borderRadius: "20px",
+                                                        background: "var(--border)",
+                                                        overflow: "hidden"
+                                                    }}
+                                                >
+                                                    <div
+                                                        style={{
+                                                            width: `${matchScore}%`,
+                                                            height: "100%",
+                                                            background: "var(--primary)"
+                                                        }}
+                                                    ></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })
+                            ) : (
+                                <div className="empty-state">
+                                    🎯 No career matches available
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Suggestions */}
+                    <ResultCard
+                        title="💡 Suggestions"
+                        items={result.suggestions}
+                        emptyMessage="🎉 No suggestions needed"
+                        className="suggestions-panel"
+                    />
+                </div>
+            </div>
 </div>
 
 <div className="download-report">
