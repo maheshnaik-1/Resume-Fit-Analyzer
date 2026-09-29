@@ -39,17 +39,16 @@ function DashboardBody({
 
 <div className="dashboard-grid">
 
-    <div className={`sidebar-area ${loading ? "loading-sidebar" : ""}`}>
+    <div className={`analysis-setup-card ${loading ? "loading-sidebar" : ""}`}>
 
-        <div className="left-panel">
+        <div className="setup-header">
+            <h2>⚡ Analysis Setup</h2>
+            <p>Select target role & upload resume</p>
+        </div>
 
-            <div className="card">
+        <div className="setup-grid">
 
-                <div className="setup-header">
-                    <h2>⚡ Analysis Setup</h2>
-                    <p>Select target role & upload resume</p>
-                </div>
-
+            <div className="setup-field">
                 <CompanySelector
                     company={company}
                     setCompany={setCompany}
@@ -58,7 +57,9 @@ function DashboardBody({
                     setRequiredSkills={setRequiredSkills}
                     loading={loading}
                 />
+            </div>
 
+            <div className="setup-field">
                 <RoleSelector
                     company={company}
                     role={role}
@@ -69,25 +70,34 @@ function DashboardBody({
                     setJobDescription={setJobDescription}
                     loading={loading}
                 />
+            </div>
 
+            <div className="setup-field">
                 <RequiredSkills
                     requiredSkills={requiredSkills}
                 />
+            </div>
 
+        </div>
+
+        <div className="setup-row-bottom">
+
+            <div className="setup-resume-tile">
                 <ResumeUploader
                     file={file}
                     setFile={setFile}
                     fileInputRef={fileInputRef}
                     loading={loading}
                 />
+            </div>
 
+            <div className="setup-action-tile">
                 <AnalyzeButton
                     analyzeResume={analyzeResume}
                     loading={loading}
                     loadingStep={loadingStep}
                     successMessage={successMessage}
                 />
-
             </div>
 
         </div>

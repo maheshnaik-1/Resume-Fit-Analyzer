@@ -317,3 +317,347 @@
     pointer-events:none;
     transition:opacity .3s ease;
 }
+
+/* ==========================================================
+   COMPACT FULL-WIDTH ANALYSIS SETUP
+========================================================== */
+
+.analysis-setup-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:16px 20px;
+    box-sizing:border-box;
+    box-shadow:var(--card-shadow);
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.analysis-setup-card:hover{
+    box-shadow:0 12px 30px rgba(15,23,42,.08);
+}
+
+.setup-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-bottom:8px;
+    margin-bottom:2px;
+    border-bottom:1px solid var(--border);
+}
+
+.setup-header h2{
+    margin:0;
+    font-size:15px;
+    font-weight:700;
+    color:var(--text);
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.setup-header p{
+    margin:0;
+    font-size:12px;
+    color:var(--text-light);
+    line-height:1.4;
+}
+
+/* ---------- Top Row: Company | Role | Required Skills ---------- */
+
+.setup-grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:12px;
+    align-items:stretch;
+}
+
+.setup-field{
+    background:var(--background);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:10px 14px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    box-sizing:border-box;
+    min-height:0;
+}
+
+.setup-field label{
+    margin:0;
+    font-size:12px;
+    font-weight:700;
+    color:var(--text);
+    display:flex;
+    align-items:center;
+    gap:6px;
+    letter-spacing:.2px;
+}
+
+.setup-field select{
+    width:100%;
+    padding:8px 12px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    background:var(--surface);
+    font-size:13px;
+    color:var(--text);
+    transition:all .25s ease;
+    box-sizing:border-box;
+}
+
+.setup-field select:focus{
+    outline:none;
+    border-color:var(--primary);
+    background:var(--surface);
+    box-shadow:0 0 0 3px var(--primary-focus);
+}
+
+.setup-field .skills-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    align-items:center;
+    min-height:34px;
+}
+
+.setup-field .skill-badge{
+    padding:3px 8px;
+    font-size:11px;
+    font-weight:600;
+    border-radius:6px;
+    background:var(--primary-light);
+    color:var(--primary-dark);
+    display:inline-flex;
+    align-items:center;
+}
+
+.setup-field .empty-text{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:0;
+    padding:6px 10px;
+    border:1px dashed var(--border);
+    border-radius:8px;
+    background:var(--surface);
+    box-sizing:border-box;
+}
+
+.setup-field .empty-icon{
+    font-size:15px;
+    line-height:1;
+}
+
+.setup-field .empty-text strong{
+    display:inline;
+    font-size:12px;
+    color:var(--primary);
+    margin-right:4px;
+}
+
+.setup-field .empty-text small{
+    display:inline;
+    color:var(--text-light);
+    font-size:11px;
+}
+
+/* ---------- Bottom Row: Resume | Analyze ---------- */
+
+.setup-row-bottom{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:12px;
+    align-items:stretch;
+}
+
+.setup-resume-tile{
+    background:var(--background);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:8px 14px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    box-sizing:border-box;
+    min-height:0;
+}
+
+.setup-resume-tile .upload-title{
+    display:none;
+}
+
+.setup-resume-tile .upload-box{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:0;
+    width:100%;
+    box-sizing:border-box;
+}
+
+.setup-resume-tile .upload-btn{
+    margin:0;
+    padding:7px 14px;
+    font-size:13px;
+    font-weight:600;
+    border-radius:8px;
+    white-space:nowrap;
+    width:auto;
+    cursor:pointer;
+    line-height:1.2;
+}
+
+.setup-resume-tile .upload-file-name{
+    margin:0;
+    font-size:13px;
+    font-weight:600;
+    color:var(--text);
+    text-align:left;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    word-break:break-word;
+}
+
+.setup-resume-tile .upload-success{
+    margin:0;
+    font-size:12px;
+    font-weight:600;
+    color:#16a34a;
+    text-align:left;
+}
+
+.setup-resume-tile .upload-helper{
+    margin:0;
+    font-size:11px;
+    color:var(--text-light);
+    text-align:right;
+    white-space:nowrap;
+}
+
+.setup-action-tile{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    min-width:180px;
+}
+
+.setup-action-tile button{
+    padding:8px 22px;
+    font-size:14px;
+    font-weight:700;
+    border-radius:10px;
+    white-space:nowrap;
+    min-height:38px;
+    width:auto;
+}
+
+/* ==========================================================
+   RESPONSIVE BREAKPOINTS
+========================================================== */
+
+/* 2. Split-screen / smaller desktop: 769px–1200px */
+@media(max-width:1200px){
+    .setup-grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:10px;
+    }
+
+    .setup-grid .setup-field:nth-child(3){
+        grid-column:1 / -1;
+    }
+
+    .setup-row-bottom{
+        grid-template-columns:1fr auto;
+        gap:10px;
+    }
+
+    .setup-action-tile{
+        min-width:170px;
+    }
+
+    .setup-action-tile button{
+        width:100%;
+        justify-content:center;
+    }
+}
+
+/* 3. Tablet & Mobile: <= 768px */
+@media(max-width:768px){
+    .analysis-setup-card{
+        padding:14px 16px;
+        gap:10px;
+    }
+
+    .setup-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:2px;
+    }
+
+    .setup-grid{
+        grid-template-columns:1fr;
+        gap:8px;
+    }
+
+    .setup-grid .setup-field:nth-child(3){
+        grid-column:auto;
+    }
+
+    .setup-row-bottom{
+        grid-template-columns:1fr;
+        gap:8px;
+    }
+
+    .setup-resume-tile .upload-box{
+        flex-direction:column;
+        align-items:stretch;
+        gap:8px;
+    }
+
+    .setup-resume-tile .upload-btn{
+        width:100%;
+        justify-content:center;
+    }
+
+    .setup-resume-tile .upload-helper{
+        text-align:left;
+    }
+
+    .setup-resume-tile .upload-file-name{
+        text-align:left;
+    }
+
+    .setup-action-tile{
+        width:100%;
+        min-width:0;
+    }
+
+    .setup-action-tile button{
+        width:100%;
+        justify-content:center;
+    }
+}
+
+/* 4. Small Mobile: <= 480px */
+@media(max-width:480px){
+    .analysis-setup-card{
+        padding:12px;
+        gap:8px;
+        border-radius:14px;
+    }
+
+    .setup-field{
+        padding:8px 10px;
+    }
+}
