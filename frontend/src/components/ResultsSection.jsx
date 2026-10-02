@@ -413,8 +413,8 @@ function ResultsSection({
                     <div className="result-panel roles-panel">
                         <h3>🎯 Top Career Matches</h3>
                         <div className="modern-list">
-                            {((result.top_matches || result.top_predictions) || []).length > 0 ? (
-                                ((result.top_matches || result.top_predictions) || []).map((match, index) => {
+                            {(result.top_matches || []).length > 0 ? (
+                                result.top_matches.map((match, index) => {
                                     const matchScore = match.match_score ?? match.confidence ?? 0;
                                     return (
                                         <div

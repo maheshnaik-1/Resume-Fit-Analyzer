@@ -227,7 +227,7 @@ export function generatePDF(result) {
     currentY += 10;
 
     doc.setFont("helvetica", "normal");
-    const careerMatches = result.top_matches || result.top_predictions || [];
+    const careerMatches = result.top_matches || [];
 
     careerMatches.forEach((match, index) => {
         const score = match.match_score ?? match.confidence ?? 0;
