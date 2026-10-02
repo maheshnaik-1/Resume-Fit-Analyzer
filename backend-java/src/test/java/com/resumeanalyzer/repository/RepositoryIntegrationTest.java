@@ -3,6 +3,7 @@ package com.resumeanalyzer.repository;
 import com.resumeanalyzer.entity.Notification;
 import com.resumeanalyzer.entity.ResumeHistory;
 import com.resumeanalyzer.entity.User;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -12,6 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +31,18 @@ import static org.junit.jupiter.api.Assertions.*;
 })
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class RepositoryIntegrationTest {
+
+    @BeforeAll
+    static void ensureTestDatabaseExists() throws IOException {
+        Path targetDb = Path.of("target", "migration_test.db");
+        Path sourceDb = Path.of("..", "backend", "resume_analyzer.db");
+        if (!Files.exists(targetDb)) {
+            Files.createDirectories(targetDb.getParent());
+            if (Files.exists(sourceDb)) {
+                Files.copy(sourceDb, targetDb, StandardCopyOption.REPLACE_EXISTING);
+            }
+        }
+    }
 
     @Autowired
     private UserRepository userRepository;
