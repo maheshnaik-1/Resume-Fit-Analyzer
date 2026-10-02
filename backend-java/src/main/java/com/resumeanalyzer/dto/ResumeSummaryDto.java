@@ -57,4 +57,30 @@ public class ResumeSummaryDto {
     public void setSkills(List<String> skills) {
         this.skills = skills;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ResumeSummaryDto that = (ResumeSummaryDto) o;
+        return java.util.Objects.equals(education, that.education) &&
+                java.util.Objects.equals(projects, that.projects) &&
+                java.util.Objects.equals(certifications, that.certifications) &&
+                java.util.Objects.equals(skills, that.skills);
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(education, projects, certifications, skills);
+    }
+
+    @Override
+    public String toString() {
+        return "ResumeSummaryDto{" +
+                "education=" + education +
+                ", projects=" + projects +
+                ", certifications=" + certifications +
+                ", skills=" + skills +
+                '}';
+    }
 }
