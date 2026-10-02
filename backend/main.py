@@ -508,7 +508,10 @@ async def upload_resume(
         aliases = skill_aliases.get(skill, [skill])
 
         for alias in aliases:
-            pattern = rf'(?<!\w){re.escape(alias)}(?!\w)'
+            if alias == "C":
+                pattern = r'(?<!\w)C(?!\w|[+#])'
+            else:
+                pattern = rf'(?<!\w){re.escape(alias)}(?!\w)'
 
             if re.search(pattern, text, re.IGNORECASE):
                 detected_skills.add(skill)
@@ -617,7 +620,10 @@ async def upload_resume(
     job_skills = []
 
     for skill in skills_database:
-        pattern = rf'(?<!\w){re.escape(skill)}(?!\w)'
+        if skill == "C":
+            pattern = r'(?<!\w)C(?!\w|[+#])'
+        else:
+            pattern = rf'(?<!\w){re.escape(skill)}(?!\w)'
 
         if re.search(
             pattern,
