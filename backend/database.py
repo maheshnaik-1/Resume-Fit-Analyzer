@@ -228,7 +228,7 @@ def user_exists(email):
     cursor = conn.cursor()
 
     cursor.execute(
-        "SELECT id FROM users WHERE email = ?",
+        "SELECT id FROM users WHERE LOWER(TRIM(email)) = LOWER(TRIM(?))",
         (email,)
     )
 
@@ -245,7 +245,7 @@ def get_user_by_email(email):
     cursor.execute("""
         SELECT name, email, password
         FROM users
-        WHERE email = ?
+        WHERE LOWER(TRIM(email)) = LOWER(TRIM(?))
     """, (email,))
 
     user = cursor.fetchone()

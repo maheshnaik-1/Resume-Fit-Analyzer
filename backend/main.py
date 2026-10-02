@@ -53,13 +53,14 @@ def home():
 
 @app.post("/signup")
 def signup(user: UserSignup):
+    clean_email = user.email.strip().lower()
 
     hashed_password = bcrypt.hashpw(
         user.password.encode("utf-8"),
         bcrypt.gensalt()
     )
 
-    if user_exists(user.email):
+    if user_exists(clean_email):
         raise HTTPException(
             status_code=400,
             detail="Email already exists"
@@ -67,7 +68,7 @@ def signup(user: UserSignup):
 
     create_user(
         user.name,
-        user.email,
+        clean_email,
         hashed_password.decode("utf-8")
     )
 
@@ -78,8 +79,9 @@ def signup(user: UserSignup):
 
 @app.post("/login")
 def login(user: UserLogin):
+    clean_email = user.email.strip().lower()
 
-    result = get_user_by_email(user.email)
+    result = get_user_by_email(clean_email)
 
     if result is None:
         return {
