@@ -833,15 +833,6 @@ async def upload_resume(
         "suggestions": suggestions
     }
 
-    save_resume_history(
-                email=email,
-                company=company.strip().title(),
-                role=role,
-                ats_score=ats_score,
-                analyzed_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                result_json=json.dumps(result)
-            )
-    
     best_resume = get_best_resume_record(email)
 
     resume_improvement = get_resume_improvement(
@@ -852,6 +843,15 @@ async def upload_resume(
 
     result["best_resume"] = best_resume
     result["resume_improvement"] = resume_improvement
+
+    save_resume_history(
+        email=email,
+        company=company.strip().title(),
+        role=role,
+        ats_score=ats_score,
+        analyzed_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        result_json=json.dumps(result)
+    )
 
     return result
 
