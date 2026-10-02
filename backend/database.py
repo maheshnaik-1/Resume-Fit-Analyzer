@@ -176,8 +176,8 @@ def get_resume_improvement(email, company, role):
     SELECT ats_score, analyzed_at
     FROM resume_history
     WHERE email = ?
-    AND company = ?
-    AND role = ?
+    AND LOWER(TRIM(company)) = LOWER(TRIM(?))
+    AND LOWER(TRIM(role)) = LOWER(TRIM(?))
     ORDER BY analyzed_at DESC
     LIMIT 3
     """, (
