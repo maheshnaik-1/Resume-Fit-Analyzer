@@ -47,7 +47,6 @@ function NotificationPopup({
                             {item.type === "success" && "✅ "}
                             {item.type === "warning" && "⚠️ "}
                             {item.type === "error" && "❌ "}
-                            {item.type === "analysis" && "📄 "}
 
                             {item.message}
 
