@@ -1,76 +1,104 @@
+/* ==========================================================
+   AUTHENTICATION CARDS (LOGIN & SIGNUP)
+========================================================== */
+
 .signup-container {
     min-height: 100vh;
-    background: var(--background-gradient);
+    background: var(--background);
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: .3s;
+    padding: 24px;
+    box-sizing: border-box;
 }
 
 .signup-card {
-    width: 420px;
+    width: 100%;
+    max-width: 400px;
     background: var(--surface);
-    padding: 35px;
-    border-radius: 18px;
+    padding: 32px;
+    border-radius: 16px;
     border: 1px solid var(--border);
     box-shadow: var(--card-shadow);
-    transition: .3s;
+    box-sizing: border-box;
+    transition: box-shadow .2s ease;
+}
+
+.signup-card:hover{
+    box-shadow: var(--card-shadow-hover);
 }
 
 .signup-card h1 {
     text-align: center;
-    color: var(--primary);
-    font-size: 42px;
+    color: var(--text);
+    font-size: 24px;
+    font-weight: 800;
     line-height: 1.2;
-    margin-bottom: 10px;
+    margin: 0 0 6px;
+    letter-spacing: -0.5px;
 }
 
 .signup-card h2 {
-    color: var(--text);
-    margin-bottom: 25px;
+    color: var(--text-secondary);
+    font-size: 14.5px;
+    font-weight: 600;
+    margin: 0 0 22px;
     text-align: center;
 }
 
 .signup-card input {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    border-radius: 9px;
     border: 1px solid var(--border);
     background: var(--surface);
     color: var(--text);
+    font-size: 14px;
     box-sizing: border-box;
-    transition: .25s;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.signup-card input::placeholder {
+    color: var(--text-muted);
+}
+
+.signup-card input:hover {
+    border-color: var(--border-hover);
 }
 
 .signup-card input:focus {
     outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px var(--primary-focus);
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--primary-focus);
 }
 
 .signup-card button {
     width: 100%;
-    padding: 13px;
+    padding: 11px;
     background: var(--primary);
-    color: white;
+    color: #ffffff;
     border: none;
-    border-radius: 10px;
+    border-radius: 9px;
     cursor: pointer;
-    font-size: 16px;
-    transition: .25s;
+    font-size: 14.5px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px var(--primary-shadow);
+    transition: all .2s ease;
+    margin-top: 6px;
 }
 
 .signup-card button:hover {
     background: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px var(--primary-shadow-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px var(--primary-shadow-hover);
 }
 
 .signup-card p {
     text-align: center;
-    margin-top: 18px;
-    color: var(--text-light);
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text-secondary);
 }
 
 .signup-card a,
@@ -88,20 +116,9 @@
 
 .input-label {
     display: block;
-    margin-bottom: 6px;
-    margin-top: 14px;
+    margin-bottom: 5px;
+    margin-top: 10px;
     font-weight: 600;
     color: var(--text);
-    font-size: 14px;
-}
-
-.theme-dark .signup-card input::placeholder{
-    color: var(--text-light);
-}
-
-.signup-card:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:0 14px 35px rgba(0,0,0,.10);
+    font-size: 13px;
 }

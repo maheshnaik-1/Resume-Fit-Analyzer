@@ -1,663 +1,642 @@
-.card{
-    background:var(--surface);
-    border:1px solid var(--border);
-
-    border-radius:16px;
-
-    padding:20px;
-
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-
-    box-shadow:var(--card-shadow);
-
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease;
-}
-
-.card:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 18px 45px rgba(15,23,42,.12);
-}
-
-.setup-header{
-    margin-bottom:4px;
-    padding-bottom:10px;
-    border-bottom:1px solid var(--border);
-}
-
-.setup-header h2{
-    margin:0 0 3px;
-    font-size:17px;
-    font-weight:700;
-    color:var(--text);
-    display:flex;
-    align-items:center;
-    gap:6px;
-}
-
-.setup-header p{
-    margin:0;
-    font-size:12px;
-    color:var(--text-light);
-    line-height:1.4;
-}
-
-.card label:not(.btn){
-
-    display:block;
-
-    margin-top:6px;
-
-    margin-bottom:6px;
-
-    font-size:13px;
-
-    font-weight:700;
-
-    color:var(--text);
-
-    letter-spacing:.2px;
-}
-
-.card select,
-.card input[type="file"]{
-
-    width:100%;
-
-    padding:12px 14px;
-
-    border:1px solid var(--border);
-
-    border-radius:14px;
-
-    background:var(--surface);
-
-    font-size:14px;
-
-    color:var(--text);
-
-    transition:all .25s ease;
-}
-
-.card select:focus,
-.card input:focus{
-
-    outline:none;
-
-    border-color:var(--primary);
-
-    background:var(--surface);
-
-    box-shadow:
-        0 0 0 4px var(--primary-focus)
-}
-
-.card input[type="file"]:hover{
-    border-color:var(--primary);
-
-    background:var(--primary-light);
-}
-
-/*.card button{
-
-    width:100%;
-
-    margin-top:12px;
-
-    padding:11px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:linear-gradient(
-        135deg,
-        var(--primary),
-        var(--primary-dark)
-    );
-
-    color:white;
-
-    font-size:15px;
-
-    font-weight:700;
-
-    letter-spacing:.3px;
-
-    cursor:pointer;
-
-    transition:all .25s ease;
-
-    box-shadow:
-        0 12px 25px var(--primary-shadow)
-}
-
-.card button:hover{
-
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 16px 35px var(--primary-shadow-hover)
-}
-
-.card button:disabled{
-    background:#94a3b8;
-
-    cursor:not-allowed;
-
-    transform:none;
-}*/
-
-.success-message{
-    background:#dcfce7;
-
-    color:#15803d;
-
-    padding:12px;
-
-    border-radius:12px;
-
-    text-align:center;
-
-    font-weight:600;
-}
-
-.card h2{
-    color:var(--text);
-}
-
-.card p{
-    color:var(--text);
-}
-
-.card li{
-    color:var(--text);
-}
-
-/* ===========================
-   Resume Upload
-=========================== */
-
-.upload-box{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-top:8px;
-}
-
-.upload-btn{
-
-    margin-top:4px;
-}
-
-.upload-title{
-    display:block;
-    font-size:18px;
-    font-weight:700;
-    margin-bottom:14px;
-    color:var(--text-primary);
-}
-
-.upload-helper{
-
-    margin-top:14px;
-
-    font-size:12px;
-
-    text-align:center;
-
-    color:var(--text-light);
-
-    line-height:1.5;
-}
-
-.upload-file-name{
-
-    margin-top:12px;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    color:var(--text);
-
-    text-align:center;
-
-    word-break:break-word;
-
-    line-height:1.5;
-
-    /*overflow-wrap:anywhere;
-
-    word-break:break-word;*/
-
-    /*white-space:nowrap;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;*/
-}
-
-.upload-success{
-
-    margin-top:6px;
-
-    font-size:13px;
-
-    font-weight:600;
-
-    color:#16a34a;
-
-    text-align:center;
-}
-
-/* =====================================
-   Required Skills Placeholder
-===================================== */
-
-.empty-text{
-
-    width:100%;
-
-    display:flex;
-
-    align-items:flex-start;
-
-    gap:14px;
-
-    margin-top:10px;
-
-    padding:14px;
-
-    border:1px dashed var(--secondary);
-
-    border-radius:14px;
-
-    background:var(--secondary);
-}
-
-.empty-icon{
-
-    font-size:24px;
-
-    line-height:1;
-}
-
-.empty-text strong{
-
-    display:block;
-
-    font-size:15px;
-
-    color:var(--primary);
-
-    margin-bottom:4px;
-}
-
-.empty-text small{
-
-    display:block;
-
-    color:var(--text-light);
-
-    font-size:13px;
-
-    line-height:1.45;
-}
-
-.loading-sidebar{
-    opacity:0.6;
-    pointer-events:none;
-    transition:opacity .3s ease;
-}
-
 /* ==========================================================
-   COMPACT FULL-WIDTH ANALYSIS SETUP
+   ANALYSIS SETUP CARD (PREMIUM SAAS WORKSPACE)
 ========================================================== */
 
-.analysis-setup-card{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:16px 20px;
-    box-sizing:border-box;
-    box-shadow:var(--card-shadow);
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease;
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: var(--card-shadow);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 
-.analysis-setup-card:hover{
-    box-shadow:0 12px 30px rgba(15,23,42,.08);
+.card:hover {
+    box-shadow: var(--card-shadow-hover);
 }
 
-.setup-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding-bottom:8px;
-    margin-bottom:2px;
-    border-bottom:1px solid var(--border);
+.analysis-setup-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 14px 20px;
+    box-sizing: border-box;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: box-shadow .2s ease, border-color .2s ease;
 }
 
-.setup-header h2{
-    margin:0;
-    font-size:15px;
-    font-weight:700;
-    color:var(--text);
-    display:flex;
-    align-items:center;
-    gap:6px;
+.analysis-setup-card:hover {
+    box-shadow: var(--card-shadow-hover);
 }
 
-.setup-header p{
-    margin:0;
-    font-size:12px;
-    color:var(--text-light);
-    line-height:1.4;
+.setup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.setup-header h2 {
+    margin: 0;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: -0.2px;
+}
+
+.setup-header p {
+    margin: 0;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    font-weight: 400;
 }
 
 /* ---------- Top Row: Company | Role | Required Skills ---------- */
 
-.setup-grid{
-    display:grid;
-    grid-template-columns:repeat(3, minmax(0, 1fr));
-    gap:12px;
-    align-items:stretch;
+.setup-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    align-items: stretch;
 }
 
-.setup-field{
-    background:var(--background);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:10px 14px;
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-    box-sizing:border-box;
-    min-height:0;
+.setup-field {
+    background: var(--surface-subtle);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    box-sizing: border-box;
+    min-height: 0;
 }
 
-.setup-field label{
-    margin:0;
-    font-size:12px;
-    font-weight:700;
-    color:var(--text);
-    display:flex;
-    align-items:center;
-    gap:6px;
-    letter-spacing:.2px;
+.setup-field label {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-.setup-field select{
-    width:100%;
-    padding:8px 12px;
-    border:1px solid var(--border);
-    border-radius:8px;
-    background:var(--surface);
-    font-size:13px;
-    color:var(--text);
-    transition:all .25s ease;
-    box-sizing:border-box;
+.setup-field select {
+    width: 100%;
+    height: 34px;
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+    transition: all .2s ease;
+    box-sizing: border-box;
 }
 
-.setup-field select:focus{
-    outline:none;
-    border-color:var(--primary);
-    background:var(--surface);
-    box-shadow:0 0 0 3px var(--primary-focus);
+.setup-field select:hover:not(:disabled) {
+    border-color: var(--border-hover);
 }
 
-.setup-field .skills-list{
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-    align-items:center;
-    min-height:34px;
+.setup-field select:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    background: var(--surface);
+    box-shadow: 0 0 0 3px var(--primary-focus);
 }
 
-.setup-field .skill-badge{
-    padding:3px 8px;
-    font-size:11px;
-    font-weight:600;
-    border-radius:6px;
-    background:var(--primary-light);
-    color:var(--primary-dark);
-    display:inline-flex;
-    align-items:center;
+.setup-field select:disabled {
+    background: var(--surface-subtle);
+    color: var(--text-subdued);
+    border-color: var(--border);
+    cursor: not-allowed;
+    opacity: 0.7;
 }
 
-.setup-field .empty-text{
-    width:100%;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin:0;
-    padding:6px 10px;
-    border:1px dashed var(--border);
-    border-radius:8px;
-    background:var(--surface);
-    box-sizing:border-box;
+.setup-field .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center;
+    min-height: 34px;
 }
 
-.setup-field .empty-icon{
-    font-size:15px;
-    line-height:1;
+.setup-field .skill-badge {
+    padding: 3px 8px;
+    font-size: 11.5px;
+    font-weight: 600;
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.2;
 }
 
-.setup-field .empty-text strong{
-    display:inline;
-    font-size:12px;
-    color:var(--primary);
-    margin-right:4px;
+.setup-field .empty-text {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 4px 8px;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    box-sizing: border-box;
+    min-height: 34px;
 }
 
-.setup-field .empty-text small{
-    display:inline;
-    color:var(--text-light);
-    font-size:11px;
+.setup-field .empty-icon {
+    font-size: 13px;
+    line-height: 1;
 }
 
-/* ---------- Bottom Row: Resume | Analyze ---------- */
-
-.setup-row-bottom{
-    display:grid;
-    grid-template-columns:1fr auto;
-    gap:12px;
-    align-items:stretch;
+.setup-field .empty-text strong {
+    display: inline;
+    font-size: 11px;
+    color: var(--primary);
+    font-weight: 700;
+    margin-right: 4px;
 }
 
-.setup-resume-tile{
-    background:var(--background);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:8px 14px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    box-sizing:border-box;
-    min-height:0;
-}
-
-.setup-resume-tile .upload-title{
-    display:none;
-}
-
-.setup-resume-tile .upload-box{
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    flex-wrap:wrap;
-    margin-top:0;
-    width:100%;
-    box-sizing:border-box;
-}
-
-.setup-resume-tile .upload-btn{
-    margin:0;
-    padding:7px 14px;
-    font-size:13px;
-    font-weight:600;
-    border-radius:8px;
-    white-space:nowrap;
-    width:auto;
-    cursor:pointer;
-    line-height:1.2;
-}
-
-.setup-resume-tile .upload-file-name{
-    margin:0;
-    font-size:13px;
-    font-weight:600;
-    color:var(--text);
-    text-align:left;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    word-break:break-word;
-}
-
-.setup-resume-tile .upload-success{
-    margin:0;
-    font-size:12px;
-    font-weight:600;
-    color:#16a34a;
-    text-align:left;
-}
-
-.setup-resume-tile .upload-helper{
-    margin:0;
-    font-size:11px;
-    color:var(--text-light);
-    text-align:right;
-    white-space:nowrap;
-}
-
-.setup-action-tile{
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;
-    min-width:180px;
-}
-
-.setup-action-tile button{
-    padding:8px 22px;
-    font-size:14px;
-    font-weight:700;
-    border-radius:10px;
-    white-space:nowrap;
-    min-height:38px;
-    width:auto;
+.setup-field .empty-text small {
+    display: inline;
+    color: var(--text-secondary);
+    font-size: 11px;
 }
 
 /* ==========================================================
-   RESPONSIVE BREAKPOINTS
+   BOTTOM ROW: RESUME UPLOADER + ANALYZE ACTION
 ========================================================== */
 
-/* 2. Split-screen / smaller desktop: 769px–1200px */
-@media(max-width:1200px){
-    .setup-grid{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:10px;
+.setup-row-bottom {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.setup-resume-tile {
+    background: var(--surface-subtle);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 6px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    min-height: 44px;
+    transition: border-color .2s ease, background-color .2s ease;
+}
+
+.setup-resume-tile:hover {
+    border-color: var(--border-hover);
+}
+
+.setup-resume-tile .upload-title {
+    display: none;
+}
+
+.setup-resume-tile .upload-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Upload Button */
+.setup-resume-tile .upload-btn {
+    margin: 0;
+    padding: 6px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    border-radius: 8px;
+    white-space: nowrap;
+    cursor: pointer;
+    line-height: 1.25;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-shrink: 0;
+    transition: background-color .15s ease, border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+    user-select: none;
+}
+
+.setup-resume-tile .upload-btn:hover {
+    background: var(--surface-hover);
+    border-color: var(--border-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+}
+
+.setup-resume-tile .upload-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.setup-resume-tile .upload-btn:focus-visible {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--primary-focus);
+}
+
+.setup-resume-tile .upload-btn.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.setup-resume-tile .upload-btn-icon {
+    font-size: 13px;
+    line-height: 1;
+}
+
+/* Status Info Group */
+.setup-resume-tile .upload-status-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+}
+
+.setup-resume-tile .upload-file-name {
+    margin: 0;
+    font-size: 12.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+}
+
+.setup-resume-tile .upload-file-name.is-empty .file-placeholder-text {
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.setup-resume-tile .upload-file-name.has-file {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.setup-resume-tile .upload-file-name .file-name-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 240px;
+}
+
+.setup-resume-tile .upload-success {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--success);
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    padding: 2px 7px;
+    border-radius: 6px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    line-height: 1.2;
+}
+
+/* Helper Text */
+.setup-resume-tile .upload-helper {
+    margin: 0;
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    font-weight: 500;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.setup-resume-tile .upload-helper .helper-dot {
+    opacity: 0.5;
+}
+
+/* Analyze Action Tile */
+.setup-action-tile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 165px;
+    flex-shrink: 0;
+}
+
+.setup-action-tile button {
+    padding: 8px 20px;
+    font-size: 13.5px;
+    font-weight: 700;
+    border-radius: 10px;
+    white-space: nowrap;
+    height: 100%;
+    min-height: 42px;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 2px 8px var(--primary-shadow);
+    transition: background-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+
+.setup-action-tile button:hover:not(:disabled) {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px var(--primary-shadow-hover);
+}
+
+.setup-action-tile button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px var(--primary-shadow);
+}
+
+.setup-action-tile button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--primary-focus), 0 2px 8px var(--primary-shadow);
+}
+
+.setup-action-tile button:disabled {
+    background: var(--border);
+    color: var(--text-subdued);
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Loading & Success Messages */
+.loading-sidebar {
+    opacity: 0.6;
+    pointer-events: none;
+    transition: opacity .3s ease;
+}
+
+.loading-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 12px 14px;
+    background: var(--surface-subtle);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.loading-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.loading-step {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.loading-progress {
+    width: 60%;
+    height: 100%;
+    background: var(--primary);
+    border-radius: 4px;
+    animation: pulseBar 1.5s infinite ease-in-out;
+}
+
+@keyframes pulseBar {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+}
+
+.success-message {
+    background: var(--success-bg);
+    color: var(--success);
+    border: 1px solid var(--success-border);
+    padding: 10px 14px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+/* ==========================================================
+   RESPONSIVE BREAKPOINTS (DESKTOP, TABLET, MOBILE)
+========================================================== */
+
+@media (max-width: 1200px) {
+    .setup-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
     }
 
-    .setup-grid .setup-field:nth-child(3){
-        grid-column:1 / -1;
+    .setup-grid .setup-field:nth-child(3) {
+        grid-column: 1 / -1;
     }
 
-    .setup-row-bottom{
-        grid-template-columns:1fr auto;
-        gap:10px;
+    .setup-row-bottom {
+        grid-template-columns: 1fr auto;
+        gap: 8px;
     }
 
-    .setup-action-tile{
-        min-width:170px;
+    .setup-action-tile {
+        min-width: 155px;
     }
 
-    .setup-action-tile button{
-        width:100%;
-        justify-content:center;
+    .setup-resume-tile .upload-file-name .file-name-text {
+        max-width: 180px;
     }
 }
 
-/* 3. Tablet & Mobile: <= 768px */
-@media(max-width:768px){
-    .analysis-setup-card{
-        padding:14px 16px;
-        gap:10px;
+@media (max-width: 960px) {
+    .setup-row-bottom {
+        grid-template-columns: 1fr auto;
+        gap: 8px;
     }
 
-    .setup-header{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:2px;
+    .setup-resume-tile {
+        padding: 6px 10px;
     }
 
-    .setup-grid{
-        grid-template-columns:1fr;
-        gap:8px;
+    .setup-resume-tile .upload-box {
+        gap: 8px;
     }
 
-    .setup-grid .setup-field:nth-child(3){
-        grid-column:auto;
+    .setup-resume-tile .upload-file-name .file-name-text {
+        max-width: 150px;
     }
 
-    .setup-row-bottom{
-        grid-template-columns:1fr;
-        gap:8px;
-    }
-
-    .setup-resume-tile .upload-box{
-        flex-direction:column;
-        align-items:stretch;
-        gap:8px;
-    }
-
-    .setup-resume-tile .upload-btn{
-        width:100%;
-        justify-content:center;
-    }
-
-    .setup-resume-tile .upload-helper{
-        text-align:left;
-    }
-
-    .setup-resume-tile .upload-file-name{
-        text-align:left;
-    }
-
-    .setup-action-tile{
-        width:100%;
-        min-width:0;
-    }
-
-    .setup-action-tile button{
-        width:100%;
-        justify-content:center;
+    .setup-resume-tile .upload-helper {
+        font-size: 11px;
     }
 }
 
-/* 4. Small Mobile: <= 480px */
-@media(max-width:480px){
-    .analysis-setup-card{
-        padding:12px;
-        gap:8px;
-        border-radius:14px;
+@media (max-width: 768px) {
+    .analysis-setup-card {
+        padding: 12px 14px;
+        gap: 8px;
     }
 
-    .setup-field{
-        padding:8px 10px;
+    .setup-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    .setup-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .setup-grid .setup-field:nth-child(3) {
+        grid-column: auto;
+    }
+
+    .setup-row-bottom {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .setup-resume-tile {
+        padding: 8px 12px;
+    }
+
+    .setup-resume-tile .upload-box {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .setup-resume-tile .upload-status-info {
+        flex: 1 1 auto;
+    }
+
+    .setup-resume-tile .upload-helper {
+        margin-left: auto;
+    }
+
+    .setup-action-tile {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .setup-action-tile button {
+        width: 100%;
+        min-height: 42px;
+        font-size: 13.5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .analysis-setup-card {
+        padding: 10px 12px;
+        gap: 8px;
+        border-radius: 12px;
+    }
+
+    .setup-field {
+        padding: 6px 8px;
+    }
+
+    .setup-resume-tile {
+        padding: 10px;
+    }
+
+    .setup-resume-tile .upload-box {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .setup-resume-tile .upload-btn {
+        width: 100%;
+        min-height: 38px;
+        justify-content: center;
+        font-size: 13px;
+    }
+
+    .setup-resume-tile .upload-status-info {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .setup-resume-tile .upload-file-name .file-name-text {
+        max-width: 190px;
+    }
+
+    .setup-resume-tile .upload-helper {
+        width: 100%;
+        margin-left: 0;
+        justify-content: center;
+        font-size: 11px;
+    }
+
+    .setup-action-tile button {
+        min-height: 42px;
+        font-size: 14px;
+        border-radius: 9px;
+    }
+}
+
+@media (max-width: 390px) {
+    .setup-resume-tile .upload-file-name .file-name-text {
+        max-width: 160px;
+    }
+
+    .setup-resume-tile .upload-status-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
     }
 }

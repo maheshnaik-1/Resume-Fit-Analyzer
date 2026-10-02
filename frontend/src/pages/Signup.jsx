@@ -6,9 +6,6 @@ import { API_BASE_URL } from "../utils/api";
 
 function Signup() {
   const navigate = useNavigate();
-  const [theme] = useState(
-      localStorage.getItem("theme") || "ocean"
-  );
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -84,7 +81,7 @@ function Signup() {
     };
 
   return (
-    <div className={`signup-container theme-${theme}`}>
+    <div className="signup-container">
       <div className="signup-card">
         <h1>Resume Fit Analyzer</h1>
         <h2>Create Account</h2>
@@ -153,11 +150,6 @@ function Signup() {
           Already have an account?{" "}
           <span
             onClick={() => navigate("/login")}
-            style={{
-              color: "#2563eb",
-              cursor: "pointer",
-              fontWeight: "bold"
-            }}
           >
             Login
           </span>

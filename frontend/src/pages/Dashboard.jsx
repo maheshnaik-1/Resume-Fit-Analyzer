@@ -10,9 +10,12 @@ import ATSChart from "../components/ATSChart";
 import CompanyChart from "../components/CompanyChart";
 import RoleChart from "../components/RoleChart";
 import DashboardBody from "../components/DashboardBody";
+import Footer from "../components/Footer";
 import { API_BASE_URL } from "../utils/api";
+import { useTheme } from "../context/ThemeContext";
 
 function Dashboard() {
+    const { isDark, toggleTheme } = useTheme();
     const location = useLocation();
     const navigate = useNavigate();
     const [showResults, setShowResults] = useState(false);
@@ -50,15 +53,10 @@ function Dashboard() {
     const fileInputRef = useRef(null);
     const [showNotifications, setShowNotifications] = useState(false);
     const profileMenuRef = useRef(null);
+    const profileBtnRef = useRef(null);
     const notificationRef = useRef(null);
+    const notificationBtnRef = useRef(null);
     const [notifications, setNotifications] = useState([]);
-    const [theme, setTheme] = useState(
-        localStorage.getItem("theme") || "ocean"
-    );
-
-    useEffect(() => {
-        localStorage.setItem("theme", theme);
-    }, [theme]);
 
   const unreadCount = notifications.filter(
     (item) => item.is_read === 0
@@ -66,25 +64,24 @@ function Dashboard() {
   
   useEffect(() => {
       function handleClickOutside(event) {
+          const clickedProfile =
+              profileMenuRef.current?.contains(event.target) ||
+              profileBtnRef.current?.contains(event.target);
 
-          if (
-              profileMenuRef.current &&
-              !profileMenuRef.current.contains(event.target)
-          ) {
+          if (!clickedProfile) {
               setShowProfileMenu(false);
           }
 
-          if (
-              notificationRef.current &&
-              !notificationRef.current.contains(event.target)
-          ) {
+          const clickedNotification =
+              notificationRef.current?.contains(event.target) ||
+              notificationBtnRef.current?.contains(event.target);
+
+          if (!clickedNotification) {
               setShowNotifications(false);
           }
-
       }
 
       function handleEscape(event) {
-
           if (event.key === "Escape") {
               setShowProfileMenu(false);
               setShowNotifications(false);
@@ -288,7 +285,7 @@ function Dashboard() {
     }, [isHistoryPreview, navigate, setResult]);
 
 return (
-<div className={`container theme-${theme}`}>
+<div className="container">
 
     <div className="dashboard-header">
 
@@ -298,67 +295,132 @@ return (
         </div>
 
         <div className="header-right">
+            <div className="header-actions">
 
-            <button
-                className="icon-btn"
-                onClick={() => {
+                <button
+                    ref={notificationBtnRef}
+                    type="button"
+                    className="icon-btn notification-btn"
+                    onClick={() => {
+                        setShowProfileMenu(false);
+                        setShowNotifications((prev) => {
+                            const next = !prev;
+                            if (next) {
+                                markNotificationsAsRead();
+                            }
+                            return next;
+                        });
+                    }}
+                    title="Notifications"
+                    aria-label="Notifications"
+                    aria-expanded={showNotifications}
+                >
+                    <svg
+                        className="header-icon"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
 
-                    setShowProfileMenu(false);
+                    {unreadCount > 0 && (
+                        <span className="notification-badge">
+                            {unreadCount > 99 ? "99+" : unreadCount}
+                        </span>
+                    )}
+                </button>
 
-                    const opening = !showNotifications;
+                <div ref={notificationRef}>
+                    <NotificationPopup
+                        showNotifications={showNotifications}
+                        notifications={notifications}
+                    />
+                </div>
 
-                    setShowNotifications(opening);
+                <button
+                    type="button"
+                    className="icon-btn theme-toggle-btn"
+                    onClick={toggleTheme}
+                    title={isDark ? "Switch to Light Theme" : "Switch to Dark Theme"}
+                    aria-label={isDark ? "Switch to Light Theme" : "Switch to Dark Theme"}
+                >
+                    {isDark ? (
+                        <svg
+                            className="header-icon"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                        >
+                            <circle cx="12" cy="12" r="5" />
+                            <line x1="12" y1="1" x2="12" y2="3" />
+                            <line x1="12" y1="21" x2="12" y2="23" />
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                            <line x1="1" y1="12" x2="3" y2="12" />
+                            <line x1="21" y1="12" x2="23" y2="12" />
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                        </svg>
+                    ) : (
+                        <svg
+                            className="header-icon"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                        </svg>
+                    )}
+                </button>
 
-                    if (opening) {
-                        markNotificationsAsRead();
-                    }
+                <button
+                    ref={profileBtnRef}
+                    type="button"
+                    className="profile-circle"
+                    onClick={() => {
+                        setShowNotifications(false);
+                        setShowProfileMenu((prev) => !prev);
+                    }}
+                    title="User Profile"
+                    aria-label="User Profile"
+                    aria-expanded={showProfileMenu}
+                >
+                    {localStorage.getItem("name")?.charAt(0).toUpperCase()}
+                </button>
 
-                }}
-            >
+                <div ref={profileMenuRef}>
+                    <ProfileMenu
+                        showProfileMenu={showProfileMenu}
+                        handleLogout={handleLogout}
+                        result={result}
+                        company={company}
+                        role={role}
+                        requiredSkills={requiredSkills}
+                        file={file}
+                    />
+                </div>
 
-                🔔
-
-                {unreadCount > 0 && (
-                    <span className="notification-badge">
-
-                        {unreadCount > 99 ? "99+" : unreadCount}
-
-                    </span>
-                )}
-
-            </button>
-
-            <div ref={notificationRef}>
-                <NotificationPopup
-                    showNotifications={showNotifications}
-                    notifications={notifications}
-                />
             </div>
-
-            <button
-                className="profile-circle"
-                onClick={() => {
-                    setShowNotifications(false);
-                    setShowProfileMenu(!showProfileMenu);
-                }}
-            >
-                {localStorage.getItem("name")?.charAt(0).toUpperCase()}
-            </button>
-
-            <div ref={profileMenuRef}>
-                <ProfileMenu
-                    showProfileMenu={showProfileMenu}
-                    handleLogout={handleLogout}
-                    setTheme={setTheme}
-
-                    result={result}
-                    company={company}
-                    role={role}
-                    requiredSkills={requiredSkills}
-                    file={file}
-                />
-            </div>
-
         </div>
     </div>
 
@@ -407,12 +469,10 @@ return (
 
                 <CompanyChart
                     history={history}
-                    theme={theme}
                 />
 
                 <RoleChart
                     history={history}
-                    theme={theme}
                 />
 
             </div>
@@ -421,7 +481,6 @@ return (
 
                 <ATSChart
                     history={history}
-                    theme={theme}
                 />
 
             </div>
@@ -432,19 +491,13 @@ return (
 
 )}
 
-<footer className="dashboard-footer">
-
-    <strong>
-        Resume Fit Analyzer v1.0
-    </strong>
-
-    Built with React • FastAPI • SQLite • Python
-
-    <div className="footer-version">
-        Version 2.0 • Coming Soon
-    </div>
-
-</footer>
+<Footer
+    result={result}
+    company={company}
+    role={role}
+    requiredSkills={requiredSkills}
+    file={file}
+/>
 
 </div>
         

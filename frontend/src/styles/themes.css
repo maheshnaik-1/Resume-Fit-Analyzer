@@ -1,167 +1,138 @@
-.theme-ocean{
-    --primary:#3b82f6;
-    --primary-dark:#2563eb;
+/* ==========================================================
+   PREMIUM AI RESUME INTELLIGENCE — TWO-THEME DESIGN SYSTEM
+   Theme 1: Warm Ivory • Charcoal • Refined Electric Violet
+   Theme 2: Premium Graphite • Soft White • Refined Blue
+========================================================== */
 
-    --primary-light:#dbeafe;
-    --primary-focus:rgba(59,130,246,.18);
+/* ----------------------------------------------------------
+   THEME 1: WARM IVORY (DEFAULT LIGHT THEME)
+---------------------------------------------------------- */
+:root,
+[data-theme="light"] {
+    color-scheme: light;
 
-    --primary-shadow:rgba(59,130,246,.25);
-    --primary-shadow-hover:rgba(59,130,246,.40);
+    /* Primary Brand Accents (Refined Electric Violet) */
+    --primary: #6D4AFF;
+    --primary-dark: #5635D6;
+    --primary-light: rgba(109, 74, 255, 0.08);
+    --primary-soft: rgba(109, 74, 255, 0.05);
+    --primary-focus: rgba(109, 74, 255, 0.16);
+    --primary-shadow: rgba(109, 74, 255, 0.16);
+    --primary-shadow-hover: rgba(109, 74, 255, 0.26);
 
-    --secondary:#dbeafe;
+    /* Secondary Accent (Warm neutral tint & Cyan highlight) */
+    --secondary: #F1EFEA;
+    --secondary-hover: #E8E5DE;
+    --accent-cyan: #18A6C8;
+    --accent-cyan-soft: rgba(24, 166, 200, 0.09);
 
-    --background:#f3f8ff;
+    /* Backgrounds & Surfaces (Warm Ivory & Clean Warm White) */
+    --background: #F7F5F0;
+    --background-gradient: #F7F5F0;
+    --surface: #FFFFFF;
+    --surface-subtle: #FBF9F5;
+    --surface-elevated: #FFFFFF;
+    --surface-hover: #F8F6F2;
 
-    --background-gradient:
-    linear-gradient(180deg,#f7fbff,#eef5ff);
+    /* Typography Hierarchy (Deep Charcoal & High-Contrast Gray) */
+    --text: #171717;
+    --text-secondary: #374151;
+    --text-light: #374151;
+    --text-muted: #6B7280;
+    --text-subdued: #9CA3AF;
 
-    --surface:#ffffff;
+    /* Borders & Dividers (Defined Warm Gray) */
+    --border: #E0DDD5;
+    --border-subtle: #ECE9E2;
+    --border-hover: #C8C4B8;
+    --border-focus: #6D4AFF;
 
-    --text:#1e293b;
-    --text-light:#64748b;
+    /* Soft Professional Shadows */
+    --card-shadow: 0 1px 3px rgba(23, 23, 23, 0.04), 0 4px 14px rgba(23, 23, 23, 0.03);
+    --card-shadow-hover: 0 2px 6px rgba(23, 23, 23, 0.05), 0 8px 24px rgba(23, 23, 23, 0.06);
+    --dropdown-shadow: 0 4px 16px -2px rgba(23, 23, 23, 0.08), 0 12px 32px -4px rgba(23, 23, 23, 0.08);
 
-    --border:#dbeafe;
+    /* Semantic Status Colors (Clean & High Contrast) */
+    --success: #15803D;
+    --success-bg: rgba(22, 163, 74, 0.08);
+    --success-border: rgba(22, 163, 74, 0.25);
+    --warning: #B45309;
+    --warning-bg: rgba(217, 119, 6, 0.08);
+    --warning-border: rgba(217, 119, 6, 0.25);
+    --danger: #B91C1C;
+    --danger-bg: rgba(220, 38, 38, 0.08);
+    --danger-border: rgba(220, 38, 38, 0.25);
 
-    --card-shadow:
-    0 8px 20px rgba(15,23,42,.06);
+    /* Border Radius System */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 18px;
+    --radius-full: 9999px;
 }
 
-.theme-emerald{
-    --primary:#059669;
-    --primary-dark:#047857;
+/* ----------------------------------------------------------
+   THEME 2: PREMIUM GRAPHITE (DARK THEME)
+---------------------------------------------------------- */
+[data-theme="dark"] {
+    color-scheme: dark;
 
-    --primary-light:#d1fae5;
-    --primary-focus:rgba(5,150,105,.18);
+    /* Primary Brand Accents (Refined Blue) */
+    --primary: #3B82F6;
+    --primary-dark: #2563EB;
+    --primary-light: rgba(59, 130, 246, 0.12);
+    --primary-soft: rgba(59, 130, 246, 0.08);
+    --primary-focus: rgba(59, 130, 246, 0.25);
+    --primary-shadow: rgba(0, 0, 0, 0.35);
+    --primary-shadow-hover: rgba(59, 130, 246, 0.35);
 
-    --primary-shadow:rgba(5,150,105,.24);
-    --primary-shadow-hover:rgba(5,150,105,.40);
+    /* Secondary Accent (Graphite Tint & Cyan Highlight) */
+    --secondary: #24272C;
+    --secondary-hover: #2D323A;
+    --accent-cyan: #06B6D4;
+    --accent-cyan-soft: rgba(6, 182, 212, 0.12);
 
-    --secondary:#d1fae5;
+    /* Backgrounds & Surfaces (Premium Graphite Palette) */
+    --background: #121417;
+    --background-gradient: #121417;
+    --surface: #1A1D21;
+    --surface-subtle: #16181C;
+    --surface-elevated: #22262C;
+    --surface-hover: #262A32;
 
-    --background:#f4fff9;
+    /* Typography Hierarchy (Soft White & Clean Slate) */
+    --text: #F3F4F6;
+    --text-secondary: #D1D5DB;
+    --text-light: #D1D5DB;
+    --text-muted: #9CA3AF;
+    --text-subdued: #6B7280;
 
-    --background-gradient:
-    linear-gradient(180deg,#f8fffb,#effcf5);
+    /* Borders & Dividers */
+    --border: #2E333D;
+    --border-subtle: #242831;
+    --border-hover: #404756;
+    --border-focus: #3B82F6;
 
-    --surface:#ffffff;
+    /* Soft Professional Shadows for Dark Surfaces */
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    --card-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.5);
+    --dropdown-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 
-    --text:#1e293b;
-    --text-light:#64748b;
+    /* Semantic Status Colors (High-Contrast for Dark Mode) */
+    --success: #22C55E;
+    --success-bg: rgba(34, 197, 94, 0.12);
+    --success-border: rgba(34, 197, 94, 0.3);
+    --warning: #F59E0B;
+    --warning-bg: rgba(245, 158, 11, 0.12);
+    --warning-border: rgba(245, 158, 11, 0.3);
+    --danger: #EF4444;
+    --danger-bg: rgba(239, 68, 68, 0.12);
+    --danger-border: rgba(239, 68, 68, 0.3);
 
-    --border:#d1fae5;
-
-    --card-shadow:
-    0 8px 20px rgba(15,23,42,.06);
-}
-
-.theme-purple{
-    --primary:#7c3aed;
-    --primary-dark:#6d28d9;
-
-    --primary-light:#ede9fe;
-    --primary-focus:rgba(124,58,237,.18);
-
-    --primary-shadow:rgba(124,58,237,.24);
-    --primary-shadow-hover:rgba(124,58,237,.40);
-
-    --secondary:#ede9fe;
-
-    --background:#f8f5ff;
-
-    --background-gradient:
-    linear-gradient(180deg,#fcfbff,#f4efff);
-
-    --surface:#ffffff;
-
-    --text:#1e293b;
-    --text-light:#64748b;
-
-    --border:#ede9fe;
-
-    --card-shadow:
-    0 8px 20px rgba(15,23,42,.06);
-}
-
-.theme-sunset{
-    --primary:#f97316;
-    --primary-dark:#ea580c;
-
-    --primary-light:#ffedd5;
-    --primary-focus:rgba(249,115,22,.18);
-
-    --primary-shadow:rgba(249,115,22,.25);
-    --primary-shadow-hover:rgba(249,115,22,.40);
-
-    --secondary:#ffedd5;
-
-    --background:#fff8f4;
-
-    --background-gradient:
-    linear-gradient(180deg,#fffaf6,#fff2ea);
-
-    --surface:#ffffff;
-
-    --text:#1e293b;
-    --text-light:#64748b;
-
-    --border:#ffedd5;
-
-    --card-shadow:
-    0 8px 20px rgba(15,23,42,.06);
-}
-
-.theme-rose{
-    --primary:#ec4899;
-    --primary-dark:#db2777;
-
-    --primary-light:#fce7f3;
-    --primary-focus:rgba(236,72,153,.18);
-
-    --primary-shadow:rgba(236,72,153,.24);
-    --primary-shadow-hover:rgba(236,72,153,.40);
-
-    --secondary:#fce7f3;
-
-    --background:#fff6fb;
-
-    --background-gradient:
-    linear-gradient(180deg,#fffbfd,#fff2f8);
-
-    --surface:#ffffff;
-
-    --text:#1e293b;
-    --text-light:#64748b;
-
-    --border:#fce7f3;
-
-    --card-shadow:
-    0 8px 20px rgba(15,23,42,.06);
-}
-
-.theme-dark{
-    --primary:#8b5cf6;
-    --primary-dark:#6d28d9;
-
-    --primary-light:#5b35d6;
-    --primary-focus:rgba(124,58,237,.20);
-
-    --primary-shadow:rgba(124,58,237,.30);
-    --primary-shadow-hover:rgba(124,58,237,.50);
-
-    --secondary:#3a2b74;
-
-    --background:#0f172a;
-
-    --background-gradient:
-    linear-gradient(180deg,#0f172a,#111827);
-
-    --surface:#1e293b;
-
-    --text:#f8fafc;
-    --text-light:#cbd5e1;
-
-    --border:#334155;
-
-    --card-shadow:
-    0 10px 28px rgba(0,0,0,.30);
+    /* Border Radius System (Consistent) */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 18px;
+    --radius-full: 9999px;
 }

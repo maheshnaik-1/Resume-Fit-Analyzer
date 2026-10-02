@@ -11,9 +11,6 @@ function History(){
     const [sortBy, setSortBy] = useState("newest");
     const [currentPage, setCurrentPage] = useState(1);
     const rowsPerPage = 10;
-    const [theme] = useState(
-        localStorage.getItem("theme") || "ocean"
-    );
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -316,101 +313,332 @@ function History(){
 
     return (
 
-        <div className={`history-container theme-${theme}`}>
+        <div className="history-container">
 
-        <div className="history-topbar">
+        <div className="history-header-block">
 
             <button
+                type="button"
                 className="history-back-btn"
                 onClick={() =>
                     navigate("/dashboard", {
                         state: location.state,
                     })
                 }
+                aria-label="Back to Results"
             >
-                ← Back to Results
+                <svg
+                    className="history-back-icon"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                >
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Back to Results</span>
             </button>
 
-            <div className="history-page-header">
-
-                <h2>📜 Analysis History</h2>
-
-                <p>
+            <div className="history-title-group">
+                <h1 className="history-title">Analysis History</h1>
+                <p className="history-subtitle">
                     View, search and manage all your previous resume analyses.
                 </p>
-
             </div>
 
         </div>
 
-        <div className="history-summary">
+        <div className="history-summary-ribbon">
 
-            <div className="summary-card">
-                <h3>📄 Analyses</h3>
-                <p>{totalAnalyses}</p>
+            <div className="history-stat-card">
+                <div className="history-stat-icon">
+                    <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                </div>
+                <div className="history-stat-info">
+                    <span className="history-stat-label">Total Analyses</span>
+                    <span className="history-stat-value">{totalAnalyses}</span>
+                </div>
             </div>
 
-            <div className="summary-card">
-                <h3>🏆 Highest ATS</h3>
-                <p>{highestATS}%</p>
+            <div className="history-stat-card">
+                <div className="history-stat-icon">
+                    <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                    >
+                        <circle cx="12" cy="8" r="7" />
+                        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                    </svg>
+                </div>
+                <div className="history-stat-info">
+                    <span className="history-stat-label">Highest ATS Score</span>
+                    <span className="history-stat-value">{highestATS}%</span>
+                </div>
             </div>
 
-            <div className="summary-card">
-                <h3>🏢 Companies</h3>
-                <p>{totalCompanies}</p>
+            <div className="history-stat-card">
+                <div className="history-stat-icon">
+                    <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                    >
+                        <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+                        <line x1="9" y1="22" x2="9" y2="22.01" />
+                        <line x1="15" y1="22" x2="15" y2="22.01" />
+                        <line x1="8" y1="6" x2="16" y2="6" />
+                        <line x1="8" y1="10" x2="16" y2="10" />
+                        <line x1="8" y1="14" x2="16" y2="14" />
+                        <line x1="8" y1="18" x2="16" y2="18" />
+                    </svg>
+                </div>
+                <div className="history-stat-info">
+                    <span className="history-stat-label">Target Companies</span>
+                    <span className="history-stat-value">{totalCompanies}</span>
+                </div>
             </div>
 
-            <div className="summary-card">
-                <h3>💼 Roles</h3>
-                <p>{totalRoles}</p>
+            <div className="history-stat-card">
+                <div className="history-stat-icon">
+                    <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                    >
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                    </svg>
+                </div>
+                <div className="history-stat-info">
+                    <span className="history-stat-label">Target Roles</span>
+                    <span className="history-stat-value">{totalRoles}</span>
+                </div>
             </div>
 
         </div>
 
-        <div className="history-toolbar">
+        <div className="history-toolbar-card">
 
-            <div className="history-search-box">
-
-                <span className="search-icon">🔎</span>
-
+            <div className="history-search-wrapper">
+                <svg
+                    className="history-search-icon"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                >
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
                 <input
                     type="text"
                     placeholder="Search by company or role..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="history-search"
+                    className="history-search-input"
+                    aria-label="Search by company or role"
                 />
-
+                {search && (
+                    <button
+                        type="button"
+                        className="history-search-clear"
+                        onClick={() => setSearch("")}
+                        title="Clear search"
+                        aria-label="Clear search"
+                    >
+                        <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                        >
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                    </button>
+                )}
             </div>
 
-            <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="history-sort"
-            >
-                <option value="newest">🕒 Newest First</option>
-                <option value="oldest">📅 Oldest First</option>
-                <option value="highest">🏆 Highest ATS</option>
-                <option value="lowest">📉 Lowest ATS</option>
-            </select>
+            <div className="history-sort-wrapper">
+                <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                    className="history-sort-select"
+                    aria-label="Sort history by"
+                >
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="highest">Highest ATS</option>
+                    <option value="lowest">Lowest ATS</option>
+                </select>
+            </div>
 
-            <button
-                className="export-btn btn btn-secondary"
-                onClick={exportCSV}
-            >
-                📥 CSV
-            </button>
+            <div className="history-export-group">
+                <button
+                    type="button"
+                    className="btn btn-secondary history-export-btn"
+                    onClick={exportCSV}
+                    title="Export history as CSV"
+                >
+                    <svg
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    <span>CSV</span>
+                </button>
 
-            <button
-                className="export-btn btn btn-primary"
-                onClick={exportPDF}
-            >
-                📄 PDF
-            </button>
+                <button
+                    type="button"
+                    className="btn btn-primary history-export-btn"
+                    onClick={exportPDF}
+                    title="Export history as PDF"
+                >
+                    <svg
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    <span>PDF</span>
+                </button>
+            </div>
 
         </div>
 
-        {history.length > 0 && (
+        {history.length === 0 ? (
+
+            <div className="result-card history-card history-empty-card">
+
+                <div className="history-empty-container">
+
+                    <div className="history-empty-icon-wrap">
+                        <svg
+                            className="history-empty-icon"
+                            width="36"
+                            height="36"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="12" y1="18" x2="12" y2="12" />
+                            <line x1="9" y1="15" x2="15" y2="15" />
+                        </svg>
+                    </div>
+
+                    <h3 className="history-empty-title">No analyses yet</h3>
+
+                    <p className="history-empty-desc">
+                        Your analyzed resumes will appear here once you complete your first analysis.
+                    </p>
+
+                    <button
+                        type="button"
+                        className="btn btn-primary history-empty-action-btn"
+                        onClick={() =>
+                            navigate("/dashboard", {
+                                state: location.state,
+                            })
+                        }
+                    >
+                        <svg
+                            width="15"
+                            height="15"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                        >
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                        <span>Start New Analysis</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        ) : (
 
             <div className="result-card history-card">
 
@@ -421,11 +649,11 @@ function History(){
                 <thead>
 
                     <tr>
-                    <th>Company</th>
-                    <th>Role</th>
-                    <th>ATS Score</th>
-                    <th>Date</th>
-                    <th>Action</th>
+                    <th className="history-th-company">Company</th>
+                    <th className="history-th-role">Role</th>
+                    <th className="history-th-score">ATS Score</th>
+                    <th className="history-th-date">Date</th>
+                    <th className="history-th-action">Action</th>
                     </tr>
 
                 </thead>
@@ -434,18 +662,59 @@ function History(){
 
                     {sortedHistory.length === 0 ? (
 
-                    <tr>
+                    <tr className="history-empty-row">
 
-                        <td
-                        colSpan="5"
-                        style={{
-                            textAlign: "center",
-                            padding: "30px",
-                            color: "#64748b",
-                            fontWeight: "600",
-                        }}
-                        >
-                        🔍 No matching history found
+                        <td colSpan="5">
+                            <div className="history-search-zero-state">
+                                <div className="history-search-zero-icon-wrap">
+                                    <svg
+                                        className="history-search-zero-icon"
+                                        width="28"
+                                        height="28"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        aria-hidden="true"
+                                    >
+                                        <circle cx="11" cy="11" r="8" />
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                                        <line x1="8" y1="11" x2="14" y2="11" />
+                                    </svg>
+                                </div>
+                                <h4 className="history-search-zero-title">No matching analyses</h4>
+                                <p className="history-search-zero-desc">
+                                    No results found{search ? ` for "${search}"` : ""}. Try a different company or role.
+                                </p>
+                                {search && (
+                                    <button
+                                        type="button"
+                                        className="btn btn-secondary history-reset-search-btn"
+                                        onClick={() => {
+                                            setSearch("");
+                                            setCurrentPage(1);
+                                        }}
+                                    >
+                                        <svg
+                                            width="14"
+                                            height="14"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            aria-hidden="true"
+                                        >
+                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                            <line x1="6" y1="6" x2="18" y2="18" />
+                                        </svg>
+                                        <span>Clear Search</span>
+                                    </button>
+                                )}
+                            </div>
                         </td>
 
                     </tr>
@@ -455,51 +724,89 @@ function History(){
                     currentRows.map((item, index) => (
 
                         <tr
-                            key={index}
+                            key={item.id || index}
+                            className="history-row"
                             onClick={() => openHistoryResult(item.id)}
-                            style={{ cursor: "pointer" }}
+                            title="Click to view detailed analysis"
                         >
 
-                        <td>{item.company}</td>
+                        <td className="history-col-company">
+                            <span className="history-company-name">{item.company}</span>
+                        </td>
 
-                        <td>{item.role}</td>
+                        <td className="history-col-role">
+                            <span className="history-role-name">{item.role}</span>
+                        </td>
 
-                        <td>
+                        <td className="history-col-score">
 
                             <span
-                            style={{
-                                background:
-                                item.ats_score >= 80
-                                    ? "#22c55e"
-                                    : item.ats_score >= 60
-                                    ? "#f59e0b"
-                                    : "#ef4444",
-
-                                color: "white",
-                                padding: "8px 16px",
-                                borderRadius: "20px",
-                                fontWeight: "bold",
-                            }}
+                                className={`history-score-badge ${
+                                    item.ats_score >= 80
+                                        ? "history-score-high"
+                                        : item.ats_score >= 60
+                                        ? "history-score-mid"
+                                        : "history-score-low"
+                                }`}
                             >
-                            {Number(item.ats_score).toFixed(2)}%
+                                {Number(item.ats_score).toFixed(2)}%
                             </span>
 
                         </td>
 
-                        <td>
-                            {new Date(item.analyzed_at).toLocaleString()}
+                        <td className="history-col-date">
+                            <div className="history-date-wrapper">
+                                <svg
+                                    className="history-date-icon"
+                                    width="13"
+                                    height="13"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                    <line x1="16" y1="2" x2="16" y2="6" />
+                                    <line x1="8" y1="2" x2="8" y2="6" />
+                                    <line x1="3" y1="10" x2="21" y2="10" />
+                                </svg>
+                                <span>{new Date(item.analyzed_at).toLocaleString()}</span>
+                            </div>
                         </td>
 
-                        <td>
+                        <td className="history-col-action">
 
                             <button
-                                className="btn btn-danger delete-history-btn"
+                                type="button"
+                                className="history-delete-btn"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     deleteHistory(item.id);
                                 }}
+                                title="Delete analysis record"
+                                aria-label={`Delete analysis for ${item.company} ${item.role}`}
                             >
-                                🗑 Delete
+                                <svg
+                                    className="history-delete-icon"
+                                    width="13"
+                                    height="13"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <polyline points="3 6 5 6 21 6" />
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                    <line x1="10" y1="11" x2="10" y2="17" />
+                                    <line x1="14" y1="11" x2="14" y2="17" />
+                                </svg>
+                                <span>Delete</span>
                             </button>
 
                         </td>
@@ -516,27 +823,72 @@ function History(){
 
             </div>
 
-            <div className="pagination">
+            {totalPages > 0 && sortedHistory.length > 0 && (
 
-                <button
-                    disabled={currentPage === 1}
-                    onClick={() => setCurrentPage(currentPage - 1)}
-                >
-                    ← Previous
-                </button>
+                <div className="history-pagination-wrapper">
 
-                <span>
-                    Page {currentPage} of {totalPages}
-                </span>
+                    <div className="pagination">
 
-                <button
-                    disabled={currentPage === totalPages}
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                >
-                    Next →
-                </button>
+                        <button
+                            type="button"
+                            className="pagination-btn pagination-prev-btn"
+                            disabled={currentPage === 1}
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            aria-label="Previous Page"
+                        >
+                            <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                aria-hidden="true"
+                            >
+                                <line x1="19" y1="12" x2="5" y2="12" />
+                                <polyline points="12 19 5 12 12 5" />
+                            </svg>
+                            <span className="pagination-btn-text">Previous</span>
+                        </button>
 
-            </div>
+                        <div className="pagination-info">
+                            <span>Page</span>
+                            <span className="pagination-current-page">{currentPage}</span>
+                            <span>of</span>
+                            <span className="pagination-total-pages">{totalPages || 1}</span>
+                        </div>
+
+                        <button
+                            type="button"
+                            className="pagination-btn pagination-next-btn"
+                            disabled={currentPage === totalPages || totalPages === 0}
+                            onClick={() => setCurrentPage(currentPage + 1)}
+                            aria-label="Next Page"
+                        >
+                            <span className="pagination-btn-text">Next</span>
+                            <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                aria-hidden="true"
+                            >
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                                <polyline points="12 5 19 12 12 19" />
+                            </svg>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            )}
 
             </div>
 

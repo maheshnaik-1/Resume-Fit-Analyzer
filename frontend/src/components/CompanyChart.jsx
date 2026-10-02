@@ -7,10 +7,10 @@ import {
     CartesianGrid,
     ResponsiveContainer,
 } from "recharts";
-import themeColors from "../utils/themeColors";
+import { useTheme } from "../context/ThemeContext";
 
-function CompanyChart({ history = [], theme = "ocean" }) {
-    const colors = themeColors[theme] || themeColors.ocean;
+function CompanyChart({ history = [] }) {
+    const { colors } = useTheme();
 
     const companyMap = {};
 
@@ -71,8 +71,9 @@ function CompanyChart({ history = [], theme = "ocean" }) {
                                 type="number"
                                 allowDecimals={false}
                                 tick={{
-                                    fill: colors.textLight,
+                                    fill: colors.textSecondary,
                                     fontSize: 12,
+                                    fontWeight: 500,
                                 }}
                                 axisLine={{
                                     stroke: colors.border,
@@ -87,8 +88,9 @@ function CompanyChart({ history = [], theme = "ocean" }) {
                                 type="category"
                                 width={115}
                                 tick={{
-                                    fill: colors.textLight,
+                                    fill: colors.textSecondary,
                                     fontSize: 12,
+                                    fontWeight: 600,
                                 }}
                                 axisLine={{
                                     stroke: colors.border,

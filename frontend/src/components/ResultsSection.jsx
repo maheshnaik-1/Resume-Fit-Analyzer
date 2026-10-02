@@ -53,10 +53,10 @@ function ResultsSection({
                                 )}%`,
                                 background:
                                     result.ats_score >= 80
-                                        ? "#22c55e"
+                                        ? "var(--success)"
                                         : result.ats_score >= 60
-                                        ? "#f59e0b"
-                                        : "#ef4444",
+                                        ? "var(--warning)"
+                                        : "var(--danger)",
                             }}
                         ></div>
                     </div>
@@ -443,7 +443,7 @@ function ResultsSection({
                                                         style={{
                                                             marginTop: "6px",
                                                             fontSize: "12.5px",
-                                                            color: "var(--text-light)"
+                                                            color: "var(--text-secondary)"
                                                         }}
                                                     >
                                                         Top match based on your detected technical skills.

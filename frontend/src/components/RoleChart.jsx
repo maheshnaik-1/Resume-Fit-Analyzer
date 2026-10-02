@@ -7,10 +7,10 @@ import {
     CartesianGrid,
     ResponsiveContainer,
 } from "recharts";
-import themeColors from "../utils/themeColors";
+import { useTheme } from "../context/ThemeContext";
 
-function RoleChart({ history = [], theme = "ocean" }) {
-    const colors = themeColors[theme] || themeColors.ocean;
+function RoleChart({ history = [] }) {
+    const { colors } = useTheme();
 
     const roleMap = {};
 
@@ -71,8 +71,9 @@ function RoleChart({ history = [], theme = "ocean" }) {
                                 type="number"
                                 allowDecimals={false}
                                 tick={{
-                                    fill: colors.textLight,
+                                    fill: colors.textSecondary,
                                     fontSize: 12,
+                                    fontWeight: 500,
                                 }}
                                 axisLine={{
                                     stroke: colors.border,
@@ -87,8 +88,9 @@ function RoleChart({ history = [], theme = "ocean" }) {
                                 type="category"
                                 width={125}
                                 tick={{
-                                    fill: colors.textLight,
+                                    fill: colors.textSecondary,
                                     fontSize: 12,
+                                    fontWeight: 600,
                                 }}
                                 axisLine={{
                                     stroke: colors.border,

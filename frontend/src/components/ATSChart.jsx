@@ -7,7 +7,7 @@ import {
     Tooltip,
     ResponsiveContainer,
 } from "recharts";
-import themeColors from "../utils/themeColors";
+import { useTheme } from "../context/ThemeContext";
 
 function ATSTooltip({ active, payload, label, colors }) {
     if (active && payload && payload.length && colors) {
@@ -31,7 +31,7 @@ function ATSTooltip({ active, payload, label, colors }) {
                     {Number(dataPoint.score).toFixed(2)}% ATS Score
                 </div>
                 {(dataPoint.company || dataPoint.role) && (
-                    <div style={{ color: colors.textLight, fontSize: "12px", marginTop: "4px" }}>
+                    <div style={{ color: colors.textSecondary, fontSize: "12px", marginTop: "4px" }}>
                         {[dataPoint.company, dataPoint.role].filter(Boolean).join(" • ")}
                     </div>
                 )}
@@ -41,8 +41,8 @@ function ATSTooltip({ active, payload, label, colors }) {
     return null;
 }
 
-function ATSChart({ history = [], theme = "ocean" }) {
-    const colors = themeColors[theme] || themeColors.ocean;
+function ATSChart({ history = [] }) {
+    const { colors } = useTheme();
 
     const chartData = [...history]
         .reverse()
@@ -88,8 +88,9 @@ function ATSChart({ history = [], theme = "ocean" }) {
                                 interval={tickInterval}
                                 tickFormatter={(val) => `#${val}`}
                                 tick={{
-                                    fill: colors.textLight,
+                                    fill: colors.textSecondary,
                                     fontSize: 12,
+                                    fontWeight: 500,
                                 }}
                                 axisLine={{
                                     stroke: colors.border,
@@ -105,8 +106,9 @@ function ATSChart({ history = [], theme = "ocean" }) {
                                 tickFormatter={(val) => `${val}%`}
                                 allowDecimals={false}
                                 tick={{
-                                    fill: colors.textLight,
+                                    fill: colors.textSecondary,
                                     fontSize: 12,
+                                    fontWeight: 500,
                                 }}
                                 axisLine={{
                                     stroke: colors.border,

@@ -6,9 +6,6 @@ import { API_BASE_URL } from "../utils/api";
 
 function Login() {
   const navigate = useNavigate();
-  const [theme] = useState(
-      localStorage.getItem("theme") || "ocean"
-  );
 
   const [email, setEmail] = useState(
       () => localStorage.getItem("loginEmail") || ""
@@ -63,7 +60,7 @@ function Login() {
 }
 
   return (
-    <div className={`signup-container theme-${theme}`}>
+    <div className="signup-container">
       <div className="signup-card">
         <h1>Resume Fit Analyzer</h1>
 
