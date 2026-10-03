@@ -1,10 +1,10 @@
 # 🚀 Resume Fit Analyzer
 
 ![React](https://img.shields.io/badge/React-19-blue?logo=react)
-![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green?logo=fastapi)
-![Python](https://img.shields.io/badge/Python-3.12-yellow?logo=python)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.5-brightgreen?logo=springboot)
+![Java](https://img.shields.io/badge/Java-21-orange?logo=openjdk)
 ![SQLite](https://img.shields.io/badge/SQLite-Database-blue?logo=sqlite)
-![Machine Learning](https://img.shields.io/badge/Machine-Learning-orange)
+![Vite](https://img.shields.io/badge/Vite-Frontend-purple?logo=vite)
 ![Git](https://img.shields.io/badge/Git-Version%20Control-red?logo=git)
 ![License](https://img.shields.io/badge/License-Educational-purple)
 
@@ -50,15 +50,19 @@ The application will be deployed after completing the production version.
 # 🛠 Tech Stack
 
 ## Frontend
-• React.js
+• React.js (v19)
 • Vite
 • JavaScript (ES6+)
 • HTML5
 • CSS3
 
 ## Backend
-• FastAPI
-• Python 3
+• Java 21
+• Spring Boot 3.3.5
+• Spring Data JPA / Hibernate
+• Apache PDFBox (PDF parsing)
+• Jackson (JSON processing)
+• BCrypt (Password encryption)
 
 ## Role Matching Engine
 • Deterministic Skill-Overlap Scoring
@@ -68,6 +72,7 @@ The application will be deployed after completing the production version.
 
 ## Development Tools
 • VS Code
+• Maven Wrapper
 • Git
 • GitHub
 
@@ -81,16 +86,16 @@ The application will be deployed after completing the production version.
                      ▼
            React Frontend (Vite)
                      │
-             REST API Requests
+             REST API Requests (Port 8081)
                      │
                      ▼
-            FastAPI Backend
+          Spring Boot Java Backend
                      │
-       Resume Text Extraction
+        Resume Text Extraction (PDFBox)
                      │
-     ATS Analysis + Role Matching
+      ATS Analysis + Role Matching Engine
                      │
-     SQLite Database Storage
+      SQLite Database Storage (JPA / Hibernate)
                      │
                      ▼
           Analytics Dashboard
@@ -104,19 +109,36 @@ The application will be deployed after completing the production version.
 Resume-Fit-Analyzer
 │
 ├── backend
-│   ├── main.py
-│   ├── database.py
-│   ├── role_matcher.py
-│   └── job_data.py
+│   └── resume_analyzer.db
+│
+├── backend-java
+│   ├── src/main/java/com/resumeanalyzer/
+│   │   ├── catalog/
+│   │   ├── config/
+│   │   ├── controller/
+│   │   ├── dto/
+│   │   ├── entity/
+│   │   ├── exception/
+│   │   ├── repository/
+│   │   └── service/
+│   ├── src/main/resources/
+│   │   └── application.properties
+│   ├── src/test/java/com/resumeanalyzer/
+│   ├── pom.xml
+│   ├── mvnw
+│   └── mvnw.cmd
 │
 ├── frontend
 │   ├── public/
 │   ├── src/
 │   │   ├── components/
+│   │   ├── context/
 │   │   ├── hooks/
 │   │   ├── pages/
 │   │   ├── styles/
 │   │   └── utils/
+│   ├── package.json
+│   └── vite.config.js
 │
 └── README.md
 ```
@@ -156,17 +178,18 @@ Resume-Fit-Analyzer
 git clone https://github.com/maheshnaik-1/Resume-Fit-Analyzer.git
 ```
 
-### Backend
+### Backend (Java / Spring Boot)
 
 ```bash
-cd backend
+cd backend-java
 
-pip install -r requirements.txt
-
-uvicorn main:app --reload
+# Run with Maven Wrapper (starts on http://localhost:8081)
+.\mvnw.cmd spring-boot:run
+# or on Linux/macOS:
+# ./mvnw spring-boot:run
 ```
 
-### Frontend
+### Frontend (React / Vite)
 
 ```bash
 cd frontend
