@@ -3,9 +3,11 @@ import "../styles/Signup.css";
 import { useNavigate } from "react-router-dom";
 import "../styles/themes.css";
 import { API_BASE_URL } from "../utils/api";
+import { useAuth } from "../context/AuthContext";
 
 function Signup() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -68,9 +70,7 @@ function Signup() {
 
           alert(data.message);
 
-          localStorage.setItem("loggedIn", "true");
-          localStorage.setItem("userEmail", form.email);
-          localStorage.setItem("name", form.name);
+          login({ name: form.name, email: form.email });
 
           navigate("/dashboard");
           

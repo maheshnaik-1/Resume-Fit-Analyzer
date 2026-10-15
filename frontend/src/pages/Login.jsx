@@ -3,9 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import "../styles/Signup.css";
 import "../styles/themes.css";
 import { API_BASE_URL } from "../utils/api";
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [email, setEmail] = useState(
       () => localStorage.getItem("loginEmail") || ""
@@ -37,15 +39,7 @@ function Login() {
       const data = await response.json();
 
       if (data.success) {
-        localStorage.setItem("loggedIn", "true");
-
-        localStorage.setItem("loggedIn", "true");
-        localStorage.setItem("name", data.name);
-
-        localStorage.setItem("userEmail", data.email);
-
-        // optional
-        localStorage.removeItem("email");
+        login({ name: data.name, email: data.email });
 
         alert(data.message);
 

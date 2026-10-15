@@ -13,9 +13,11 @@ import DashboardBody from "../components/DashboardBody";
 import Footer from "../components/Footer";
 import { API_BASE_URL } from "../utils/api";
 import { useTheme } from "../context/ThemeContext";
+import { useAuth } from "../context/AuthContext";
 
 function Dashboard() {
     const { isDark, toggleTheme } = useTheme();
+    const { logout, user } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     const [showResults, setShowResults] = useState(false);
@@ -244,7 +246,7 @@ function Dashboard() {
     }, [result]);
 
   const handleLogout = () => {
-      localStorage.removeItem("loggedIn");
+      logout();
       navigate("/login");
   };
 
@@ -405,7 +407,7 @@ return (
                     aria-label="User Profile"
                     aria-expanded={showProfileMenu}
                 >
-                    {localStorage.getItem("name")?.charAt(0).toUpperCase()}
+                    {(user?.name || localStorage.getItem("name") || "U").charAt(0).toUpperCase()}
                 </button>
 
                 <div ref={profileMenuRef}>

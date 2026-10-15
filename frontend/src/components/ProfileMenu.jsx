@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/profile.css";
+import { useAuth } from "../context/AuthContext";
 
 function ProfileMenu({
     showProfileMenu,
@@ -11,11 +12,12 @@ function ProfileMenu({
     file,
 }) {
     const navigate = useNavigate();
+    const { user } = useAuth();
 
     if (!showProfileMenu) return null;
 
-    const name = localStorage.getItem("name");
-    const email = localStorage.getItem("userEmail");
+    const name = user?.name || localStorage.getItem("name");
+    const email = user?.email || localStorage.getItem("userEmail");
     const initial = name ? name.charAt(0).toUpperCase() : "U";
 
     const handleHistoryNavigation = () => {
