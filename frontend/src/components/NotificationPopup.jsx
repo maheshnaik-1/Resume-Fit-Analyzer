@@ -1,6 +1,7 @@
 function NotificationPopup({
     showNotifications,
     notifications,
+    onNotificationClick,
 }) {
 
     if (!showNotifications) return null;
@@ -32,35 +33,43 @@ function NotificationPopup({
 
             ) : (
 
-                notifications.map((item, index) => (
+                notifications.map((item, index) => {
+                    const isAnalysis = item.type === "analysis";
 
-                    <div
-                        key={index}
-                        className="notification-item"
-                    >
-
-                        <div className="notification-content">
-
-                        <div className="notification-message">
-
-                            {item.type === "analysis" && "📄 "}
-                            {item.type === "success" && "✅ "}
-                            {item.type === "warning" && "⚠️ "}
-                            {item.type === "error" && "❌ "}
-
-                            {item.message}
-
+                    return (
+                        <div
+                            key={index}
+                            className={`notification-item ${isAnalysis ? "notification-clickable" : ""}`}
+                            role={isAnalysis ? "button" : undefined}
+                            tabIndex={isAnalysis ? 0 : undefined}
+                            aria-label={isAnalysis ? `Open analysis: ${item.message}` : undefined}
+                            onClick={() => {
+                                if (isAnalysis && onNotificationClick) {
+                                    onNotificationClick(item);
+                                }
+                            }}
+                            onKeyDown={(e) => {
+                                if (isAnalysis && onNotificationClick && (e.key === "Enter" || e.key === " ")) {
+                                    e.preventDefault();
+                                    onNotificationClick(item);
+                                }
+                            }}
+                        >
+                            <div className="notification-content">
+                                <div className="notification-message">
+                                    {item.type === "analysis" && "📄 "}
+                                    {item.type === "success" && "✅ "}
+                                    {item.type === "warning" && "⚠️ "}
+                                    {item.type === "error" && "❌ "}
+                                    {item.message}
+                                </div>
+                                <div className="notification-time">
+                                    🕒 {item.created_at}
+                                </div>
+                            </div>
                         </div>
-
-                        <div className="notification-time">
-                            🕒 {item.created_at}
-                        </div>
-
-                    </div>
-
-                    </div>
-
-                ))
+                    );
+                })
 
             )}
 

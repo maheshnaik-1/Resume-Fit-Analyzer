@@ -14,10 +14,12 @@ import Footer from "../components/Footer";
 import { API_BASE_URL } from "../utils/api";
 import { useTheme } from "../context/ThemeContext";
 import { useAuth } from "../context/AuthContext";
+import { useToast } from "../context/ToastContext";
 
 function Dashboard() {
     const { isDark, toggleTheme } = useTheme();
     const { logout, user } = useAuth();
+    const { toast } = useToast();
     const location = useLocation();
     const navigate = useNavigate();
     const [showResults, setShowResults] = useState(false);
@@ -206,6 +208,152 @@ function Dashboard() {
         }
     };
 
+    const handleNotificationClick = async (item) => {
+        if (!item || item.type !== "analysis") return;
+
+        let currentHistory = history;
+        if (!currentHistory || currentHistory.length === 0) {
+            const email = user?.email || localStorage.getItem("userEmail");
+            if (email) {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/history/${email}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (Array.isArray(data)) {
+                            currentHistory = data;
+                            setHistory(data);
+                        }
+                    }
+                } catch (err) {
+                    console.error("Failed to load history for notification click", err);
+                }
+            }
+        }
+
+        const prefix = "Resume analyzed for ";
+        let parsedCompany = "";
+        let parsedRole = "";
+        if (item.message && item.message.startsWith(prefix)) {
+            const remainder = item.message.slice(prefix.length);
+            const parts = remainder.split(" - ");
+            if (parts.length >= 2) {
+                parsedCompany = parts[0].trim().toLowerCase();
+                parsedRole = parts.slice(1).join(" - ").trim().toLowerCase();
+            }
+        }
+
+        // 1. Exact match on analyzed_at === created_at AND matching company/role
+        let matched = currentHistory.find((h) => {
+            if (h.analyzed_at !== item.created_at) return false;
+            if (parsedCompany && parsedRole) {
+                return (
+                    h.company?.trim().toLowerCase() === parsedCompany &&
+                    h.role?.trim().toLowerCase() === parsedRole
+                );
+            }
+            return true;
+        });
+
+        // 2. Exact match on analyzed_at === created_at alone
+        if (!matched) {
+            matched = currentHistory.find((h) => h.analyzed_at === item.created_at);
+        }
+
+        // 3. Close timestamp match (within 2 seconds) with matching company & role
+        if (!matched && parsedCompany && parsedRole && item.created_at) {
+            const notifTime = new Date(item.created_at.replace(" ", "T")).getTime();
+            if (!isNaN(notifTime)) {
+                matched = currentHistory.find((h) => {
+                    if (
+                        h.company?.trim().toLowerCase() !== parsedCompany ||
+                        h.role?.trim().toLowerCase() !== parsedRole
+                    ) {
+                        return false;
+                    }
+                    const histTime = new Date((h.analyzed_at || "").replace(" ", "T")).getTime();
+                    if (isNaN(histTime)) return false;
+                    return Math.abs(notifTime - histTime) <= 2000;
+                });
+            }
+        }
+
+        if (!matched || !matched.id) {
+            toast.error("No matching analysis record found for this notification.");
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/history/result/${matched.id}`);
+            const data = await response.json();
+
+            if (!response.ok) {
+                toast.error(data.detail || "Unable to load saved analysis.");
+                return;
+            }
+
+            // Keep saved analysis results visible and unchanged
+            setResult(data);
+            setIsHistoryPreview(true);
+            setShowNotifications(false);
+
+            // Restore Analysis Setup UI (company, role, required skills)
+            const targetCompany =
+                data.company || data.target_company || matched.company || "";
+            const targetRole =
+                data.role || data.target_role || matched.role || "";
+
+            const catalogCompanyKey = Object.keys(companyRoles).find(
+                (c) => c.toLowerCase() === targetCompany.trim().toLowerCase()
+            );
+
+            if (catalogCompanyKey) {
+                setCompany(catalogCompanyKey);
+
+                // Verify the role is valid for this company
+                const validRole = companyRoles[catalogCompanyKey]?.find(
+                    (r) => r.toLowerCase() === targetRole.trim().toLowerCase()
+                );
+
+                if (validRole) {
+                    setRole(validRole);
+
+                    // Update Required Skills to reflect the restored role using existing catalog logic
+                    if (
+                        jobDescriptions[catalogCompanyKey] &&
+                        jobDescriptions[catalogCompanyKey][validRole]
+                    ) {
+                        const skills = jobDescriptions[catalogCompanyKey][validRole];
+                        setRequiredSkills(skills);
+                        setJobDescription(skills.join(" "));
+                    } else if (Array.isArray(data.job_skills) && data.job_skills.length > 0) {
+                        setRequiredSkills(data.job_skills);
+                        setJobDescription(data.job_skills.join(" "));
+                    } else {
+                        setRequiredSkills([]);
+                        setJobDescription("");
+                    }
+                } else {
+                    setRole("");
+                    setRequiredSkills([]);
+                    setJobDescription("");
+                    if (targetRole) {
+                        toast.warning(`Role "${targetRole}" is not valid for ${catalogCompanyKey}.`);
+                    }
+                }
+            } else {
+                setRole("");
+                setRequiredSkills([]);
+                setJobDescription("");
+                if (targetCompany) {
+                    toast.warning(`Company "${targetCompany}" could not be found in the catalog.`);
+                }
+            }
+        } catch (error) {
+            console.error("Error loading notification analysis result", error);
+            toast.error("Unable to load saved analysis.");
+        }
+    };
+
     const initialResult =
         location.state?.analysisResult ||
         location.state?.dashboardState?.result ||
@@ -344,6 +492,7 @@ return (
                     <NotificationPopup
                         showNotifications={showNotifications}
                         notifications={notifications}
+                        onNotificationClick={handleNotificationClick}
                     />
                 </div>
 

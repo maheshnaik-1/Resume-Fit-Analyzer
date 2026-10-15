@@ -38,6 +38,15 @@
     transition: background .2s ease;
 }
 
+.notification-item.notification-clickable {
+    cursor: pointer;
+}
+
+.notification-item.notification-clickable:focus-visible {
+    outline: 2px solid var(--border-focus, #6D4AFF);
+    outline-offset: -2px;
+}
+
 .notification-item:last-child {
     border-bottom: none;
 }
