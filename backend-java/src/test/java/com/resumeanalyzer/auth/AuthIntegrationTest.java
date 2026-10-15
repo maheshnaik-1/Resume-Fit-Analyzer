@@ -45,9 +45,11 @@ public class AuthIntegrationTest {
     static void ensureTestDatabaseExists() throws IOException {
         Path targetDb = Path.of("target", "migration_test.db");
         Path sourceDb = Path.of("..", "backend", "resume_analyzer.db");
-        Files.createDirectories(targetDb.getParent());
-        if (Files.exists(sourceDb)) {
-            Files.copy(sourceDb, targetDb, StandardCopyOption.REPLACE_EXISTING);
+        if (!Files.exists(targetDb)) {
+            Files.createDirectories(targetDb.getParent());
+            if (Files.exists(sourceDb)) {
+                Files.copy(sourceDb, targetDb, StandardCopyOption.REPLACE_EXISTING);
+            }
         }
     }
 
@@ -109,6 +111,7 @@ public class AuthIntegrationTest {
     @Order(4)
     @DisplayName("Verify Signup: Creates new user with normalized email and BCrypt hashed password")
     void testSignupNewUser() throws Exception {
+        userRepository.findByNormalizedEmail("newuser_v15@example.com").ifPresent(userRepository::delete);
         String testEmailInput = "   NewUser_V15@Example.COM   ";
         String testPassword = "StrongSecurePassword2026!";
         UserSignupRequest request = new UserSignupRequest("New V15 User", testEmailInput, testPassword);
